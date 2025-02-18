@@ -1,5 +1,7 @@
+// PASSWORD HELPER FUNCTIONS
 import bcrypt from "bcrypt";
 
+// HASH PASSWORD || TAKES PASSWORD, RETURNS HASHED PASSWORD
 export const hashPassword = async (password) => {
   try {
     const add = 10;
@@ -10,6 +12,7 @@ export const hashPassword = async (password) => {
   }
 };
 
+// COMPARE PASSWORD || TAKES PLAIN AND HASHED PASSWORD, RETURNS BOOLEAN
 export const comparePassword = async (password, hashPass) => {
   return bcrypt.compare(password, hashPass);
 };
