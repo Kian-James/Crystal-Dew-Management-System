@@ -4,7 +4,7 @@ import {
   loginController,
   testController,
   forgotPasswordController,
-} from "../server/routes/aRoutes.js";
+} from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
 // ROUTER OBJECT

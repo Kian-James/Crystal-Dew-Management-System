@@ -1,7 +1,6 @@
-import userModel from "../models/uModel.js";
+import userModel from "../models/uModels.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
-import uModel from "../models/uModel.js";
 
 export const registerController = async (req, res) => {
   try {
@@ -123,7 +122,7 @@ export const forgotPasswordController = async (req, res) => {
     if (!newPassword) {
       return res.status(400).send({ message: "New Password is Required" });
     }
-    const user = await uModel.findOne({ email, answer });
+    const user = await userModel.findOne({ email, answer });
     if (!user) {
       return res.status(404).send({
         success: false,
@@ -131,7 +130,7 @@ export const forgotPasswordController = async (req, res) => {
       });
     }
     const hashed = await hashPassword(newPassword);
-    await uModel.findByIdAndUpdate(user._id, { password: hashed });
+    await userModel.findByIdAndUpdate(user._id, { password: hashed });
     return res.status(200).send({
       success: true,
       message: "Password Reset Successfully",

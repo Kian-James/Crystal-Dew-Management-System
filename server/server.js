@@ -3,7 +3,7 @@ import colors from "colors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/database.js";
-import authRoutes from "./routes/aRoute.js";
+import authRoutes from "./routes/aRoutes.js";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
