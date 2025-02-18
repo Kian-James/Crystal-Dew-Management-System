@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
 
 // CUSTOM HOOK TO ACCESS AUTHENTICATION CONTEXT
 const useAuth = () => {
-  useContext(AuthContext);
+  return useContext(AuthContext);
 };
 
 export { useAuth, AuthProvider };
