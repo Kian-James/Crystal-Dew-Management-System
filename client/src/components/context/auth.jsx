@@ -1,4 +1,3 @@
-// THIS FILE HANDLES AUTHENTICATION CONTEXT AND PROVIDER
 import { useState, useEffect, useContext, createContext } from "react";
 import axios from "axios";
 
@@ -38,9 +37,6 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-// CUSTOM HOOK TO ACCESS AUTHENTICATION CONTEXT
-const useAuth = () => {
-  return useContext(AuthContext);
-};
+const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };
