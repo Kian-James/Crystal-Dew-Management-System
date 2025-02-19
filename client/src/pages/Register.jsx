@@ -1,7 +1,8 @@
 import React from "react";
+import "./page.css";
 
 const Register = () => {
-  return <div>Register</div>;
+  return <div>SBS ONLINE CLASS</div>;
 };
 
 export default Register;
