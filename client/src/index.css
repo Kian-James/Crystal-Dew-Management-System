@@ -5,6 +5,10 @@
 /* font-family: "Poppins", serif; */
 /* font-family: "Roboto", sans-serif; */
 
+h1 {
+  color: red;
+}
+
 * {
   margin: 0;
   padding: 0;
