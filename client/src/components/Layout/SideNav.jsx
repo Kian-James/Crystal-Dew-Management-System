@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { FaUserGroup } from "react-icons/fa6";
+import { FaMoneyBillWave } from "react-icons/fa";
+import { FaList } from "react-icons/fa";
 
 const SideNav = () => {
   return (
@@ -20,12 +25,29 @@ const SideNav = () => {
         <Link className="menu-link">
           <FaHome> </FaHome> Home
         </Link>
-        <Link className="menu-link">All Course</Link>
-        <Link className="menu-link">Add Course</Link>
-        <Link className="menu-link">Add Students</Link>
-        <Link className="menu-link">All Students</Link>
-        <Link className="menu-link">Collect Fee</Link>
-        <Link className="menu-link">Payment History</Link>
+        <Link className="menu-link">
+          <FaBook> </FaBook> All Course
+        </Link>
+        <Link className="menu-link">
+          <FaPlus> </FaPlus>
+          Add Course
+        </Link>
+        <Link className="menu-link">
+          <FaUserGroup> </FaUserGroup>
+          All Students
+        </Link>
+        <Link className="menu-link">
+          <FaPlus> </FaPlus>
+          Add Students
+        </Link>
+        <Link className="menu-link">
+          <FaMoneyBillWave> </FaMoneyBillWave>
+          Collect Fee
+        </Link>
+        <Link className="menu-link">
+          <FaList> </FaList>
+          Payment History
+        </Link>
       </div>
     </div>
   );
