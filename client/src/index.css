@@ -113,4 +113,55 @@
   border-radius: 10px;
   display: flex;
   flex-direction: row;
+  overflow: hidden;
+}
+
+.nav-container {
+  width: 30%;
+  height: 95vh;
+  background-color: #7033ff;
+}
+
+.main-container {
+  width: 80%;
+  height: 95vh;
+  background-color: white;
+}
+
+.top-bar {
+  height: 80px;
+  width: 100%;
+  background-color: #f5f7fb;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.logo-container {
+  width: 70px;
+  height: 70px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.school-logo {
+  width: 70px;
+  height: 70px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+}
+
+.profile-name {
+  font-size: 15px;
+}
+
+.logout-btn {
+  background-color: #7033ff;
+  color: white;
 }
