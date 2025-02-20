@@ -117,9 +117,10 @@
 }
 
 .nav-container {
-  width: 30%;
+  width: 20%;
   height: 95vh;
   background-color: #7033ff;
+  padding: 10px;
 }
 
 .main-container {
@@ -142,8 +143,9 @@
 .logo-container {
   width: 70px;
   height: 70px;
-  background-color: red;
+  background-color: black;
   border-radius: 50%;
+  overflow: hidden;
 }
 
 .school-logo {
@@ -154,7 +156,6 @@
 .profile-container {
   display: flex;
   flex-direction: column;
-  background-color: green;
 }
 
 .profile-name {
@@ -164,4 +165,28 @@
 .logout-btn {
   background-color: #7033ff;
   color: white;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.brand-container {
+  display: flex;
+  height: 100px;
+  width: 100%;
+  align-items: center;
+  gap: 5px;
+}
+
+.brand-name {
+  color: white;
+  font-size: 20px;
+}
+
+.brand-slogan {
+  font-size: 12px;
+  color: yellow;
+  position: relative;
+  top: -10px;
 }

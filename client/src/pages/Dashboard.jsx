@@ -1,4 +1,5 @@
 import React from "react";
+import SideNav from "../components/Layout/SideNav";
 import Layout from "../components/Layout/Layout";
 
 const Dashboard = () => {
@@ -6,7 +7,7 @@ const Dashboard = () => {
     <Layout title={"Dashboard"}>
       <div className="dashboard-main-container">
         <div className="dashboard-container">
-          <div className="nav-container"></div>
+          <SideNav />
           <div className="main-container">
             <div className="top-bar">
               <div className="logo-container">
