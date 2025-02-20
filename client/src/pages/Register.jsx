@@ -1,7 +1,11 @@
 import React from "react";
 
 const Register = () => {
-  return <div>SBS ONLINE CLASS</div>;
+  return (
+    <>
+      <h1>Presbyterian Bible Seminary Inc.</h1>
+    </>
+  );
 };
 
 export default Register;
