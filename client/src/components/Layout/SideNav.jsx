@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const SideNav = () => {
   return (
@@ -16,7 +17,9 @@ const SideNav = () => {
         </div>
       </div>
       <div className="menu-container">
-        <Link className="menu-link">Home</Link>
+        <Link className="menu-link">
+          <FaHome> </FaHome> Home
+        </Link>
         <Link className="menu-link">All Course</Link>
         <Link className="menu-link">Add Course</Link>
         <Link className="menu-link">Add Students</Link>
