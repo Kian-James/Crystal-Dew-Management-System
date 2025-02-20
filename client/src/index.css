@@ -171,6 +171,8 @@
   cursor: pointer;
 }
 
+/* SIDENAV */
+
 .brand-container {
   display: flex;
   height: 100px;
@@ -189,4 +191,24 @@
   color: yellow;
   position: relative;
   top: -10px;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-link {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 20px;
+  width: 90%;
+  border-radius: 5px;
+}
+
+.menu-link:hover {
+  background-color: rgba(26, 8, 63, 0.5);
+  transition: 0.5s;
 }
