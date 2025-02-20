@@ -4,7 +4,9 @@ import Layout from "../components/Layout/Layout";
 const Dashboard = () => {
   return (
     <Layout title={"Dashboard"}>
-      <h1>Dashboard</h1>
+      <div className="dashboard-main-container">
+        <div className="dashboard-container"></div>
+      </div>
     </Layout>
   );
 };
