@@ -14,6 +14,7 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="" element={<Register />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="" element={<Dashboard />} />
           <Route path="add-courses" element={<AddCourses />} />
@@ -22,7 +23,6 @@ function App() {
           <Route path="payment-history" element={<PaymentHistory />} />
           <Route path="students" element={<Students />} />
         </Route>
-        <Route path="" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
