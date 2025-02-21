@@ -6,13 +6,15 @@ import { FaPlus } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
+import { FaAddressCard } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 
 const SideNav = () => {
   return (
     <div className="nav-container">
       <div className="brand-container">
         <img
-          src={"../components/Images/PBSI-LOGO.png"}
+          src={"../components/Images/PBSI-LOGO-1.png"}
           alt="school-logo"
           className="school-logo"
         />
@@ -22,32 +24,36 @@ const SideNav = () => {
         </div>
       </div>
       <div className="menu-container">
-        <Link className="menu-link">
-          <FaHome> </FaHome> Home
+        <Link to="/dashboard" className="menu-link">
+          <FaHome /> Home
         </Link>
-        <Link className="menu-link">
-          <FaBook> </FaBook> All Course
+        <Link to="/dashboard" className="menu-link">
+          <FaBook /> All Courses
         </Link>
-        <Link className="menu-link">
-          <FaPlus> </FaPlus>
-          Add Course
+        <Link to="/dashboard/add-courses" className="menu-link">
+          <FaPlus /> Add Course
         </Link>
-        <Link className="menu-link">
-          <FaUserGroup> </FaUserGroup>
-          All Students
+        <Link to="/dashboard/students" className="menu-link">
+          <FaUserGroup /> All Students
         </Link>
-        <Link className="menu-link">
-          <FaPlus> </FaPlus>
-          Add Students
+        <Link to="/dashboard/add-students" className="menu-link">
+          <FaPlus /> Add Students
         </Link>
-        <Link className="menu-link">
-          <FaMoneyBillWave> </FaMoneyBillWave>
-          Collect Fee
+        <Link to="/dashboard/collect-fee" className="menu-link">
+          <FaMoneyBillWave /> Collect Fee
         </Link>
-        <Link className="menu-link">
-          <FaList> </FaList>
-          Payment History
+        <Link to="/dashboard/payment-history" className="menu-link">
+          <FaList /> Payment History
         </Link>
+      </div>
+      <div className="contact-us">
+        <p>
+          <FaAddressCard /> Contact Developer
+        </p>
+        <p>For any issue or feature request</p>
+        <p>
+          <FaPhoneAlt /> 0949-417-7230
+        </p>
       </div>
     </div>
   );

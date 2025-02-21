@@ -1,6 +1,7 @@
 import React from "react";
-import SideNav from "../components/Layout/SideNav";
-import Layout from "../components/Layout/Layout";
+import { Outlet } from "react-router-dom";
+import SideNav from "../../components/Layout/SideNav";
+import Layout from "../../components/Layout/Layout";
 
 const Dashboard = () => {
   return (
@@ -22,6 +23,7 @@ const Dashboard = () => {
                 <button className="logout-btn">Logout</button>
               </div>
             </div>
+            <Outlet />
           </div>
         </div>
       </div>

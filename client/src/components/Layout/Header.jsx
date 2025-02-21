@@ -29,6 +29,11 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <img
+              src={"../components/Images/PBSI-LOGO-1.png"}
+              alt="school-logo"
+              className="school-logo"
+            />
             <Link to="/" className="navbar-brand">
               PBSI
             </Link>
@@ -36,11 +41,6 @@ const Header = () => {
               <li className="nav-item">
                 <NavLink to="/" className="nav-link">
                   Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/category" className="nav-link">
-                  Category
                 </NavLink>
               </li>
               {!auth.user ? (
