@@ -3,8 +3,8 @@ import {
   registerController,
   loginController,
   testController,
-} from "../controllers/aControl.jsx";
-import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.jsx";
+} from "../controllers/aControl.js";
+import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
 // ROUTER OBJECT
 const router = express.Router();

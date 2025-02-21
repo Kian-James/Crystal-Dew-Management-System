@@ -8,7 +8,6 @@ export default function PrivateRoute() {
   const [verified, setVerified] = useState(false);
   const [auth, setAuth] = useAuth();
 
-  // VERIFIED IS CONNECTED WITH A ROUTE
   useEffect(() => {
     const authCheck = async () => {
       const res = await axios.get("/api/va/auth/user-auth");
