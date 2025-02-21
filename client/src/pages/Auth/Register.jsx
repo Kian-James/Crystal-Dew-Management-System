@@ -12,7 +12,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
 
   // Handle form submission
@@ -23,7 +22,7 @@ const Register = () => {
       // API call to register user
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/va/auth/register`,
-        { name, email, password, phone, address, answer }
+        { name, email, password, phone, address }
       );
 
       if (res.data.success) {
@@ -126,20 +125,6 @@ const Register = () => {
               className="form-control"
               id="Input-Password"
               placeholder="Enter your Password"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputAddress" className="form-label">
-              What is your Pets Name
-            </label>
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="form-control"
-              id="exampleInputAddress"
-              placeholder="What is Your Pets Name"
               required
             />
           </div>

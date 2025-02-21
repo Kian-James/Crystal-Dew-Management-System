@@ -1,6 +1,6 @@
 import React from "react";
-import SideNav from "../components/Layout/SideNav";
-import Layout from "../components/Layout/Layout";
+import SideNav from "../../components/Layout/SideNav";
+import Layout from "../../components/Layout/Layout";
 
 const Dashboard = () => {
   return (

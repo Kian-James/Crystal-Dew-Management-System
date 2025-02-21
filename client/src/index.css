@@ -195,7 +195,6 @@
 
 .menu-container {
   display: flex;
-  height: 70%;
   flex-direction: column;
   gap: 5px;
 }
@@ -204,7 +203,7 @@
   color: white;
   text-decoration: none;
   font-size: 15px;
-  padding: 20px;
+  padding: 10px;
   width: 90%;
   border-radius: 5px;
 }
