@@ -29,6 +29,11 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <img
+              src={"../components/Images/PBSI-LOGO-1.png"}
+              alt="school-logo"
+              className="school-logo"
+            />
             <Link to="/" className="navbar-brand">
               PBSI
             </Link>

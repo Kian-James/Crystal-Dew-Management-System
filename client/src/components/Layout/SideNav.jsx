@@ -14,7 +14,7 @@ const SideNav = () => {
     <div className="nav-container">
       <div className="brand-container">
         <img
-          src={"../components/Images/PBSI-LOGO.png"}
+          src={"../components/Images/PBSI-LOGO-1.png"}
           alt="school-logo"
           className="school-logo"
         />
@@ -24,25 +24,25 @@ const SideNav = () => {
         </div>
       </div>
       <div className="menu-container">
-        <Link className="menu-link">
+        <Link to="/dashboard" className="menu-link">
           <FaHome /> Home
         </Link>
-        <Link className="menu-link">
+        <Link to="/dashboard" className="menu-link">
           <FaBook /> All Courses
         </Link>
-        <Link className="menu-link">
+        <Link to="/dashboard/add-courses" className="menu-link">
           <FaPlus /> Add Course
         </Link>
-        <Link className="menu-link">
+        <Link to="/dashboard/students" className="menu-link">
           <FaUserGroup /> All Students
         </Link>
-        <Link className="menu-link">
+        <Link to="/dashboard/add-students" className="menu-link">
           <FaPlus /> Add Students
         </Link>
-        <Link className="menu-link">
+        <Link to="/dashboard/collect-fee" className="menu-link">
           <FaMoneyBillWave /> Collect Fee
         </Link>
-        <Link className="menu-link">
+        <Link to="/dashboard/payment-history" className="menu-link">
           <FaList /> Payment History
         </Link>
       </div>

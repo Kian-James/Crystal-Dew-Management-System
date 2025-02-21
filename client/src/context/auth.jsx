@@ -3,7 +3,6 @@ import axios from "axios";
 
 // CREATE AUTHENTICATION CONTEXT
 const AuthContext = createContext();
-
 // AUTH PROVIDER COMPONENT TO MANAGE AUTHENTICATION STATE
 const AuthProvider = ({ children }) => {
   // INITIALIZE AUTH STATE WITH USER AND TOKEN
@@ -28,7 +27,6 @@ const AuthProvider = ({ children }) => {
     }
     //eslint-disable-next-line
   }, []);
-
   // PROVIDE AUTH CONTEXT TO CHILD COMPONENTS
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
@@ -37,6 +35,7 @@ const AuthProvider = ({ children }) => {
   );
 };
 
+// CUSTOM HOOK TO ACCESS AUTHENTICATION CONTEXT
 const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };
