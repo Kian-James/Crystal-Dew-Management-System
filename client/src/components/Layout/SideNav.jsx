@@ -6,6 +6,8 @@ import { FaPlus } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
+import { FaAddressCard } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 
 const SideNav = () => {
   return (
@@ -23,31 +25,35 @@ const SideNav = () => {
       </div>
       <div className="menu-container">
         <Link className="menu-link">
-          <FaHome> </FaHome> Home
+          <FaHome /> Home
         </Link>
         <Link className="menu-link">
-          <FaBook> </FaBook> All Course
+          <FaBook /> All Courses
         </Link>
         <Link className="menu-link">
-          <FaPlus> </FaPlus>
-          Add Course
+          <FaPlus /> Add Course
         </Link>
         <Link className="menu-link">
-          <FaUserGroup> </FaUserGroup>
-          All Students
+          <FaUserGroup /> All Students
         </Link>
         <Link className="menu-link">
-          <FaPlus> </FaPlus>
-          Add Students
+          <FaPlus /> Add Students
         </Link>
         <Link className="menu-link">
-          <FaMoneyBillWave> </FaMoneyBillWave>
-          Collect Fee
+          <FaMoneyBillWave /> Collect Fee
         </Link>
         <Link className="menu-link">
-          <FaList> </FaList>
-          Payment History
+          <FaList /> Payment History
         </Link>
+      </div>
+      <div className="contact-us">
+        <p>
+          <FaAddressCard /> Contact Developer
+        </p>
+        <p>For any issue or feature request</p>
+        <p>
+          <FaPhoneAlt /> 0949-417-7230
+        </p>
       </div>
     </div>
   );

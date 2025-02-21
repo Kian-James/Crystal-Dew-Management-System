@@ -120,7 +120,7 @@
   width: 20%;
   height: 95vh;
   background-color: #7033ff;
-  padding: 10px;
+  padding: 20px;
 }
 
 .main-container {
@@ -175,7 +175,7 @@
 
 .brand-container {
   display: flex;
-  height: 100px;
+  height: 15%;
   width: 100%;
   align-items: center;
   gap: 5px;
@@ -195,6 +195,7 @@
 
 .menu-container {
   display: flex;
+  height: 70%;
   flex-direction: column;
   gap: 5px;
 }
@@ -211,4 +212,12 @@
 .menu-link:hover {
   background-color: rgba(26, 8, 63, 0.5);
   transition: 0.5s;
+}
+
+.contact-us {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  width: 90%;
+  color: yellow;
 }
