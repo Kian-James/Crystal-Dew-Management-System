@@ -4,19 +4,28 @@ import userModel from "../models/uModels.js";
 // ROUTE PROTECTOR TOKEN
 export const requireSignIn = async (req, res, next) => {
   try {
-    console.log("Received Authorization Header:", req.headers.authorization);
-    const decode = JWT.verify(
-      req.headers.authorization,
-      process.env.JWT_SECRET
-    );
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).send({
+        success: false,
+        message: "Authorization header missing or invalid",
+      });
+    }
+
+    const token = authHeader.split(" ")[1];
+    console.log("Extracted token:", token);
+
+    const decode = JWT.verify(token, process.env.JWT_SECRET);
     console.log("Successfully decoded token:", decode);
+
     req.user = decode;
     next();
   } catch (error) {
     console.log("Token verification error:", error);
     res.status(401).send({
       success: false,
-      message: "Unauthorized access, token is missing or invalid.",
+      message: "Unauthorized access, token is missing or invalid",
       error: error.message,
     });
   }
