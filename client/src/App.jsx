@@ -17,13 +17,14 @@ function App() {
       <Routes>
         <Route path="" element={<Register />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
-          <Route path="" element={<Dashboard />} />
-          <Route path="courses" element={<Courses />} />
-          <Route path="add-courses" element={<AddCourses />} />
-          <Route path="add-students" element={<AddStudents />} />
-          <Route path="collect-fee" element={<CollectFee />} />
-          <Route path="payment-history" element={<PaymentHistory />} />
-          <Route path="students" element={<Students />} />
+          <Route path="" element={<Dashboard />}>
+            <Route path="courses" element={<Courses />} />
+            <Route path="add-courses" element={<AddCourses />} />
+            <Route path="add-students" element={<AddStudents />} />
+            <Route path="collect-fee" element={<CollectFee />} />
+            <Route path="payment-history" element={<PaymentHistory />} />
+            <Route path="students" element={<Students />} />
+          </Route>
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
