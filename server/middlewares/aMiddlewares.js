@@ -12,13 +12,8 @@ export const requireSignIn = async (req, res, next) => {
         message: "Authorization header missing or invalid",
       });
     }
-
     const token = authHeader.split(" ")[1];
-    console.log("Extracted token:", token);
-
     const decode = JWT.verify(token, process.env.JWT_SECRET);
-    console.log("Successfully decoded token:", decode);
-
     req.user = decode;
     next();
   } catch (error) {

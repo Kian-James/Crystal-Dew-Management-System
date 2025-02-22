@@ -27,7 +27,7 @@ const SideNav = () => {
         <Link to="/dashboard" className="menu-link">
           <FaHome /> Home
         </Link>
-        <Link to="/dashboard" className="menu-link">
+        <Link to="/dashboard/courses" className="menu-link">
           <FaBook /> All Courses
         </Link>
         <Link to="/dashboard/add-courses" className="menu-link">

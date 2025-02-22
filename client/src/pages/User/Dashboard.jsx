@@ -23,7 +23,9 @@ const Dashboard = () => {
                 <button className="logout-btn">Logout</button>
               </div>
             </div>
-            <Outlet />
+            <div className="outlet-area">
+              <Outlet />
+            </div>
           </div>
         </div>
       </div>

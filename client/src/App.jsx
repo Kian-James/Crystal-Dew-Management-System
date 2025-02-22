@@ -9,6 +9,7 @@ import AddStudents from "./components/SideNavPages/AddStudents";
 import CollectFee from "./components/SideNavPages/CollectFee";
 import PaymentHistory from "./components/SideNavPages/PaymentHistory";
 import Students from "./components/SideNavPages/Students";
+import Courses from "./components/SideNavPages/Courses";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="" element={<Register />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="" element={<Dashboard />} />
+          <Route path="courses" element={<Courses />} />
           <Route path="add-courses" element={<AddCourses />} />
           <Route path="add-students" element={<AddStudents />} />
           <Route path="collect-fee" element={<CollectFee />} />
