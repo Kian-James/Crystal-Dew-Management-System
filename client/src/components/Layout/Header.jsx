@@ -1,6 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
+import Dashboard from "../../pages/User/Dashboard";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -58,6 +59,11 @@ const Header = () => {
                 </>
               ) : (
                 <>
+                  <li className="nav-item">
+                    <NavLink to="/dashboard" className="nav-link">
+                      Dashboard
+                    </NavLink>
+                  </li>
                   <span className="navbar-text">{auth.user.name}!</span>
                   <li className="nav-item">
                     <NavLink
