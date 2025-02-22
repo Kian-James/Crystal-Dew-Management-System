@@ -208,6 +208,16 @@
   border-radius: 5px;
 }
 
+.menu-active-link {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 10px;
+  width: 90%;
+  border-radius: 5px;
+  background-color: rgba(26, 8, 63, 0.5);
+}
+
 .menu-link:hover {
   background-color: rgba(26, 8, 63, 0.5);
   transition: 0.5s;

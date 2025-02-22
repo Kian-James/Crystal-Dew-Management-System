@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
@@ -10,6 +10,7 @@ import { FaAddressCard } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 
 const SideNav = () => {
+  const location = useLocation();
   return (
     <div className="nav-container">
       <div className="brand-container">
@@ -24,25 +25,74 @@ const SideNav = () => {
         </div>
       </div>
       <div className="menu-container">
-        <Link to="/dashboard" className="menu-link">
+        <Link
+          to="/dashboard"
+          className={
+            location.pathname === "/dashboard"
+              ? "menu-active-link"
+              : "menu-link"
+          }
+        >
           <FaHome /> Home
         </Link>
-        <Link to="/dashboard/courses" className="menu-link">
+        <Link
+          to="/dashboard/courses"
+          className={
+            location.pathname === "/dashboard/courses"
+              ? "menu-active-link"
+              : "menu-link"
+          }
+        >
           <FaBook /> All Courses
         </Link>
-        <Link to="/dashboard/add-courses" className="menu-link">
+        <Link
+          to="/dashboard/add-courses"
+          className={
+            location.pathname === "/dashboard/add-courses"
+              ? "menu-active-link"
+              : "menu-link"
+          }
+        >
           <FaPlus /> Add Course
         </Link>
-        <Link to="/dashboard/students" className="menu-link">
+        <Link
+          to="/dashboard/students"
+          className={
+            location.pathname === "/dashboard/students"
+              ? "menu-active-link"
+              : "menu-link"
+          }
+        >
           <FaUserGroup /> All Students
         </Link>
-        <Link to="/dashboard/add-students" className="menu-link">
+        <Link
+          to="/dashboard/add-students"
+          className={
+            location.pathname === "/dashboard/add-students"
+              ? "menu-active-link"
+              : "menu-link"
+          }
+        >
           <FaPlus /> Add Students
         </Link>
-        <Link to="/dashboard/collect-fee" className="menu-link">
+        <Link
+          to="/dashboard/collect-fee"
+          className={
+            location.pathname === "/collect-fee"
+              ? "menu-active-link"
+              : "menu-link"
+          }
+        >
           <FaMoneyBillWave /> Collect Fee
         </Link>
-        <Link to="/dashboard/payment-history" className="menu-link">
+        <Link
+          to="/dashboard/payment-history"
+          className={
+            location.pathname === "/dashboard/payment-history"
+              ? "menu-active-link"
+              : "menu-link"
+          }
+        >
           <FaList /> Payment History
         </Link>
       </div>
