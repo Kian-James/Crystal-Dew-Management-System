@@ -122,7 +122,9 @@ export const transactionController = async (req, res) => {
       customer_address,
       customer_phone,
       product_name,
+      product_price,
       quantity,
+      total_price,
     } = req.body;
     // VALIDATION
     if (!customer_name) {
@@ -147,7 +149,9 @@ export const transactionController = async (req, res) => {
       customer_address,
       customer_phone,
       product_name,
+      product_price,
       quantity,
+      total_price: product_price * quantity,
     }).save();
     res.status(201).send({
       success: true,

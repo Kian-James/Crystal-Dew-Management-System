@@ -18,17 +18,21 @@ const transactionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  product_price: {
+    type: Number,
+    required: true,
+  },
   quantity: {
     type: Number,
     default: 0,
   },
+  total_price: {
+    type: Number,
+    default: 0,
+  },
   transaction_date: {
-    type: Date,
-    default: () => {
-      let date = new Date();
-      return new Date(date.setHours(0, 0, 0, 0));
-    },
-    set: (val) => new Date(new Date(val).setHours(0, 0, 0, 0)),
+    type: String,
+    default: () => new Date().toISOString().split("T")[0],
   },
 });
 
