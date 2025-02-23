@@ -1,5 +1,5 @@
 import userModel from "../models/uModels.js";
-import transactionModel from "../models/tModels.js";
+import transactionModel from "../models/tModel.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
 

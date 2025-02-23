@@ -24,7 +24,11 @@ const transactionSchema = new mongoose.Schema({
   },
   transaction_date: {
     type: Date,
-    default: Date.now,
+    default: () => {
+      let date = new Date();
+      return new Date(date.setHours(0, 0, 0, 0));
+    },
+    set: (val) => new Date(new Date(val).setHours(0, 0, 0, 0)),
   },
 });
 
