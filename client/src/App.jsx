@@ -11,6 +11,9 @@ import PaymentHistory from "./components/SideNavPages/PaymentHistory";
 import Students from "./components/SideNavPages/Students";
 import Courses from "./components/SideNavPages/Courses";
 import Home_Dash from "./components/SideNavPages/Home_Dash";
+import About from "./components/FooterPages/About";
+import Contact from "./components/FooterPages/Contact";
+import Policy from "./components/FooterPages/Policy";
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
             <Route path="students" element={<Students />} />
           </Route>
         </Route>
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/policy" element={<Policy />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
