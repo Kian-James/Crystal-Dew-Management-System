@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/Layout/Layout";
+import Layout from "../Layout/Layout";
 
 const About = () => {
   return (
@@ -7,11 +7,7 @@ const About = () => {
       <Layout title={"About Us"}>
         <div className="row contact ">
           <div className="col-md-6 ">
-            <img
-              src="/images/About.png"
-              alt="About"
-              style={{ width: "100%" }}
-            />
+            <img src="" alt="About" style={{ width: "100%" }} />
           </div>
           <div className="col-md-4">
             <p className="text-justify mt-2">

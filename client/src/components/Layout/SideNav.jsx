@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
+import { RiDatabaseFill } from "react-icons/ri";
 import { FaBook } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
@@ -33,7 +33,7 @@ const SideNav = () => {
               : "menu-link"
           }
         >
-          <FaHome /> Home
+          <RiDatabaseFill /> Overview
         </Link>
         <Link
           to="/dashboard/courses"
