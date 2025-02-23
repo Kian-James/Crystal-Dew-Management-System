@@ -11,7 +11,7 @@ const transactionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    phone_no: {
+    customer_phone: {
       type: String,
       required: true,
     },

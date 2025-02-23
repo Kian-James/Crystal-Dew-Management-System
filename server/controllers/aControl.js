@@ -1,4 +1,5 @@
 import userModel from "../models/uModels.js";
+import transactionModel from "../models/tModels.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
 
@@ -111,5 +112,54 @@ export const testController = (req, res) => {
   } catch (message) {
     console.log(message);
     res.sent({ message });
+  }
+};
+
+export const transactionController = async (req, res) => {
+  try {
+    const {
+      customer_name,
+      customer_address,
+      customer_phone,
+      product_name,
+      quantity,
+    } = req.body;
+    // VALIDATION
+    if (!customer_name) {
+      return res.send({ message: "Customer Name is Required" });
+    }
+    if (!customer_address) {
+      return res.send({ message: "Customer Address is Required" });
+    }
+    if (!customer_phone) {
+      return res.send({ message: "Customer Phone is Required" });
+    }
+    if (!product_name) {
+      return res.send({ message: "Product Name is Required" });
+    }
+    if (!quantity) {
+      return res.send({ message: "Quantity is Required" });
+    }
+
+    // SAVE
+    const transaction = new transactionModel({
+      customer_name,
+      customer_address,
+      customer_phone,
+      product_name,
+      quantity,
+    }).save();
+    res.status(201).send({
+      success: true,
+      message: "Transaction Successful",
+      transaction,
+    });
+  } catch (message) {
+    console.log(message);
+    res.status(500).send({
+      success: false,
+      message: "Transaction Unsuccessful",
+      message,
+    });
   }
 };
