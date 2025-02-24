@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
@@ -11,7 +10,15 @@ const AddEmployee = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (firstName && lastName) {
+      const formattedEmail = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@cd.com`;
+      const formattedPassword = `${firstName.toLowerCase()}.${lastName.toLowerCase()}password`;
+      setEmail(formattedEmail);
+      setPassword(formattedPassword);
+    }
+  }, [firstName, lastName]);
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -26,7 +33,6 @@ const AddEmployee = () => {
 
       if (res.data.success) {
         toast.success(res.data.message);
-        navigate("/login");
       } else {
         toast.error(res.data.message);
       }
