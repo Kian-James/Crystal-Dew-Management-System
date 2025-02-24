@@ -23,9 +23,11 @@ router.post("/transaction", transactionController);
 //TEST ROUTE
 router.get("/test", requireSignIn, isAdmin, testController);
 
-// PROTECTED ROUTE
-router.get("/user-auth", requireSignIn, (req, res) => {
+// PROTECTED ROUTE OWNER
+router.get("/user-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ verified: true });
 });
+
+// PROTECTED ROUTE EMPLOYEE
 
 export default router;
