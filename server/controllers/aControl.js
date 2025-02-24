@@ -115,6 +115,24 @@ export const testController = (req, res) => {
   }
 };
 
+export const getEmployees = async (req, res) => {
+  try {
+    const employees = await userModel.find({ role: 0 });
+    res.status(200).send({
+      success: true,
+      message: "Employees fetched successfully",
+      employees,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching employees",
+      error,
+    });
+  }
+};
+
 export const transactionController = async (req, res) => {
   try {
     const {
