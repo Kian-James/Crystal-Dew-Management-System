@@ -30,6 +30,7 @@ router.get("/user-auth", requireSignIn, isAdmin, (req, res) => {
 });
 
 // GET EMPLOYEES
-router.get("/employees", getEmployees);
-
+router.get("/employees", requireSignIn, isAdmin, getEmployees, (req, res) => {
+  res.status(200).send({ verified: true });
+});
 export default router;
