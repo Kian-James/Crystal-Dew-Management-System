@@ -117,7 +117,7 @@ export const testController = (req, res) => {
 
 export const getEmployees = async (req, res) => {
   try {
-    const employees = await userModel.find({ role: 0 });
+    const employees = await userModel.find({ role: { $in: [0, 1] } });
     res.status(200).send({
       success: true,
       message: "Employees fetched successfully",

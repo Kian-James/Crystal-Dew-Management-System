@@ -67,14 +67,13 @@ const EmployeeList = () => {
                 <td>{emp.email}</td>
                 <td>{emp.phone}</td>
                 <td>{emp.address}</td>
-                <td>{emp.role}</td>
+                <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
               </tr>
             ))
           ) : (
             <tr>
               <td colSpan="5" style={{ textAlign: "center" }}>
                 {" "}
-                {/* Updated colSpan to 5 */}
                 No Employees Found
               </td>
             </tr>
