@@ -4,6 +4,7 @@ import {
   loginController,
   testController,
   transactionController,
+  getEmployees,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -23,9 +24,12 @@ router.post("/transaction", transactionController);
 //TEST ROUTE
 router.get("/test", requireSignIn, isAdmin, testController);
 
-// PROTECTED ROUTE
-router.get("/user-auth", requireSignIn, (req, res) => {
+// PROTECTED ROUTE OWNER
+router.get("/user-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ verified: true });
 });
+
+// GET EMPLOYEES
+router.get("/employees", getEmployees);
 
 export default router;
