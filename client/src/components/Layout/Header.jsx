@@ -32,11 +32,11 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <img
               src={"../components/Images/PBSI-LOGO-1.png"}
-              alt="school-logo"
-              className="school-logo"
+              alt="brand-logo"
+              className="brand-logo"
             />
             <Link to="/" className="navbar-brand">
-              PBSI
+              Crystal Dew Water Station
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">

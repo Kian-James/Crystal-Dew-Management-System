@@ -4,7 +4,6 @@ import { RiDatabaseFill } from "react-icons/ri";
 import { FaBook } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
-import { FaMoneyBillWave } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -16,12 +15,16 @@ const SideNav = () => {
       <div className="brand-container">
         <img
           src={"../components/Images/PBSI-LOGO-1.png"}
-          alt="school-logo"
-          className="school-logo"
+          alt="Business logo"
+          className="brand-logo"
         />
         <div>
-          <p className="brand-name">PBSI </p>
-          <p className="brand-slogan">Manage your School in Easy Way</p>
+          <p className="brand-name">
+            Crystal Dew
+            <br />
+            Water Station
+          </p>
+          <p className="brand-slogan">Water for Everyone</p>
         </div>
       </div>
       <div className="menu-container">
@@ -36,64 +39,55 @@ const SideNav = () => {
           <RiDatabaseFill /> Overview
         </Link>
         <Link
-          to="/dashboard/courses"
+          to="/dashboard/add-expense"
           className={
-            location.pathname === "/dashboard/courses"
+            location.pathname === "/dashboard/add-expense"
               ? "menu-active-link"
               : "menu-link"
           }
         >
-          <FaBook /> All Courses
+          <FaPlus /> Add Expense
         </Link>
         <Link
-          to="/dashboard/add-courses"
+          to="/dashboard/expense-list"
           className={
-            location.pathname === "/dashboard/add-courses"
+            location.pathname === "/dashboard/expense-list"
               ? "menu-active-link"
               : "menu-link"
           }
         >
-          <FaPlus /> Add Course
+          <FaBook /> Expense List
         </Link>
         <Link
-          to="/dashboard/students"
+          to="/dashboard/add-employee"
           className={
-            location.pathname === "/dashboard/students"
+            location.pathname === "/dashboard/add-employee"
               ? "menu-active-link"
               : "menu-link"
           }
         >
-          <FaUserGroup /> All Students
+          <FaPlus /> Add Employee
         </Link>
         <Link
-          to="/dashboard/add-students"
+          to="/dashboard/employee-list"
           className={
-            location.pathname === "/dashboard/add-students"
+            location.pathname === "/dashboard/employee-list"
               ? "menu-active-link"
               : "menu-link"
           }
         >
-          <FaPlus /> Add Students
+          <FaUserGroup /> Employee List
         </Link>
+
         <Link
-          to="/dashboard/collect-fee"
+          to="/dashboard/transaction-history"
           className={
-            location.pathname === "/collect-fee"
+            location.pathname === "/dashboard/transaction-history"
               ? "menu-active-link"
               : "menu-link"
           }
         >
-          <FaMoneyBillWave /> Collect Fee
-        </Link>
-        <Link
-          to="/dashboard/payment-history"
-          className={
-            location.pathname === "/dashboard/payment-history"
-              ? "menu-active-link"
-              : "menu-link"
-          }
-        >
-          <FaList /> Payment History
+          <FaList /> Transaction History
         </Link>
       </div>
       <div className="contact-us">
