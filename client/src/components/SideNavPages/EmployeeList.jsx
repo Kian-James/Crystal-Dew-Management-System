@@ -5,6 +5,9 @@ import { useAuth } from "../../context/auth";
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
+  const sortedEmployees = [...employees].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
@@ -56,12 +59,12 @@ const EmployeeList = () => {
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
-            <th>Role</th> {/* Fixed missing Role header */}
+            <th>Role</th>
           </tr>
         </thead>
         <tbody>
           {employees.length > 0 ? (
-            employees.map((emp) => (
+            sortedEmployees.map((emp) => (
               <tr key={emp._id}>
                 <td>{emp.name}</td>
                 <td>{emp.email}</td>
