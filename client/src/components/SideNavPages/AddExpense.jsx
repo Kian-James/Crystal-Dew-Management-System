@@ -22,6 +22,8 @@ const AddExpense = () => {
       } else {
         toast.error(res.data.message);
       }
+      setexpenseName("");
+      setexpenseCost("");
     } catch (error) {
       console.error("Error during registration:", error);
       toast.error("Something went wrong");
@@ -55,8 +57,15 @@ const AddExpense = () => {
             inputMode="decimal"
             value={expense_cost}
             onInput={(e) => {
-              e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-              setexpenseCost(e.target.value);
+              const value = e.target.value.replace(/[^0-9.]/g, "");
+              const parts = value.split(".");
+              if (parts.length > 2) {
+                return;
+              }
+              if (parts[1] && parts[1].length > 2) {
+                parts[1] = parts[1].substring(0, 2);
+              }
+              setexpenseCost(parts.join("."));
             }}
             className="form-control"
             id="exampleInputExpenseCost"

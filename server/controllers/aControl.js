@@ -220,7 +220,7 @@ export const expenseController = async (req, res) => {
 
 export const getExpense = async (req, res) => {
   try {
-    const expense = await expenseModel.find({ role: 2 });
+    const expense = await expenseModel.find({});
     res.status(200).send({
       success: true,
       message: "Expenses fetched successfully",

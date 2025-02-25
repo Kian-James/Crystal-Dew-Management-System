@@ -36,6 +36,11 @@ const AddEmployee = () => {
       } else {
         toast.error(res.data.message);
       }
+
+      setfirstName("");
+      setlastName("");
+      setPhone("");
+      setAddress("");
     } catch (error) {
       console.error("Error during registration:", error);
       toast.error("Something went wrong");
