@@ -12,6 +12,7 @@ const formatExpenseCost = (cost) => {
 
 const Home_Dash = () => {
   const [expenses, setExpenses] = useState([]);
+  const [employees, setEmployees] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
@@ -53,8 +54,36 @@ const Home_Dash = () => {
         toast.error("Failed to retrieve expense data. Please try again later.");
         setVerified(false);
       }
-    };
+      try {
+        // Check Authentication
+        const authRes = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/va/auth/employees`,
+          {
+            headers: {
+              Authorization: `Bearer ${auth.token}`,
+            },
+          }
+        );
 
+        setVerified(authRes.data.verified || false);
+
+        // Fetch Employees
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/va/auth/employees`,
+          {
+            headers: {
+              Authorization: `Bearer ${auth.token}`,
+            },
+          }
+        );
+        setEmployees(data.employees || []);
+      } catch (error) {
+        toast.error(
+          "Failed to retrieve employee data. Please try again later."
+        );
+        setVerified(false);
+      }
+    };
     fetchData();
   }, [auth?.token]);
 
@@ -66,7 +95,7 @@ const Home_Dash = () => {
       </div>
       <div className="container">
         <h2>Employee Counter</h2>
-        <h3>Total Expenses: ${formatExpenseCost(totalCost)}</h3>{" "}
+        <h3>Total Employees: {employees.length}</h3>{" "}
       </div>
     </div>
   );
