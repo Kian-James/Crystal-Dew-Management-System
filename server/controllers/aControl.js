@@ -217,3 +217,21 @@ export const expenseController = async (req, res) => {
     });
   }
 };
+
+export const getExpense = async (req, res) => {
+  try {
+    const expense = await expenseModel.find({ role: 2 });
+    res.status(200).send({
+      success: true,
+      message: "Expenses fetched successfully",
+      expense,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching expense",
+      error,
+    });
+  }
+};

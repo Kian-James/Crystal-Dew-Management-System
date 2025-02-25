@@ -6,6 +6,7 @@ import {
   transactionController,
   getEmployees,
   expenseController,
+  getExpense,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -22,6 +23,9 @@ router.post("/login", loginController);
 // TRANSACTION POST
 router.post("/transaction", transactionController);
 
+// EXPENSE
+router.post("/expense", expenseController);
+
 //TEST ROUTE
 router.get("/test", requireSignIn, isAdmin, testController);
 
@@ -30,11 +34,14 @@ router.get("/user-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ verified: true });
 });
 
-// EXPENSE
-router.post("/expense", expenseController);
-
 // GET EMPLOYEES
 router.get("/employees", requireSignIn, isAdmin, getEmployees, (req, res) => {
   res.status(200).send({ verified: true });
 });
+
+// GET EXPENSE
+router.get("/expense-list", requireSignIn, isAdmin, getExpense, (req, res) => {
+  res.status(200).send({ verified: true });
+});
+
 export default router;

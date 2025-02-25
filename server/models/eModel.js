@@ -20,6 +20,10 @@ const expenseSchema = new mongoose.Schema({
       return `${mm}/${dd}/${yyyy}`;
     },
   },
+  role: {
+    type: Number,
+    default: 2,
+  },
 });
 
 export default mongoose.model("expenses", expenseSchema);
