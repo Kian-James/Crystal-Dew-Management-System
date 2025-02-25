@@ -2,7 +2,6 @@ import express from "express";
 import {
   registerController,
   loginController,
-  testController,
   transactionController,
   getEmployees,
   expenseController,
@@ -25,9 +24,6 @@ router.post("/transaction", transactionController);
 
 // EXPENSE
 router.post("/expense", expenseController);
-
-//TEST ROUTE
-router.get("/test", requireSignIn, isAdmin, testController);
 
 // PROTECTED ROUTE OWNER
 router.get("/user-auth", requireSignIn, isAdmin, (req, res) => {

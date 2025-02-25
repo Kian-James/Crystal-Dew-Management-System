@@ -107,15 +107,6 @@ export const loginController = async (req, res) => {
   }
 };
 
-export const testController = (req, res) => {
-  try {
-    res.send("Protected Route");
-  } catch (message) {
-    console.log(message);
-    res.sent({ message });
-  }
-};
-
 export const getEmployees = async (req, res) => {
   try {
     const employees = await userModel.find({ role: { $in: [0, 1] } });

@@ -14,11 +14,11 @@ const AddEmployee = () => {
   useEffect(() => {
     if (firstName && lastName) {
       const formattedEmail = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@cd.com`;
-      const formattedPassword = `${firstName.toLowerCase()}.${lastName.toLowerCase()}password`;
+      const formattedPassword = `${phone}`;
       setEmail(formattedEmail);
       setPassword(formattedPassword);
     }
-  }, [firstName, lastName]);
+  }, [firstName, lastName, phone]);
 
   // Handle form submission
   const handleSubmit = async (e) => {
