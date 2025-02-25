@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../context/auth";
+import { MdOutlineMoneyOff } from "react-icons/md";
+import { FaUserGroup } from "react-icons/fa6";
 
 const formatExpenseCost = (cost) => {
   return Number(cost).toLocaleString("en-US", {
@@ -90,11 +92,15 @@ const Home_Dash = () => {
   return (
     <div className="main-container">
       <div className="container">
-        <h2>Expense List</h2>
+        <h2>
+          <MdOutlineMoneyOff /> Expense List
+        </h2>
         <h3>Total Expenses: ${formatExpenseCost(totalCost)}</h3>{" "}
       </div>
       <div className="container">
-        <h2>Employee Counter</h2>
+        <h2>
+          <FaUserGroup /> Employee Counter
+        </h2>
         <h3>Total Employees: {employees.length}</h3>{" "}
       </div>
     </div>
