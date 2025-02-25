@@ -5,6 +5,7 @@ import {
   testController,
   transactionController,
   getEmployees,
+  expenseController,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -28,6 +29,9 @@ router.get("/test", requireSignIn, isAdmin, testController);
 router.get("/user-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ verified: true });
 });
+
+// EXPENSE
+router.post("/expense", expenseController);
 
 // GET EMPLOYEES
 router.get("/employees", requireSignIn, isAdmin, getEmployees, (req, res) => {
