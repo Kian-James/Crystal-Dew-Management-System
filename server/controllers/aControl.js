@@ -1,5 +1,6 @@
 import userModel from "../models/uModels.js";
 import transactionModel from "../models/tModel.js";
+import expenseModel from "../models/eModel.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
 
@@ -106,15 +107,6 @@ export const loginController = async (req, res) => {
   }
 };
 
-export const testController = (req, res) => {
-  try {
-    res.send("Protected Route");
-  } catch (message) {
-    console.log(message);
-    res.sent({ message });
-  }
-};
-
 export const getEmployees = async (req, res) => {
   try {
     const employees = await userModel.find({ role: { $in: [0, 1] } });
@@ -182,6 +174,55 @@ export const transactionController = async (req, res) => {
       success: false,
       message: "Transaction Unsuccessful",
       message,
+    });
+  }
+};
+
+export const expenseController = async (req, res) => {
+  try {
+    const { expense_name, expense_cost } = req.body;
+    // VALIDATION
+    if (!expense_name) {
+      return res.send({ message: "Expense Name is Required" });
+    }
+    if (!expense_cost) {
+      return res.send({ message: "Expense Cost is Required" });
+    }
+
+    // SAVE
+    const expense = new expenseModel({
+      expense_name,
+      expense_cost,
+    }).save();
+    res.status(201).send({
+      success: true,
+      message: "Expense Listed Successfully",
+      expense,
+    });
+  } catch (message) {
+    console.log(message);
+    res.status(500).send({
+      success: false,
+      message: "Expense Listed Failed",
+      message,
+    });
+  }
+};
+
+export const getExpense = async (req, res) => {
+  try {
+    const expense = await expenseModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "Expenses fetched successfully",
+      expense,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching expense",
+      error,
     });
   }
 };
