@@ -1,6 +1,7 @@
 import userModel from "../models/uModels.js";
 import transactionModel from "../models/tModel.js";
 import expenseModel from "../models/eModel.js";
+import productModel from "../models/pModel.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
 
@@ -223,6 +224,55 @@ export const getExpense = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error while fetching expense",
+      error,
+    });
+  }
+};
+
+export const productController = async (req, res) => {
+  try {
+    const { product_name, product_cost } = req.body;
+    // VALIDATION
+    if (!product_name) {
+      return res.send({ message: "Product Name is Required" });
+    }
+    if (!product_cost) {
+      return res.send({ message: "Product Cost is Required" });
+    }
+
+    // SAVE
+    const product = new productModel({
+      product_name,
+      product_cost,
+    }).save();
+    res.status(201).send({
+      success: true,
+      message: "Product Listed Successfully",
+      product,
+    });
+  } catch (message) {
+    console.log(message);
+    res.status(500).send({
+      success: false,
+      message: "Product Listed Failed",
+      message,
+    });
+  }
+};
+
+export const getProduct = async (req, res) => {
+  try {
+    const product = await productModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "Products fetched successfully",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching product",
       error,
     });
   }

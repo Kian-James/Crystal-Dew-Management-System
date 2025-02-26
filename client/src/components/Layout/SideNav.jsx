@@ -63,6 +63,26 @@ const SideNav = () => {
               <FaBook /> Expense List
             </Link>
             <Link
+              to="/dashboard/add-product"
+              className={
+                location.pathname === "/dashboard/add-product"
+                  ? "menu-active-link"
+                  : "menu-link"
+              }
+            >
+              <FaPlus /> Add Product
+            </Link>
+            <Link
+              to="/dashboard/product-list"
+              className={
+                location.pathname === "/dashboard/product-list"
+                  ? "menu-active-link"
+                  : "menu-link"
+              }
+            >
+              <FaBook /> Product List
+            </Link>
+            <Link
               to="/dashboard/add-employee"
               className={
                 location.pathname === "/dashboard/add-employee"
