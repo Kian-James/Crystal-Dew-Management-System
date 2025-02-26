@@ -13,12 +13,13 @@ import ExpenseList from "./components/SideNavPages/expenseList";
 import AddEmployee from "./components/SideNavPages/addEmployee";
 import EmployeeList from "./components/SideNavPages/employeeList";
 import TransactionHistory from "./components/SideNavPages/transactionHistory";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="" element={<Register />} />
+        <Route path="" element={<Home />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="" element={<Dashboard />}>
             <Route path="" element={<Home_Dash />} />
