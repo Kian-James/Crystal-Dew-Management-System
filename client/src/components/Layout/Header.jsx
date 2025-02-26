@@ -60,7 +60,14 @@ const Header = () => {
               ) : (
                 <>
                   <li className="nav-item">
-                    <NavLink to="/dashboard" className="nav-link">
+                    <NavLink
+                      to={
+                        auth.user.role === 1
+                          ? "/dashboard"
+                          : "/employee-dashboard"
+                      }
+                      className="nav-link"
+                    >
                       Dashboard
                     </NavLink>
                   </li>

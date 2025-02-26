@@ -35,6 +35,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   // PROVIDE AUTH CONTEXT TO CHILD COMPONENTS
+
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
       {children}

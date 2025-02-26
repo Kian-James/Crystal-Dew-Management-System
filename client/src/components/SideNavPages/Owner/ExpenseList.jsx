@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { useAuth } from "../../context/auth";
+import { useAuth } from "../../../context/auth";
 
 const formatExpenseCost = (cost) => {
   return Number(cost).toLocaleString("en-US", {
