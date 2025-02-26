@@ -1,19 +1,21 @@
 import { Routes, Route } from "react-router-dom";
 import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
 import Dashboard from "./pages/User/Dashboard";
 import PrivateRoute from "./components/Routes/Private";
-import Home_Dash from "./components/SideNavPages/Home_Dash";
+import Home_Dash from "./components/SideNavPages/Owner/Home_Dash";
 import About from "./components/FooterPages/About";
 import Contact from "./components/FooterPages/Contact";
 import Policy from "./components/FooterPages/Policy";
-import AddExpense from "./components/SideNavPages/addExpense";
-import ExpenseList from "./components/SideNavPages/expenseList";
-import AddEmployee from "./components/SideNavPages/addEmployee";
-import EmployeeList from "./components/SideNavPages/employeeList";
-import TransactionHistory from "./components/SideNavPages/transactionHistory";
+import AddExpense from "./components/SideNavPages/Owner/AddExpense";
+import ExpenseList from "./components/SideNavPages/Owner/ExpenseList";
+import AddEmployee from "./components/SideNavPages/Owner/AddEmployee";
+import EmployeeList from "./components/SideNavPages/Owner/EmployeeList";
+import TransactionHistory from "./components/SideNavPages/Owner/TransactionHistory";
 import Home from "./pages/Home";
+import CreateTransaction from "./components/SideNavPages/Employee/CreateTransaction";
+import PendingTransaction from "./components/SideNavPages/Employee/PendingTransaction";
+import CompletedTransaction from "./components/SideNavPages/Employee/CompletedTransaction";
 
 function App() {
   return (
@@ -32,6 +34,14 @@ function App() {
               element={<TransactionHistory />}
             />
           </Route>
+        </Route>
+        <Route path="/employee-dashboard" element={<PrivateRoute />}>
+          <Route path="" element={<CreateTransaction />} />
+          <Route path="pending-transactions" element={<PendingTransaction />} />
+          <Route
+            path="completed-transaction"
+            element={<CompletedTransaction />}
+          />
         </Route>
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
