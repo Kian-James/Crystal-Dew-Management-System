@@ -39,7 +39,7 @@ function App() {
         </Route>
         <Route path="/employee-dashboard" element={<PrivateEmployeeRoute />}>
           <Route path="" element={<EmployeeDashboard />}>
-            <Route path="create-transaction" element={<CreateTransaction />} />
+            <Route path="" element={<CreateTransaction />} />
             <Route
               path="pending-transaction"
               element={<PendingTransaction />}
