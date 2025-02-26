@@ -17,6 +17,7 @@ import CreateTransaction from "./components/SideNavPages/Employee/CreateTransact
 import PendingTransaction from "./components/SideNavPages/Employee/PendingTransaction";
 import CompletedTransaction from "./components/SideNavPages/Employee/CompletedTransaction";
 import EmployeeDashboard from "./pages/User/EmployeeDashboard";
+import PrivateEmployeeRoute from "./components/Routes/PrivateEmployee";
 
 function App() {
   return (
@@ -36,11 +37,11 @@ function App() {
             />
           </Route>
         </Route>
-        <Route path="/employee-dashboard" element={<PrivateRoute />}>
+        <Route path="/employee-dashboard" element={<PrivateEmployeeRoute />}>
           <Route path="" element={<EmployeeDashboard />}>
-            <Route path="" element={<CreateTransaction />} />
+            <Route path="create-transaction" element={<CreateTransaction />} />
             <Route
-              path="pending-transactions"
+              path="pending-transaction"
               element={<PendingTransaction />}
             />
             <Route

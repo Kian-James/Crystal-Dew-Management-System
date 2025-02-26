@@ -30,6 +30,11 @@ router.get("/user-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ verified: true });
 });
 
+// PROTECTED ROUTE EMPLOYEE
+router.get("/employee-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ verified: true });
+});
+
 // GET EMPLOYEES
 router.get("/employees", requireSignIn, isAdmin, getEmployees, (req, res) => {
   res.status(200).send({ verified: true });
