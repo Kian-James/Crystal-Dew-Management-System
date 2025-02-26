@@ -18,6 +18,8 @@ import PendingTransaction from "./components/SideNavPages/Employee/PendingTransa
 import CompletedTransaction from "./components/SideNavPages/Employee/CompletedTransaction";
 import EmployeeDashboard from "./pages/User/EmployeeDashboard";
 import PrivateEmployeeRoute from "./components/Routes/PrivateEmployee";
+import AddProduct from "./components/SideNavPages/Owner/AddProduct";
+import ProductList from "./components/SideNavPages/Owner/ProductList";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
             <Route path="" element={<Home_Dash />} />
             <Route path="add-expense" element={<AddExpense />} />
             <Route path="expense-list" element={<ExpenseList />} />
+            <Route path="add-product" element={<AddProduct />} />
+            <Route path="product-list" element={<ProductList />} />
             <Route path="add-employee" element={<AddEmployee />} />
             <Route path="employee-list" element={<EmployeeList />} />
             <Route

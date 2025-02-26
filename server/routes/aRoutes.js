@@ -6,6 +6,8 @@ import {
   getEmployees,
   expenseController,
   getExpense,
+  getProduct,
+  productController,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -25,6 +27,9 @@ router.post("/transaction", transactionController);
 // EXPENSE
 router.post("/expense", expenseController);
 
+// Product
+router.post("/product", productController);
+
 // PROTECTED ROUTE OWNER
 router.get("/user-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ verified: true });
@@ -42,6 +47,11 @@ router.get("/employees", requireSignIn, isAdmin, getEmployees, (req, res) => {
 
 // GET EXPENSE
 router.get("/expense-list", requireSignIn, isAdmin, getExpense, (req, res) => {
+  res.status(200).send({ verified: true });
+});
+
+// GET PRODUCT
+router.get("/product-list", requireSignIn, isAdmin, getProduct, (req, res) => {
   res.status(200).send({ verified: true });
 });
 

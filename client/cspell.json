@@ -1,4 +1,14 @@
 {
   "version": "0.2",
-  "words": ["setfirstName", "setlastName", "VITE", "TTFB", "Mern", "setexpense"]
+  "words": [
+    "Mern",
+    "setcustomer",
+    "setexpense",
+    "setfirstName",
+    "setlastName",
+    "setproduct",
+    "settotal",
+    "TTFB",
+    "VITE"
+  ]
 }
