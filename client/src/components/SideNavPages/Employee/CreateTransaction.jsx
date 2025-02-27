@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "../../../context/auth"; // Import useAuth for authentication
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
@@ -11,6 +12,11 @@ const CreateTransaction = () => {
   const [product_price, setproductPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [total_price, settotalPrice] = useState("");
+
+  // ARRAY
+  const [auth, setAuth] = useAuth();
+  const [verified, setVerified] = useState(false);
+  const [products, setProducts] = useState([]);
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -40,6 +46,42 @@ const CreateTransaction = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!auth?.token) return;
+
+      try {
+        // Check Authentication
+        const authRes = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/va/auth/employee-product-list`,
+          {
+            headers: {
+              Authorization: `Bearer ${auth.token}`,
+            },
+          }
+        );
+
+        setVerified(authRes.data.verified || false);
+
+        // Fetch Expenses
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/va/auth/employee-product-list`,
+          {
+            headers: {
+              Authorization: `Bearer ${auth.token}`,
+            },
+          }
+        );
+        setProducts(data.product || []);
+      } catch (error) {
+        toast.error("Failed to retrieve expense data. Please try again later.");
+        setVerified(false);
+      }
+    };
+
+    fetchData();
+  }, [auth?.token]);
+
   return (
     <div className="form-container">
       <h1 className="title">Create Transaction</h1>
@@ -58,8 +100,62 @@ const CreateTransaction = () => {
             required
           />
         </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputCustomerName" className="form-label">
+            Customer Address
+          </label>
+          <input
+            type="text"
+            value={customer_address}
+            onChange={(e) => setcustomerAddress(e.target.value)}
+            className="form-control"
+            id="exampleInputCustomerName"
+            placeholder="Customer Address"
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputCustomerName" className="form-label">
+            Customer Phone
+          </label>
+          <input
+            type="text"
+            value={customer_phone}
+            onChange={(e) => setcustomerPhone(e.target.value)}
+            className="form-control"
+            id="exampleInputCustomerName"
+            placeholder="Customer Phone"
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="productSelect" className="form-label">
+            Product
+          </label>
+          <select
+            id="productSelect"
+            value={product_name}
+            onChange={(e) => {
+              const selectedProduct = products.find(
+                (prod) => prod.product_name === e.target.value
+              );
+              setproductName(selectedProduct.product_name);
+              setproductPrice(selectedProduct.product_cost);
+            }}
+          >
+            <option value="">Select a product</option>
+            {products.map((prod) => (
+              <option key={prod._id} value={prod.product_name}>
+                {prod.product_name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mb-3">
+          <p>Price: {product_price}</p>
+        </div>
         <button type="submit" className="btn btn-primary">
-          Add Expense
+          Create Transaction
         </button>
       </form>
     </div>
