@@ -55,4 +55,9 @@ router.get("/product-list", requireSignIn, isAdmin, getProduct, (req, res) => {
   res.status(200).send({ verified: true });
 });
 
+// EMPLOYEE GET PRODUCT LIST
+router.get("/employee-product-list", requireSignIn, getProduct, (req, res) => {
+  res.status(200).send({ verified: true });
+});
+
 export default router;
