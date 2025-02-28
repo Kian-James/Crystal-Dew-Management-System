@@ -72,6 +72,17 @@ router.get("/transactions", requireSignIn, getTransaction, (req, res) => {
   res.status(200).send({ verified: true });
 });
 
+// GET TRANSACTION ADMIN
+router.get(
+  "/transactions-admin",
+  requireSignIn,
+  isAdmin,
+  getTransaction,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
+
 // GET PENDING TRANSACTION
 router.get(
   "/pending-transaction-list",
