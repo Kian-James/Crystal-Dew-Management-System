@@ -46,7 +46,6 @@ const Home_Dash = () => {
 
         setExpenses(data.expense || []);
 
-        // Calculate total cost while setting expenses
         const total = data.expense.reduce(
           (sum, exp) => sum + Number(exp.expense_cost),
           0
