@@ -156,8 +156,15 @@ export const transactionController = async (req, res) => {
       return res.send({ message: "Quantity is Required" });
     }
 
+    const nextTransaction = await pendingModel.findOneAndUpdate(
+      {},
+      { $inc: { transaction_id: 1 } },
+      { new: true, sort: { transaction_id: -1 } }
+    );
+
     // SAVE
     const transaction = new transactionModel({
+      transaction_id: nextTransaction.transaction_id,
       customer_name,
       customer_address,
       customer_phone,

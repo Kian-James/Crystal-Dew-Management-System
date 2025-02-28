@@ -49,10 +49,11 @@ const CompletedTransaction = () => {
 
   return (
     <div className="container">
-      <h2>Pending Transactions</h2>
+      <h2>Transactions</h2>
       <table className="table">
         <thead>
           <tr>
+            <th>Transaction id</th>
             <th>Customer Name</th>
             <th>Address</th>
             <th>Phone</th>
@@ -65,6 +66,7 @@ const CompletedTransaction = () => {
           {transactions.length > 0 ? (
             transactions.map((emp) => (
               <tr key={emp._id}>
+                <td>{emp.transaction_id}</td>
                 <td>{emp.customer_name}</td>
                 <td>{emp.customer_address}</td>
                 <td>{emp.customer_phone}</td>
@@ -75,7 +77,7 @@ const CompletedTransaction = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
+              <td colSpan="7" style={{ textAlign: "center" }}>
                 {" "}
                 No Transactions Found
               </td>

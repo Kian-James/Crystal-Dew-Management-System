@@ -50,9 +50,9 @@ const PendingTransaction = () => {
     fetchData();
   }, [auth?.token]);
 
-  const handleAccept = async (id) => {
+  const Done = async (id) => {
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/va/auth/transaction`,
         {
           customer_name: pendingTransactions.find((emp) => emp._id === id)
@@ -68,6 +68,8 @@ const PendingTransaction = () => {
           quantity: pendingTransactions.find((emp) => emp._id === id).quantity,
           total_price: pendingTransactions.find((emp) => emp._id === id)
             .total_price,
+          transaction_id: pendingTransactions.find((emp) => emp._id === id)
+            .transaction_id,
         },
         {
           headers: {
@@ -95,7 +97,7 @@ const PendingTransaction = () => {
     }
   };
 
-  const handleDelete = async (id) => {
+  const Delete = async (id) => {
     try {
       await axios.delete(
         `${
@@ -143,7 +145,7 @@ const PendingTransaction = () => {
                 <td>{emp.total_price}</td>
                 <td>
                   <button
-                    onClick={() => handleAccept(emp._id)}
+                    onClick={() => Done(emp._id)}
                     className="btn btn-danger"
                   >
                     Accept
@@ -151,7 +153,7 @@ const PendingTransaction = () => {
                 </td>
                 <td>
                   <button
-                    onClick={() => handleDelete(emp._id)}
+                    onClick={() => Delete(emp._id)}
                     className="btn btn-danger"
                   >
                     Delete
