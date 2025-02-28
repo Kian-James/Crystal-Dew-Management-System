@@ -1,0 +1,37 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #fcf4fb;                    /*Change next time cause idk whats better*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/*Box Container*/
+.content{
+    background-color: white;
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;                       /*Hide content outside the element*/
+    width: 50vw;
+    min-width: 500px;
+    max-width: 100%;
+}
+
+.content button{
+    background-color: #21295C;
+    color: white;
+    padding: 10px 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+
+}
+
+.right-box{
+    padding: 40px 30px 40px 40px;
+}

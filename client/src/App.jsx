@@ -1,25 +1,25 @@
-import { Routes, Route } from "react-router-dom";
-import PageNotFound from "./pages/PageNotFound";
-import Login from "./pages/Auth/Login";
-import Dashboard from "./pages/User/Dashboard";
-import PrivateRoute from "./components/Routes/Private";
-import Home_Dash from "./components/SideNavPages/Owner/Home_Dash";
+import { Route, Routes } from "react-router-dom";
 import About from "./components/FooterPages/About";
 import Contact from "./components/FooterPages/Contact";
 import Policy from "./components/FooterPages/Policy";
-import AddExpense from "./components/SideNavPages/Owner/AddExpense";
-import ExpenseList from "./components/SideNavPages/Owner/ExpenseList";
-import AddEmployee from "./components/SideNavPages/Owner/AddEmployee";
-import EmployeeList from "./components/SideNavPages/Owner/EmployeeList";
-import TransactionHistory from "./components/SideNavPages/Owner/TransactionHistory";
-import Home from "./pages/Home";
+import PrivateRoute from "./components/Routes/Private";
+import PrivateEmployeeRoute from "./components/Routes/PrivateEmployee";
+import CompletedTransaction from "./components/SideNavPages/Employee/CompletedTransaction";
 import CreateTransaction from "./components/SideNavPages/Employee/CreateTransaction";
 import PendingTransaction from "./components/SideNavPages/Employee/PendingTransaction";
-import CompletedTransaction from "./components/SideNavPages/Employee/CompletedTransaction";
-import EmployeeDashboard from "./pages/User/EmployeeDashboard";
-import PrivateEmployeeRoute from "./components/Routes/PrivateEmployee";
+import AddEmployee from "./components/SideNavPages/Owner/AddEmployee";
+import AddExpense from "./components/SideNavPages/Owner/AddExpense";
 import AddProduct from "./components/SideNavPages/Owner/AddProduct";
+import EmployeeList from "./components/SideNavPages/Owner/EmployeeList";
+import ExpenseList from "./components/SideNavPages/Owner/ExpenseList";
+import Home_Dash from "./components/SideNavPages/Owner/Home_Dash";
 import ProductList from "./components/SideNavPages/Owner/ProductList";
+import TransactionHistory from "./components/SideNavPages/Owner/TransactionHistory";
+import Login from "./pages/Auth/Login";
+import Home from "./pages/Home";
+import PageNotFound from "./pages/PageNotFound";
+import Dashboard from "./pages/User/Dashboard";
+import EmployeeDashboard from "./pages/User/EmployeeDashboard";
 
 function App() {
   return (
