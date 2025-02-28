@@ -1,7 +1,6 @@
-import { NavLink, Link } from "react-router-dom";
-import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
-import Dashboard from "../../pages/User/Dashboard";
+import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -31,7 +30,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <img
-              src={"../components/Images/PBSI-LOGO-1.png"}
+              src={"../components/Images/crystalDew_logo.png"}
               alt="brand-logo"
               className="brand-logo"
             />
