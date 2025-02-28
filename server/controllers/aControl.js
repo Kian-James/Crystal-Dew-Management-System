@@ -2,6 +2,7 @@ import userModel from "../models/uModels.js";
 import transactionModel from "../models/tModel.js";
 import expenseModel from "../models/eModel.js";
 import productModel from "../models/pModel.js";
+import pendingModel from "../models/pendModel.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
 
@@ -176,6 +177,97 @@ export const transactionController = async (req, res) => {
       success: false,
       message: "Transaction Unsuccessful",
       message,
+    });
+  }
+};
+
+export const getTransaction = async (req, res) => {
+  try {
+    const transaction = await transactionModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "Transaction fetched successfully",
+      transaction,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching Transactions",
+      error,
+    });
+  }
+};
+
+export const pendingTransactionController = async (req, res) => {
+  try {
+    const {
+      pending_id,
+      customer_name,
+      customer_address,
+      customer_phone,
+      product_name,
+      product_price,
+      quantity,
+      total_price,
+    } = req.body;
+    // VALIDATION
+    if (!customer_name) {
+      return res.send({ message: "Customer Name is Required" });
+    }
+    if (!customer_address) {
+      return res.send({ message: "Customer Address is Required" });
+    }
+    if (!customer_phone) {
+      return res.send({ message: "Customer Phone is Required" });
+    }
+    if (!product_name) {
+      return res.send({ message: "Product Name is Required" });
+    }
+    if (!quantity) {
+      return res.send({ message: "Quantity is Required" });
+    }
+
+    // SAVE
+    const pendingTransaction = new pendingModel({
+      pending_id,
+      customer_name,
+      customer_address,
+      customer_phone,
+      product_name,
+      product_price,
+      quantity,
+      total_price: product_price * quantity,
+    }).save();
+    res.status(201).send({
+      success: true,
+      message: "Request Transaction Successful",
+      pendingTransaction,
+    });
+  } catch (message) {
+    console.log(message);
+    res.status(500).send({
+      success: false,
+      message: "Request Transaction Unsuccessful",
+      message,
+    });
+  }
+};
+
+export const getPendingTransaction = async (req, res) => {
+  try {
+    const pendingTransaction = await pendingModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "Pending Transaction fetched successfully",
+      pendingTransaction,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching Pending Transactions",
+      error,
     });
   }
 };
