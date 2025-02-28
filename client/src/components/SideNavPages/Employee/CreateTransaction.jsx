@@ -9,9 +9,9 @@ const CreateTransaction = () => {
   const [customer_address, setcustomerAddress] = useState("");
   const [customer_phone, setcustomerPhone] = useState("");
   const [product_name, setproductName] = useState("");
-  const [product_price, setproductPrice] = useState("");
+  const [product_price, setproductPrice] = useState(0);
   const [quantity, setQuantity] = useState("");
-  const [total_price, settotalPrice] = useState("");
+  const [total_price, settotalPrice] = useState(0);
 
   // ARRAY
   const [auth, setAuth] = useAuth();
@@ -25,7 +25,15 @@ const CreateTransaction = () => {
       // API call to register user
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/va/auth/transaction`,
-        { customer_name }
+        {
+          customer_name,
+          customer_address,
+          customer_phone,
+          product_name,
+          product_price,
+          quantity,
+          total_price,
+        }
       );
 
       if (res.data.success) {
@@ -37,14 +45,18 @@ const CreateTransaction = () => {
       setcustomerAddress("");
       setcustomerPhone("");
       setproductName("");
-      setproductPrice("");
-      setQuantity("");
-      settotalPrice("");
+      setproductPrice(0);
+      setQuantity(0);
+      settotalPrice(0);
     } catch (error) {
       console.error("Error during registration:", error);
       toast.error("Something went wrong");
     }
   };
+
+  useEffect(() => {
+    settotalPrice(product_price * quantity);
+  }, [product_price, quantity]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -115,16 +127,18 @@ const CreateTransaction = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputCustomerName" className="form-label">
-            Customer Phone
+          <label htmlFor="exampleInputPhoneNo" className="form-label">
+            Phone No.
           </label>
           <input
-            type="text"
+            type="tel"
             value={customer_phone}
             onChange={(e) => setcustomerPhone(e.target.value)}
             className="form-control"
-            id="exampleInputCustomerName"
-            placeholder="Customer Phone"
+            id="exampleInputPhoneNo"
+            placeholder="Enter Your Phone No."
+            pattern="[0-9]{11}"
+            maxLength="11"
             required
           />
         </div>
@@ -153,6 +167,33 @@ const CreateTransaction = () => {
         </div>
         <div className="mb-3">
           <p>Price: {product_price}</p>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputCustomerName" className="form-label">
+            Quantity
+          </label>
+          <input
+            type="number"
+            value={quantity}
+            onChange={(e) => {
+              const value = Math.max(1, Number(e.target.value));
+              setQuantity(value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "-" || e.key === "0") {
+                e.preventDefault();
+              }
+            }}
+            className="form-control"
+            id="exampleInputCustomerName"
+            placeholder="Quantity"
+            required
+            min="1"
+          />
+        </div>
+
+        <div className="mb-3">
+          <p>Total Price: {total_price}</p>
         </div>
         <button type="submit" className="btn btn-primary">
           Create Transaction
