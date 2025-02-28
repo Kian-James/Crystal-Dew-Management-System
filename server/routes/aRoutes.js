@@ -8,6 +8,7 @@ import {
   getExpense,
   getProduct,
   productController,
+  getTransaction,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -59,5 +60,14 @@ router.get("/product-list", requireSignIn, isAdmin, getProduct, (req, res) => {
 router.get("/employee-product-list", requireSignIn, getProduct, (req, res) => {
   res.status(200).send({ verified: true });
 });
+
+router.get(
+  "/pending-transaction",
+  requireSignIn,
+  getTransaction,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
 
 export default router;
