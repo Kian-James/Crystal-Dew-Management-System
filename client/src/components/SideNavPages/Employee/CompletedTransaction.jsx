@@ -16,7 +16,7 @@ const CompletedTransaction = () => {
       try {
         // Check Authentication
         const authRes = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/pending-transaction`,
+          `${import.meta.env.VITE_API_URL}/api/va/auth/transaction`,
           {
             headers: {
               Authorization: `Bearer ${auth.token}`,
@@ -28,7 +28,7 @@ const CompletedTransaction = () => {
 
         // Fetch Expenses
         const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/pending-transaction`,
+          `${import.meta.env.VITE_API_URL}/api/va/auth/transaction`,
           {
             headers: {
               Authorization: `Bearer ${auth.token}`,

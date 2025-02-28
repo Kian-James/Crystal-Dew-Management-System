@@ -9,6 +9,8 @@ import {
   getProduct,
   productController,
   getTransaction,
+  pendingTransactionController,
+  getPendingTransaction,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -24,6 +26,9 @@ router.post("/login", loginController);
 
 // TRANSACTION POST
 router.post("/transaction", transactionController);
+
+// PENDING TRANSACTION POST
+router.post("/pending-transaction", pendingTransactionController);
 
 // EXPENSE
 router.post("/expense", expenseController);
@@ -61,10 +66,16 @@ router.get("/employee-product-list", requireSignIn, getProduct, (req, res) => {
   res.status(200).send({ verified: true });
 });
 
+// GET TRANSACTION
+router.get("/transaction", requireSignIn, getTransaction, (req, res) => {
+  res.status(200).send({ verified: true });
+});
+
+// GET PENDING TRANSACTION
 router.get(
-  "/pending-transaction",
+  "/pending-transaction-list",
   requireSignIn,
-  getTransaction,
+  getPendingTransaction,
   (req, res) => {
     res.status(200).send({ verified: true });
   }

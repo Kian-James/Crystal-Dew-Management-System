@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 
 const PendingTransaction = () => {
   const [pendingTransactions, setPendingTransactions] = useState([]);
-  const [transactions, setTransactions] = useState([]);
   const [auth, setAuth] = useAuth();
   const [verified, setVerified] = useState(false);
 
@@ -16,7 +15,9 @@ const PendingTransaction = () => {
       try {
         // Check Authentication
         const authRes = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/pending-transaction`,
+          `${
+            import.meta.env.VITE_API_URL
+          }/api/va/auth/pending-transaction-list`,
           {
             headers: {
               Authorization: `Bearer ${auth.token}`,
@@ -28,14 +29,16 @@ const PendingTransaction = () => {
 
         // Fetch Expenses
         const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/pending-transaction`,
+          `${
+            import.meta.env.VITE_API_URL
+          }/api/va/auth/pending-transaction-list`,
           {
             headers: {
               Authorization: `Bearer ${auth.token}`,
             },
           }
         );
-        setTransactions(data.transaction || []);
+        setPendingTransactions(data.pendingTransaction || []);
       } catch (error) {
         toast.error(
           "Failed to retrieve pending transaction data. Please try again later."
@@ -62,8 +65,8 @@ const PendingTransaction = () => {
           </tr>
         </thead>
         <tbody>
-          {transactions.length > 0 ? (
-            transactions.map((emp) => (
+          {pendingTransactions.length > 0 ? (
+            pendingTransactions.map((emp) => (
               <tr key={emp._id}>
                 <td>{emp.customer_name}</td>
                 <td>{emp.customer_address}</td>
@@ -77,7 +80,7 @@ const PendingTransaction = () => {
             <tr>
               <td colSpan="5" style={{ textAlign: "center" }}>
                 {" "}
-                No Transactions Found
+                No Pending Transactions Found
               </td>
             </tr>
           )}

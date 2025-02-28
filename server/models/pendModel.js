@@ -1,6 +1,12 @@
 import mongoose, { mongo } from "mongoose";
+import SequenceFactory from "mongoose-sequence";
+const AutoIncrement = SequenceFactory(mongoose);
 
 const pendingTransactionSchema = new mongoose.Schema({
+  pending_id: {
+    type: Number,
+    unique: true,
+  },
   customer_name: {
     type: String,
     required: true,
@@ -41,5 +47,7 @@ const pendingTransactionSchema = new mongoose.Schema({
     },
   },
 });
+
+pendingTransactionSchema.plugin(AutoIncrement, { inc_field: "pending_id" });
 
 export default mongoose.model("pending-transactions", pendingTransactionSchema);

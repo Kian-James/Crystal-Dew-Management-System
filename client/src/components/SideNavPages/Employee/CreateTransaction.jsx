@@ -24,7 +24,7 @@ const CreateTransaction = () => {
     try {
       // API call to register user
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/va/auth/transaction`,
+        `${import.meta.env.VITE_API_URL}/api/va/auth/pending-transaction`,
         {
           customer_name,
           customer_address,
