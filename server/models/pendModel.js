@@ -3,6 +3,10 @@ import SequenceFactory from "mongoose-sequence";
 const AutoIncrement = SequenceFactory(mongoose);
 
 const pendingTransactionSchema = new mongoose.Schema({
+  transaction_id: {
+    type: Number,
+    unique: true,
+  },
   pending_id: {
     type: Number,
     unique: true,
@@ -49,5 +53,6 @@ const pendingTransactionSchema = new mongoose.Schema({
 });
 
 pendingTransactionSchema.plugin(AutoIncrement, { inc_field: "pending_id" });
+pendingTransactionSchema.plugin(AutoIncrement, { inc_field: "transaction_id" });
 
 export default mongoose.model("pending-transactions", pendingTransactionSchema);

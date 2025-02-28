@@ -375,7 +375,7 @@ export const deletePendingTransactionController = async (req, res) => {
     const { id } = req.body;
 
     if (!id) {
-      return res.status(400).send({ message: "Pending ID is required" });
+      return res.status(400).send({ message: "ID is required" });
     }
 
     const deletedTransaction = await pendingModel.findOneAndDelete({
