@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const CompletedTransaction = () => {
+  const [totalRevenue, setTotalRevenue] = useState(0);
   const [transactions, setTransactions] = useState([]);
   const [auth, setAuth] = useAuth();
   const [verified, setVerified] = useState(false);
@@ -56,6 +57,14 @@ const CompletedTransaction = () => {
     (transaction) => transaction.transaction_date === currentDate
   );
 
+  useEffect(() => {
+    const total = filteredTransactions.reduce(
+      (acc, transaction) => acc + transaction.total_price,
+      0
+    );
+    setTotalRevenue(total);
+  }, [filteredTransactions]);
+
   return (
     <div className="container">
       <h2>Transactions</h2>
@@ -95,6 +104,9 @@ const CompletedTransaction = () => {
           )}
         </tbody>
       </table>
+      <div style={{ textAlign: "right", marginTop: "20px" }}>
+        <strong>Total Revenue: </strong>Php {totalRevenue.toFixed(2)}
+      </div>
     </div>
   );
 };
