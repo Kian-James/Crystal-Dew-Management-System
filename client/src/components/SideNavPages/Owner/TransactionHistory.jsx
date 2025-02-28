@@ -4,7 +4,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const TransactionHistory = () => {
-  const [pendingTransactions, setPendingTransactions] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [auth, setAuth] = useAuth();
   const [verified, setVerified] = useState(false);
