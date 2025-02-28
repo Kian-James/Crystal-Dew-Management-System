@@ -156,8 +156,15 @@ export const transactionController = async (req, res) => {
       return res.send({ message: "Quantity is Required" });
     }
 
+    const nextTransaction = await pendingModel.findOneAndUpdate(
+      {},
+      { $inc: { transaction_id: 1 } },
+      { new: true, sort: { transaction_id: -1 } }
+    );
+
     // SAVE
     const transaction = new transactionModel({
+      transaction_id: nextTransaction.transaction_id,
       customer_name,
       customer_address,
       customer_phone,
@@ -365,6 +372,40 @@ export const getProduct = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error while fetching product",
+      error,
+    });
+  }
+};
+
+export const deletePendingTransactionController = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    if (!id) {
+      return res.status(400).send({ message: "ID is required" });
+    }
+
+    const deletedTransaction = await pendingModel.findOneAndDelete({
+      _id: id,
+    });
+
+    if (!deletedTransaction) {
+      return res.status(404).send({
+        success: false,
+        message: "Transaction not found",
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "Transaction deleted successfully",
+      deletedTransaction,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error deleting transaction",
       error,
     });
   }
