@@ -11,6 +11,7 @@ import {
   getTransaction,
   pendingTransactionController,
   getPendingTransaction,
+  deletePendingTransactionController,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -76,6 +77,15 @@ router.get(
   "/pending-transaction-list",
   requireSignIn,
   getPendingTransaction,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
+
+router.delete(
+  "/pending-transaction-list-delete",
+  requireSignIn,
+  deletePendingTransactionController,
   (req, res) => {
     res.status(200).send({ verified: true });
   }

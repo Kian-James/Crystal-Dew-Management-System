@@ -50,6 +50,28 @@ const PendingTransaction = () => {
     fetchData();
   }, [auth?.token]);
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(
+        `${
+          import.meta.env.VITE_API_URL
+        }/api/va/auth/pending-transaction-list-delete`,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+          data: { id },
+        }
+      );
+      setPendingTransactions(
+        pendingTransactions.filter((emp) => emp._id !== id)
+      );
+      toast.success("Transaction deleted successfully.");
+    } catch (error) {
+      toast.error("Failed to delete transaction. Please try again.");
+    }
+  };
+
   return (
     <div className="container">
       <h2>Pending Transactions</h2>
@@ -74,6 +96,14 @@ const PendingTransaction = () => {
                 <td>{emp.product_name}</td>
                 <td>{emp.quantity}</td>
                 <td>{emp.total_price}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(emp._id)}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))
           ) : (
