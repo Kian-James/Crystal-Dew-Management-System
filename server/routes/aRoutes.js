@@ -68,7 +68,7 @@ router.get("/employee-product-list", requireSignIn, getProduct, (req, res) => {
 });
 
 // GET TRANSACTION
-router.get("/transaction", requireSignIn, getTransaction, (req, res) => {
+router.get("/transactions", requireSignIn, getTransaction, (req, res) => {
   res.status(200).send({ verified: true });
 });
 
