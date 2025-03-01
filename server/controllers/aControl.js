@@ -439,3 +439,21 @@ export const saveAccountController = async (req, res) => {
     });
   }
 };
+
+export const getAccounts = async (req, res) => {
+  try {
+    const accounts = await accountModel.find({ role: { $in: [0, 1] } });
+    res.status(200).send({
+      success: true,
+      message: "Accounts fetched successfully",
+      accounts,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching accounts",
+      error,
+    });
+  }
+};

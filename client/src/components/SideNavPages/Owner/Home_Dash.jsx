@@ -24,17 +24,6 @@ const Home_Dash = () => {
       if (!auth?.token) return;
 
       try {
-        const authRes = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/expense-list`,
-          {
-            headers: {
-              Authorization: `Bearer ${auth.token}`,
-            },
-          }
-        );
-
-        setVerified(authRes.data.verified || false);
-
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/va/auth/expense-list`,
           {
@@ -45,6 +34,7 @@ const Home_Dash = () => {
         );
 
         setExpenses(data.expense || []);
+        setVerified(data.verified || false);
 
         const total = data.expense.reduce(
           (sum, exp) => sum + Number(exp.expense_cost),
@@ -56,18 +46,6 @@ const Home_Dash = () => {
         setVerified(false);
       }
       try {
-        // Check Authentication
-        const authRes = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/employees`,
-          {
-            headers: {
-              Authorization: `Bearer ${auth.token}`,
-            },
-          }
-        );
-
-        setVerified(authRes.data.verified || false);
-
         // Fetch Employees
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/va/auth/employees`,
@@ -78,6 +56,7 @@ const Home_Dash = () => {
           }
         );
         setEmployees(data.employees || []);
+        setVerified(data.verified || false);
       } catch (error) {
         toast.error(
           "Failed to retrieve employee data. Please try again later."

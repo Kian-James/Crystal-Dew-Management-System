@@ -102,7 +102,16 @@ const SideNav = () => {
             >
               <FaUserGroup /> Employee List
             </Link>
-
+            <Link
+              to="/dashboard/account-list"
+              className={
+                location.pathname === "/dashboard/account-list"
+                  ? "menu-active-link"
+                  : "menu-link"
+              }
+            >
+              <FaUserGroup /> Account List
+            </Link>
             <Link
               to="/dashboard/transaction-history"
               className={

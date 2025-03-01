@@ -3,9 +3,9 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../../context/auth";
 
-const EmployeeList = () => {
-  const [employees, setEmployees] = useState([]);
-  const sortedEmployees = [...employees].sort((a, b) =>
+const AccountList = () => {
+  const [accounts, setAccounts] = useState([]);
+  const sortedAccounts = [...accounts].sort((a, b) =>
     a.name.localeCompare(b.name)
   );
   const [verified, setVerified] = useState(false);
@@ -17,14 +17,15 @@ const EmployeeList = () => {
 
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/employees`,
+          `${import.meta.env.VITE_API_URL}/api/va/auth/account-list`,
           {
             headers: {
               Authorization: `Bearer ${auth.token}`,
             },
           }
         );
-        setEmployees(data.employees || []);
+
+        setAccounts(data.accounts || []);
         setVerified(data.verified || false);
       } catch (error) {
         toast.error(
@@ -39,33 +40,29 @@ const EmployeeList = () => {
 
   return (
     <div className="container">
-      <h2>Employee List</h2>
+      <h2>Account List</h2>
       <table className="table">
         <thead>
           <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
             <th>Role</th>
           </tr>
         </thead>
         <tbody>
-          {employees.length > 0 ? (
-            sortedEmployees.map((emp) => (
-              <tr key={emp._id}>
+          {accounts.length > 0 ? (
+            sortedAccounts.map((emp) => (
+              <tr key={emp.name}>
                 <td>{emp.name}</td>
                 <td>{emp.email}</td>
-                <td>{emp.phone}</td>
-                <td>{emp.address}</td>
                 <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
+              <td colSpan="4" style={{ textAlign: "center" }}>
                 {" "}
-                No Employees Found
+                No Accounts Found
               </td>
             </tr>
           )}
@@ -75,4 +72,4 @@ const EmployeeList = () => {
   );
 };
 
-export default EmployeeList;
+export default AccountList;

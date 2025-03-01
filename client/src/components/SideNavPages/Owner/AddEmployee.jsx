@@ -31,6 +31,13 @@ const AddEmployee = () => {
         { name, email, password, phone, address }
       );
 
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/va/auth/save-account`,
+        {
+          email,
+        }
+      );
+
       if (res.data.success) {
         toast.success(res.data.message);
       } else {
