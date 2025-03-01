@@ -14,16 +14,12 @@ import EmployeeList from "./components/SideNavPages/Owner/EmployeeList";
 import ExpenseList from "./components/SideNavPages/Owner/ExpenseList";
 import Home_Dash from "./components/SideNavPages/Owner/Home_Dash";
 import ProductList from "./components/SideNavPages/Owner/ProductList";
-<<<<<<< HEAD
-import AccountList from "./components/SideNavPages/Owner/AccountList";
-=======
 import TransactionHistory from "./components/SideNavPages/Owner/TransactionHistory";
 import Login from "./pages/Auth/Login";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Dashboard from "./pages/User/Dashboard";
 import EmployeeDashboard from "./pages/User/EmployeeDashboard";
->>>>>>> 10b3536 (style: modified login page)
 
 function App() {
   return (
@@ -39,7 +35,6 @@ function App() {
             <Route path="product-list" element={<ProductList />} />
             <Route path="add-employee" element={<AddEmployee />} />
             <Route path="employee-list" element={<EmployeeList />} />
-            <Route path="account-list" element={<AccountList />} />
             <Route
               path="transaction-history"
               element={<TransactionHistory />}
