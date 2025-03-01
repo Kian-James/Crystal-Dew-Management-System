@@ -12,6 +12,8 @@ import {
   pendingTransactionController,
   getPendingTransaction,
   deletePendingTransactionController,
+  saveAccountController,
+  getAccounts,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -21,6 +23,9 @@ const router = express.Router();
 // ROUTING
 // REGISTER || METHOD POST
 router.post("/register", registerController);
+
+// SAVE ACCOUNT
+router.post("/save-account", saveAccountController);
 
 // LOGIN || POST
 router.post("/login", loginController);
@@ -93,6 +98,11 @@ router.get(
   }
 );
 
+router.get("/account-list", requireSignIn, getAccounts, (req, res) => {
+  res.status(200).send({ verified: true });
+});
+
+// DELETE PENDING TRANSACTIONS
 router.delete(
   "/pending-transaction-list-delete",
   requireSignIn,

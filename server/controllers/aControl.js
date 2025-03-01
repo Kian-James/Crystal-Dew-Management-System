@@ -2,6 +2,7 @@ import userModel from "../models/uModels.js";
 import transactionModel from "../models/tModel.js";
 import expenseModel from "../models/eModel.js";
 import productModel from "../models/pModel.js";
+import accountModel from "../models/accountModels.js";
 import pendingModel from "../models/pendModel.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
@@ -54,7 +55,7 @@ export const registerController = async (req, res) => {
     console.log(message);
     res.status(500).send({
       success: false,
-      message: "message in Registration",
+      message: "User Registry Unsuccessful",
       message,
     });
   }
@@ -406,6 +407,52 @@ export const deletePendingTransactionController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error deleting transaction",
+      error,
+    });
+  }
+};
+
+export const saveAccountController = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.send({ message: "User not found." });
+    }
+    const account = await new accountModel({
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      role: user.role,
+    }).save();
+    res.status(201).send({
+      success: true,
+      message: "Account Registered Successfully",
+      account,
+    });
+  } catch (message) {
+    console.log(message);
+    res.status(500).send({
+      success: false,
+      message: "Account Registration Unsuccessful",
+      message,
+    });
+  }
+};
+
+export const getAccounts = async (req, res) => {
+  try {
+    const accounts = await accountModel.find({ role: { $in: [0, 1] } });
+    res.status(200).send({
+      success: true,
+      message: "Accounts fetched successfully",
+      accounts,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching accounts",
       error,
     });
   }
