@@ -15,7 +15,7 @@ const formatExpenseCost = (cost) => {
 const Home_Dash = () => {
   const [expenses, setExpenses] = useState([]);
   const [employees, setEmployees] = useState([]);
-  const [totalCost, setTotalCost] = useState(0);
+  const [totalExpense, setTotalExpense] = useState(0);
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
@@ -40,13 +40,12 @@ const Home_Dash = () => {
           (sum, exp) => sum + Number(exp.expense_cost),
           0
         );
-        setTotalCost(total);
+        setTotalExpense(total);
       } catch (error) {
         toast.error("Failed to retrieve expense data. Please try again later.");
         setVerified(false);
       }
       try {
-        // Fetch Employees
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/va/auth/employees`,
           {
@@ -73,7 +72,7 @@ const Home_Dash = () => {
         <h2>
           <MdOutlineMoneyOff /> Expense List
         </h2>
-        <h3>Total Expenses: ${formatExpenseCost(totalCost)}</h3>{" "}
+        <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>{" "}
       </div>
       <div className="container">
         <h2>

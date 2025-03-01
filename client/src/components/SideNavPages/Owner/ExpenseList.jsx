@@ -90,7 +90,7 @@ const ExpenseList = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="4" style={{ textAlign: "center" }}>
+              <td colSpan="5" style={{ textAlign: "center" }}>
                 No Expenses Found
               </td>
             </tr>

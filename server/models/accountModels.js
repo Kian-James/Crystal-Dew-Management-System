@@ -1,7 +1,13 @@
 import mongoose, { mongo } from "mongoose";
+import SequenceFactory from "mongoose-sequence";
+const AutoIncrement = SequenceFactory(mongoose);
 
 const accountSchema = new mongoose.Schema(
   {
+    account_id: {
+      type: Number,
+      unique: true,
+    },
     name: {
       type: String,
       required: true,
@@ -25,5 +31,7 @@ const accountSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+accountSchema.plugin(AutoIncrement, { inc_field: "account_id" });
 
 export default mongoose.model("accounts", accountSchema);
