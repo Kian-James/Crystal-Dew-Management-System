@@ -46,6 +46,7 @@ const ProductList = () => {
       <table className="table">
         <thead>
           <tr>
+            <th>Product ID</th>
             <th>Description</th>
             <th>Amount</th>
           </tr>
@@ -54,6 +55,7 @@ const ProductList = () => {
           {products.length > 0 ? (
             products.map((prod) => (
               <tr key={prod._id}>
+                <td>{prod.product_id}</td>
                 <td>{prod.product_name}</td>
                 <td>{formatExpenseCost(prod.product_cost)}</td>
               </tr>

@@ -44,6 +44,7 @@ const AccountList = () => {
       <table className="table">
         <thead>
           <tr>
+            <th>Account ID</th>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
@@ -54,6 +55,7 @@ const AccountList = () => {
           {accounts.length > 0 ? (
             sortedAccounts.map((emp) => (
               <tr key={emp.name}>
+                <td>{emp.account_id}</td>
                 <td>{emp.name}</td>
                 <td>{emp.email}</td>
                 <td>***********</td>
@@ -62,7 +64,7 @@ const AccountList = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="4" style={{ textAlign: "center" }}>
+              <td colSpan="5" style={{ textAlign: "center" }}>
                 {" "}
                 No Accounts Found
               </td>
