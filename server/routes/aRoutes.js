@@ -8,6 +8,10 @@ import {
   getExpense,
   getProduct,
   productController,
+  getTransaction,
+  pendingTransactionController,
+  getPendingTransaction,
+  deletePendingTransactionController,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -23,6 +27,9 @@ router.post("/login", loginController);
 
 // TRANSACTION POST
 router.post("/transaction", transactionController);
+
+// PENDING TRANSACTION POST
+router.post("/pending-transaction", pendingTransactionController);
 
 // EXPENSE
 router.post("/expense", expenseController);
@@ -59,5 +66,40 @@ router.get("/product-list", requireSignIn, isAdmin, getProduct, (req, res) => {
 router.get("/employee-product-list", requireSignIn, getProduct, (req, res) => {
   res.status(200).send({ verified: true });
 });
+
+// GET TRANSACTION
+router.get("/transactions", requireSignIn, getTransaction, (req, res) => {
+  res.status(200).send({ verified: true });
+});
+
+// GET TRANSACTION ADMIN
+router.get(
+  "/transactions-admin",
+  requireSignIn,
+  isAdmin,
+  getTransaction,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
+
+// GET PENDING TRANSACTION
+router.get(
+  "/pending-transaction-list",
+  requireSignIn,
+  getPendingTransaction,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
+
+router.delete(
+  "/pending-transaction-list-delete",
+  requireSignIn,
+  deletePendingTransactionController,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
 
 export default router;

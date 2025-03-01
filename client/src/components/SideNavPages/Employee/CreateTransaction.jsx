@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../../context/auth"; // Import useAuth for authentication
+import { useAuth } from "../../../context/auth";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 
@@ -24,7 +24,7 @@ const CreateTransaction = () => {
     try {
       // API call to register user
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/va/auth/transaction`,
+        `${import.meta.env.VITE_API_URL}/api/va/auth/pending-transaction`,
         {
           customer_name,
           customer_address,
