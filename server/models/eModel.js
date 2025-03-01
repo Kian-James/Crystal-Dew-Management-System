@@ -1,6 +1,12 @@
 import mongoose, { mongo } from "mongoose";
+import SequenceFactory from "mongoose-sequence";
+const AutoIncrement = SequenceFactory(mongoose);
 
 const expenseSchema = new mongoose.Schema({
+  expense_id: {
+    type: Number,
+    unique: true,
+  },
   expense_name: {
     type: String,
     required: true,
@@ -21,5 +27,7 @@ const expenseSchema = new mongoose.Schema({
     },
   },
 });
+
+expenseSchema.plugin(AutoIncrement, { inc_field: "expense_id" });
 
 export default mongoose.model("expenses", expenseSchema);

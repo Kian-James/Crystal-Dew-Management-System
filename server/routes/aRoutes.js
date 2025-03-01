@@ -14,6 +14,7 @@ import {
   deletePendingTransactionController,
   saveAccountController,
   getAccounts,
+  deleteExpenseController,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -107,6 +108,16 @@ router.delete(
   "/pending-transaction-list-delete",
   requireSignIn,
   deletePendingTransactionController,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
+
+// DELETE EXPENSE
+router.delete(
+  "/expense-delete",
+  requireSignIn,
+  deleteExpenseController,
   (req, res) => {
     res.status(200).send({ verified: true });
   }

@@ -8,6 +8,7 @@ import { FaUserGroup } from "react-icons/fa6";
 import { FaList } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
+import { FaAddressBook } from "react-icons/fa6";
 
 const SideNav = () => {
   const [auth, setAuth] = useAuth();
@@ -100,7 +101,7 @@ const SideNav = () => {
                   : "menu-link"
               }
             >
-              <FaUserGroup /> Employee List
+              <FaAddressBook /> Employee List
             </Link>
             <Link
               to="/dashboard/account-list"

@@ -210,7 +210,6 @@ export const getTransaction = async (req, res) => {
 export const pendingTransactionController = async (req, res) => {
   try {
     const {
-      pending_id,
       customer_name,
       customer_address,
       customer_phone,
@@ -238,7 +237,6 @@ export const pendingTransactionController = async (req, res) => {
 
     // SAVE
     const pendingTransaction = new pendingModel({
-      pending_id,
       customer_name,
       customer_address,
       customer_phone,
@@ -453,6 +451,40 @@ export const getAccounts = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error while fetching accounts",
+      error,
+    });
+  }
+};
+
+export const deleteExpenseController = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    if (!id) {
+      return res.status(400).send({ message: "ID is required" });
+    }
+
+    const deletedTransaction = await expenseModel.findOneAndDelete({
+      _id: id,
+    });
+
+    if (!deletedTransaction) {
+      return res.status(404).send({
+        success: false,
+        message: "Expense not found",
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "Expense deleted successfully",
+      deletedTransaction,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error deleting expense",
       error,
     });
   }

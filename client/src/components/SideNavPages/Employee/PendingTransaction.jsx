@@ -131,6 +131,8 @@ const PendingTransaction = () => {
             <th>Product Name</th>
             <th>Quantity</th>
             <th>Total Price</th>
+            <th>Accept</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
