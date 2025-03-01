@@ -46,6 +46,7 @@ const AccountList = () => {
           <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>Password</th>
             <th>Role</th>
           </tr>
         </thead>
@@ -55,6 +56,7 @@ const AccountList = () => {
               <tr key={emp.name}>
                 <td>{emp.name}</td>
                 <td>{emp.email}</td>
+                <td>***********</td>
                 <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
               </tr>
             ))
