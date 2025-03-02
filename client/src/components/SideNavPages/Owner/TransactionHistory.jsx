@@ -13,18 +13,6 @@ const TransactionHistory = () => {
       if (!auth?.token) return;
 
       try {
-        // Check Authentication
-        const authRes = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/transactions-admin`,
-          {
-            headers: {
-              Authorization: `Bearer ${auth.token}`,
-            },
-          }
-        );
-
-        setVerified(authRes.data.verified || false);
-
         // Fetch Expenses
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/va/auth/transactions-admin`,
@@ -35,6 +23,7 @@ const TransactionHistory = () => {
           }
         );
         setTransactions(data.transaction || []);
+        setVerified(data.verified || false);
       } catch (error) {
         toast.error(
           "Failed to retrieve pending transaction data. Please try again later."

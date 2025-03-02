@@ -380,14 +380,14 @@ export const getProduct = async (req, res) => {
 
 export const deletePendingTransactionController = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { pending_id } = req.body;
 
-    if (!id) {
+    if (!pending_id) {
       return res.status(400).send({ message: "ID is required" });
     }
 
     const deletedTransaction = await pendingModel.findOneAndDelete({
-      _id: id,
+      pending_id: pending_id,
     });
 
     if (!deletedTransaction) {
@@ -462,14 +462,14 @@ export const getAccounts = async (req, res) => {
 
 export const deleteExpenseController = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { expense_id } = req.body;
 
-    if (!id) {
+    if (!expense_id) {
       return res.status(400).send({ message: "ID is required" });
     }
 
     const deletedTransaction = await expenseModel.findOneAndDelete({
-      _id: id,
+      expense_id: expense_id,
     });
 
     if (!deletedTransaction) {
@@ -576,19 +576,19 @@ export const deleteProductController = async (req, res) => {
     if (!deletedTransaction) {
       return res.status(404).send({
         success: false,
-        message: "Account not found",
+        message: "Product not found",
       });
     }
     res.status(200).send({
       success: true,
-      message: "Account deleted successfully",
+      message: "Product deleted successfully",
       deletedTransaction,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error deleting Account",
+      message: "Error deleting Product",
       error,
     });
   }

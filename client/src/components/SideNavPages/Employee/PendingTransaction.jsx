@@ -84,7 +84,7 @@ const PendingTransaction = () => {
     }
   };
 
-  const Delete = async (id) => {
+  const Delete = async (pending_id) => {
     try {
       await axios.delete(
         `${
@@ -94,11 +94,11 @@ const PendingTransaction = () => {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
-          data: { id },
+          data: { pending_id: pending_id },
         }
       );
       setPendingTransactions(
-        pendingTransactions.filter((emp) => emp._id !== id)
+        pendingTransactions.filter((emp) => emp.pending_id !== pending_id)
       );
       toast.success("Transaction deleted successfully.");
     } catch (error) {
@@ -135,7 +135,7 @@ const PendingTransaction = () => {
                   <td>{emp.total_price}</td>
                   <td>
                     <button
-                      onClick={() => Done(emp._id)}
+                      onClick={() => Done(emp.pending_id)}
                       className="btn btn-danger"
                     >
                       Accept
@@ -143,7 +143,7 @@ const PendingTransaction = () => {
                   </td>
                   <td>
                     <button
-                      onClick={() => Delete(emp._id)}
+                      onClick={() => Delete(emp.pending_id)}
                       className="btn btn-danger"
                     >
                       Delete

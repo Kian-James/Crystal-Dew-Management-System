@@ -57,6 +57,9 @@ const CompletedTransaction = () => {
   return (
     <div className="container">
       <h2>Transactions</h2>
+      <div style={{ textAlign: "right", marginTop: "20px" }}>
+        <strong>Total Revenue: </strong>Php {totalRevenue.toFixed(2)}
+      </div>
       <div className="table-container">
         <table className="table">
           <thead>
@@ -94,9 +97,6 @@ const CompletedTransaction = () => {
             )}
           </tbody>
         </table>
-      </div>
-      <div style={{ textAlign: "right", marginTop: "20px" }}>
-        <strong>Total Revenue: </strong>Php {totalRevenue.toFixed(2)}
       </div>
     </div>
   );
