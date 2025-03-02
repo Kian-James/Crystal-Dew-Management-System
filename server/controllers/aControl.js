@@ -115,7 +115,7 @@ export const getEmployees = async (req, res) => {
   try {
     const employees = await userModel
       .find({ role: { $in: [0, 1] } })
-      .populate("account_id");
+      .sort({ account_id: 1 });
     res.status(200).send({
       success: true,
       message: "Employees fetched successfully",
@@ -415,9 +415,10 @@ export const deletePendingTransactionController = async (req, res) => {
 export const saveAccountController = async (req, res) => {
   const { email } = req.body;
   try {
+    await new Promise((resolve) => setTimeout(resolve, 100));
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.send({ message: "User not found." });
+      return res.status(404).send({ message: "User not found." });
     }
     const account = new accountModel({
       account_id: user.account_id,
@@ -426,7 +427,7 @@ export const saveAccountController = async (req, res) => {
       password: user.password,
       role: user.role,
     }).save();
-    res.status(220).send({
+    res.status(201).send({
       success: true,
       message: "Account Registered Successfully",
       account,

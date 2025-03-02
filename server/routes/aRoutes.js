@@ -101,6 +101,7 @@ router.get(
   }
 );
 
+// GET ACCOUNT LIST
 router.get("/account-list", requireSignIn, getAccounts, (req, res) => {
   res.status(200).send({ verified: true });
 });
