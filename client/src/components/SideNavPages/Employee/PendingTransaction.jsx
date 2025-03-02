@@ -13,21 +13,7 @@ const PendingTransaction = () => {
       if (!auth?.token) return;
 
       try {
-        // Check Authentication
-        const authRes = await axios.get(
-          `${
-            import.meta.env.VITE_API_URL
-          }/api/va/auth/pending-transaction-list`,
-          {
-            headers: {
-              Authorization: `Bearer ${auth.token}`,
-            },
-          }
-        );
-
-        setVerified(authRes.data.verified || false);
-
-        // Fetch Expenses
+        // PENDING TRANSACTIONS
         const { data } = await axios.get(
           `${
             import.meta.env.VITE_API_URL
@@ -39,6 +25,7 @@ const PendingTransaction = () => {
           }
         );
         setPendingTransactions(data.pendingTransaction || []);
+        setVerified(data.verified);
       } catch (error) {
         toast.error(
           "Failed to retrieve pending transaction data. Please try again later."
@@ -122,57 +109,59 @@ const PendingTransaction = () => {
   return (
     <div className="container">
       <h2>Pending Transactions</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Customer Name</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Product Name</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
-            <th>Accept</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pendingTransactions.length > 0 ? (
-            pendingTransactions.map((emp) => (
-              <tr key={emp._id}>
-                <td>{emp.customer_name}</td>
-                <td>{emp.customer_address}</td>
-                <td>{emp.customer_phone}</td>
-                <td>{emp.product_name}</td>
-                <td>{emp.quantity}</td>
-                <td>{emp.total_price}</td>
-                <td>
-                  <button
-                    onClick={() => Done(emp._id)}
-                    className="btn btn-danger"
-                  >
-                    Accept
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => Delete(emp._id)}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>
+      <div className="table-container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
+              <th>Accept</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pendingTransactions.length > 0 ? (
+              pendingTransactions.map((emp) => (
+                <tr key={emp._id}>
+                  <td>{emp.customer_name}</td>
+                  <td>{emp.customer_address}</td>
+                  <td>{emp.customer_phone}</td>
+                  <td>{emp.product_name}</td>
+                  <td>{emp.quantity}</td>
+                  <td>{emp.total_price}</td>
+                  <td>
+                    <button
+                      onClick={() => Done(emp._id)}
+                      className="btn btn-danger"
+                    >
+                      Accept
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => Delete(emp._id)}
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="8" style={{ textAlign: "center" }}>
+                  {" "}
+                  No Pending Transactions Found
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="6" style={{ textAlign: "center" }}>
-                {" "}
-                No Pending Transactions Found
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

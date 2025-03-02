@@ -30,7 +30,7 @@ const ProductList = () => {
           }
         );
         setProducts(data.product || []);
-        setVerified(data.verified || false);
+        setVerified(data.verified);
       } catch (error) {
         toast.error("Failed to retrieve expense data. Please try again later.");
         setVerified(false);

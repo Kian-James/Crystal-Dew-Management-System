@@ -29,7 +29,7 @@ const ExpenseList = () => {
           }
         );
         setExpenses(data.expense || []);
-        setVerified(data.verified || false);
+        setVerified(data.verified);
       } catch (error) {
         toast.error("Failed to retrieve expense data. Please try again later.");
         setVerified(false);
@@ -60,43 +60,45 @@ const ExpenseList = () => {
   return (
     <div className="container">
       <h2>Expense List</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Expense ID</th>
-            <th>Description</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {expenses.length > 0 ? (
-            expenses.map((exp) => (
-              <tr key={exp._id}>
-                <td>{exp.expense_id}</td>
-                <td>{exp.expense_name}</td>
-                <td>{formatExpenseCost(exp.expense_cost)}</td>
-                <td>{exp.expense_date}</td>
-                <td>
-                  <button
-                    onClick={() => Delete(exp._id)}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>
+      <div className="table-container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Expense ID</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {expenses.length > 0 ? (
+              expenses.map((exp) => (
+                <tr key={exp._id}>
+                  <td>{exp.expense_id}</td>
+                  <td>{exp.expense_name}</td>
+                  <td>{formatExpenseCost(exp.expense_cost)}</td>
+                  <td>{exp.expense_date}</td>
+                  <td>
+                    <button
+                      onClick={() => Delete(exp._id)}
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center" }}>
+                  No Expenses Found
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
-                No Expenses Found
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

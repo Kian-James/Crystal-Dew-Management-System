@@ -20,19 +20,7 @@ const CompletedTransaction = () => {
       if (!auth?.token) return;
 
       try {
-        // Check Authentication
-        const authRes = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/transactions`,
-          {
-            headers: {
-              Authorization: `Bearer ${auth.token}`,
-            },
-          }
-        );
-
-        setVerified(authRes.data.verified || false);
-
-        // Fetch Expenses
+        // Fetch Transactions
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/va/auth/transactions`,
           {
@@ -42,6 +30,7 @@ const CompletedTransaction = () => {
           }
         );
         setTransactions(data.transaction || []);
+        setVerified(data.verified);
       } catch (error) {
         toast.error(
           "Failed to retrieve pending transaction data. Please try again later."
@@ -68,42 +57,44 @@ const CompletedTransaction = () => {
   return (
     <div className="container">
       <h2>Transactions</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Transaction id</th>
-            <th>Customer Name</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Product Name</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
-            <th>Transaction Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredTransactions.length > 0 ? (
-            filteredTransactions.map((emp) => (
-              <tr key={emp._id}>
-                <td>{emp.transaction_id}</td>
-                <td>{emp.customer_name}</td>
-                <td>{emp.customer_address}</td>
-                <td>{emp.customer_phone}</td>
-                <td>{emp.product_name}</td>
-                <td>{emp.quantity}</td>
-                <td>{emp.total_price}</td>
-                <td>{emp.transaction_date}</td>
-              </tr>
-            ))
-          ) : (
+      <div className="table-container">
+        <table className="table">
+          <thead>
             <tr>
-              <td colSpan="7" style={{ textAlign: "center" }}>
-                No Transactions Found
-              </td>
+              <th>Transaction id</th>
+              <th>Customer Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
+              <th>Transaction Date</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredTransactions.length > 0 ? (
+              filteredTransactions.map((emp) => (
+                <tr key={emp._id}>
+                  <td>{emp.transaction_id}</td>
+                  <td>{emp.customer_name}</td>
+                  <td>{emp.customer_address}</td>
+                  <td>{emp.customer_phone}</td>
+                  <td>{emp.product_name}</td>
+                  <td>{emp.quantity}</td>
+                  <td>{emp.total_price}</td>
+                  <td>{emp.transaction_date}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="7" style={{ textAlign: "center" }}>
+                  No Transactions Found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
       <div style={{ textAlign: "right", marginTop: "20px" }}>
         <strong>Total Revenue: </strong>Php {totalRevenue.toFixed(2)}
       </div>
