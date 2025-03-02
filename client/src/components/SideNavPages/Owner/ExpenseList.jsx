@@ -39,7 +39,7 @@ const ExpenseList = () => {
     fetchData();
   }, [auth?.token]);
 
-  const Delete = async (id) => {
+  const Delete = async (expense_id) => {
     try {
       await axios.delete(
         `${import.meta.env.VITE_API_URL}/api/va/auth/expense-delete`,
@@ -47,10 +47,10 @@ const ExpenseList = () => {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
-          data: { id },
+          data: { expense_id: expense_id },
         }
       );
-      setExpenses(expenses.filter((exp) => exp._id !== id));
+      setExpenses(expenses.filter((exp) => exp.expense_id !== expense_id));
       toast.success("Expense deleted successfully.");
     } catch (error) {
       toast.error("Failed to delete expense. Please try again.");
@@ -109,7 +109,7 @@ const ExpenseList = () => {
                   <td>{exp.expense_date}</td>
                   <td>
                     <button
-                      onClick={() => Delete(exp._id)}
+                      onClick={() => Delete(exp.expense_id)}
                       className="btn btn-danger"
                     >
                       Delete
