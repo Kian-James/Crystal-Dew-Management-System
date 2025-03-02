@@ -74,43 +74,44 @@ const TransactionHistory = () => {
           <option value="date">Date</option>
         </select>
       </div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Transaction id</th>
-            <th>Customer Name</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Product Name</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
-            <th>Transaction Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.length > 0 ? (
-            transactions.map((emp) => (
-              <tr key={emp._id}>
-                <td>{emp.transaction_id}</td>
-                <td>{emp.customer_name}</td>
-                <td>{emp.customer_address}</td>
-                <td>{emp.customer_phone}</td>
-                <td>{emp.product_name}</td>
-                <td>{emp.quantity}</td>
-                <td>{emp.total_price}</td>
-                <td>{emp.transaction_date}</td>
-              </tr>
-            ))
-          ) : (
+      <div className="table-container">
+        <table className="table">
+          <thead>
             <tr>
-              <td colSpan="8" style={{ textAlign: "center" }}>
-                {" "}
-                No Transactions Found
-              </td>
+              <th>Transaction id</th>
+              <th>Customer Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
+              <th>Transaction Date</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {transactions.length > 0 ? (
+              transactions.map((emp) => (
+                <tr key={emp._id}>
+                  <td>{emp.transaction_id}</td>
+                  <td>{emp.customer_name}</td>
+                  <td>{emp.customer_address}</td>
+                  <td>{emp.customer_phone}</td>
+                  <td>{emp.product_name}</td>
+                  <td>{emp.quantity}</td>
+                  <td>{emp.total_price}</td>
+                  <td>{emp.transaction_date}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="8" style={{ textAlign: "center" }}>
+                  No Transactions Found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

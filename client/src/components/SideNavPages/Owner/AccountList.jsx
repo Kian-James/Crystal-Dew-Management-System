@@ -41,36 +41,38 @@ const AccountList = () => {
   return (
     <div className="container">
       <h2>Account List</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Account ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-        <tbody>
-          {accounts.length > 0 ? (
-            sortedAccounts.map((emp) => (
-              <tr key={emp.name}>
-                <td>{emp.account_id}</td>
-                <td>{emp.name}</td>
-                <td>{emp.email}</td>
-                <td>***********</td>
-                <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
-              </tr>
-            ))
-          ) : (
+      <div className="table-container">
+        <table className="table">
+          <thead>
             <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
-                No Accounts Found
-              </td>
+              <th>Account ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Role</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {accounts.length > 0 ? (
+              sortedAccounts.map((emp) => (
+                <tr key={emp.name}>
+                  <td>{emp.account_id}</td>
+                  <td>{emp.name}</td>
+                  <td>{emp.email}</td>
+                  <td>***********</td>
+                  <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center" }}>
+                  No Accounts Found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
