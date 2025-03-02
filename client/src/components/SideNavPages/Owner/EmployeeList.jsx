@@ -5,9 +5,6 @@ import { useAuth } from "../../../context/auth";
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
-  const sortedEmployees = [...employees].sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
@@ -61,9 +58,28 @@ const EmployeeList = () => {
     }
   };
 
+  const sortEmployees = (criteria) => {
+    const sortedEmployees = [...employees].sort((a, b) => {
+      if (criteria === "name") {
+        return a.name.localeCompare(b.name);
+      } else if (criteria === "accountId") {
+        return a.account_id.localeCompare(b.account_id);
+      }
+      return 0;
+    });
+    setEmployees(sortedEmployees);
+  };
+
   return (
     <div className="container">
       <h2>Employee List</h2>
+      <div>
+        <select onChange={(e) => sortEmployees(e.target.value)}>
+          <option value="">Sort by</option>
+          <option value="name">Name</option>
+          <option value="accountId">Account ID</option>
+        </select>
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -76,7 +92,7 @@ const EmployeeList = () => {
         </thead>
         <tbody>
           {employees.length > 0 ? (
-            sortedEmployees.map((emp) => (
+            employees.map((emp) => (
               <tr key={emp._id}>
                 <td>{emp.name}</td>
                 <td>{emp.email}</td>
