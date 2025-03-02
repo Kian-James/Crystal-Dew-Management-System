@@ -421,7 +421,7 @@ export const saveAccountController = async (req, res) => {
       return res.status(404).send({ message: "User not found." });
     }
     const account = new accountModel({
-      account_id: user.account_id,
+      account_id: user.employee_id,
       name: user.name,
       email: user.email,
       password: user.password,
@@ -496,14 +496,14 @@ export const deleteExpenseController = async (req, res) => {
 
 export const deleteEmployeeController = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { employee_id } = req.body;
 
-    if (!id) {
-      return res.status(400).send({ message: "ID is required" });
+    if (!employee_id) {
+      return res.status(400).send({ message: "Employee ID is required" });
     }
 
     const deletedTransaction = await userModel.findOneAndDelete({
-      _id: id,
+      employee_id: employee_id,
     });
 
     if (!deletedTransaction) {
@@ -512,7 +512,6 @@ export const deleteEmployeeController = async (req, res) => {
         message: "Employee not found",
       });
     }
-
     res.status(200).send({
       success: true,
       message: "Employee deleted successfully",
@@ -522,7 +521,7 @@ export const deleteEmployeeController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error deleting employee",
+      message: "Error deleting Employee",
       error,
     });
   }

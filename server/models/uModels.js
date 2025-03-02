@@ -4,7 +4,7 @@ const AutoIncrement = SequenceFactory(mongoose);
 
 const userSchema = new mongoose.Schema(
   {
-    account_id: {
+    employee_id: {
       type: Number,
       unique: true,
     },
@@ -40,5 +40,5 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.plugin(AutoIncrement, { inc_field: "account_id" });
+userSchema.plugin(AutoIncrement, { inc_field: "employee_id" });
 export default mongoose.model("users", userSchema);

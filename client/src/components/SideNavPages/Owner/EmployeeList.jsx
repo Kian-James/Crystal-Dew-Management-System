@@ -34,7 +34,7 @@ const EmployeeList = () => {
     fetchData();
   }, [auth?.token]);
 
-  const Delete = async (id, acc_id) => {
+  const Delete = async (emp_id) => {
     try {
       await axios.delete(
         `${import.meta.env.VITE_API_URL}/api/va/auth/employee-delete`,
@@ -42,16 +42,16 @@ const EmployeeList = () => {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
-          data: { id },
+          data: { employee_id: emp_id },
         }
       );
       await axios.delete(
         `${import.meta.env.VITE_API_URL}/api/va/auth/account-delete`,
         {
-          data: { account_id: acc_id },
+          data: { account_id: emp_id },
         }
       );
-      setEmployees(employees.filter((emp) => emp._id !== id));
+      setEmployees(employees.filter((emp) => emp.employee_id !== emp_id));
       toast.success("Employee deleted successfully.");
     } catch (error) {
       toast.error("Failed to delete employee. Please try again.");
@@ -63,7 +63,7 @@ const EmployeeList = () => {
       if (change === "name") {
         return a.name.localeCompare(b.name);
       } else if (change === "account-id") {
-        return a.account_id - b.account_id;
+        return a.employee_id - b.employee_id;
       }
       return 0;
     });
@@ -102,7 +102,7 @@ const EmployeeList = () => {
                   <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
                   <td>
                     <button
-                      onClick={() => Delete(emp._id, emp.account_id)}
+                      onClick={() => Delete(emp.employee_id)}
                       className="btn btn-danger"
                     >
                       Delete
