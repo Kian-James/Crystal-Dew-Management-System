@@ -5,6 +5,15 @@
 /* font-family: "Poppins", serif; */
 /* font-family: "Roboto", sans-serif; */
 
+/*Color Pallete*/
+:root {
+  --accent-color: #ffb434;
+  --back-color: #fbf8ef;
+  --box-color: #b4ebe6;
+  --shadow-color: #80cbc4;
+  --darkest-color: #159a8e;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,11 +29,11 @@
   text-transform: uppercase;
   box-shadow: 0 8px 6 -6px gray;
   --webkit-box-shadow: 0 8px 6 -6px gray;
-  border-bottom: solid gray !important;
+  border-bottom: solid rgba(30, 28, 28, 0.847) !important;
 }
 
 .nav-link {
-  font-weight: 300 !important;
+  font-weight: 500 !important;
 }
 
 .active {
@@ -32,9 +41,15 @@
 }
 
 .navbar-brand {
+  /*"Crystal Dew Water Station"*/
   font-weight: 700;
   font-family: "Roboto", sans-serif;
   letter-spacing: 3px;
+  padding-left: 10px;
+}
+
+.brand-logo {
+  border-radius: 20% !important;
 }
 
 /* FOOTER */

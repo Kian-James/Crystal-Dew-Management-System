@@ -1,0 +1,83 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-image: url("../../components/images/Background-image.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card,
+.right-side {
+  border-radius: 5%;
+}
+
+.overlay {
+  position: absolute;
+  margin-top: 5px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.345); /* White overlay */
+}
+
+.right-box {
+  padding: 40px 30px 40px 40px; /*Top, Right Bottom, Left*/
+}
+
+.input-group button {
+  background-color: var(--darkest-color);
+  color: white;
+  padding: 10px 10px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.btn:hover {
+  background-color: var(--shadow-color);
+}
+
+.header-text h1,
+.forgotPas a {
+  color: var(--darkest-color);
+}
+
+.header-text {
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.forgotPas {
+  padding-left: 175px;
+}
+
+.right-side {
+  background-color: var(--darkest-color);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.right-side h1,
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-side h1 {
+  /*"Welcome"*/
+  margin-top: 70px;
+  font-size: 60px;
+}
+
+.right-side,
+p {
+  font-size: 20px;
+}
