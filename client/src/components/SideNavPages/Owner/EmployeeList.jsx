@@ -22,7 +22,7 @@ const EmployeeList = () => {
           }
         );
         setEmployees(data.employees || []);
-        setVerified(data.verified || false);
+        setVerified(data.verified);
       } catch (error) {
         toast.error(
           "Failed to retrieve employee data. Please try again later."
@@ -58,12 +58,12 @@ const EmployeeList = () => {
     }
   };
 
-  const sortEmployees = (criteria) => {
+  const sortEmployees = (change) => {
     const sortedEmployees = [...employees].sort((a, b) => {
-      if (criteria === "name") {
+      if (change === "name") {
         return a.name.localeCompare(b.name);
-      } else if (criteria === "accountId") {
-        return a.account_id.localeCompare(b.account_id);
+      } else if (change === "account-id") {
+        return a.account_id - b.account_id;
       }
       return 0;
     });
@@ -77,7 +77,7 @@ const EmployeeList = () => {
         <select onChange={(e) => sortEmployees(e.target.value)}>
           <option value="">Sort by</option>
           <option value="name">Name</option>
-          <option value="accountId">Account ID</option>
+          <option value="account-id">Account ID</option>
         </select>
       </div>
       <table className="table">

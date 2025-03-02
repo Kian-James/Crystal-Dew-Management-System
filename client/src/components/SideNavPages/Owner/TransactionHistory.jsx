@@ -46,9 +46,34 @@ const TransactionHistory = () => {
     fetchData();
   }, [auth?.token]);
 
+  const sortTransaction = (change) => {
+    const sortedTransaction = [...transactions].sort((a, b) => {
+      if (change === "name") {
+        return a.customer_name.localeCompare(b.customer_name);
+      } else if (change === "transaction-id") {
+        return a.transaction_id - b.transaction_id;
+      } else if (change === "date") {
+        return (
+          new Date(a.transaction_date) - new Date(b.transaction_date) ||
+          a.transaction_id - b.transaction_id
+        );
+      }
+      return 0;
+    });
+    setTransactions(sortedTransaction);
+  };
+
   return (
     <div className="container">
       <h2>Transactions</h2>
+      <div>
+        <select onChange={(e) => sortTransaction(e.target.value)}>
+          <option value="">Sort by</option>
+          <option value="name">Name</option>
+          <option value="transaction-id">Transaction ID</option>
+          <option value="date">Date</option>
+        </select>
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -59,6 +84,7 @@ const TransactionHistory = () => {
             <th>Product Name</th>
             <th>Quantity</th>
             <th>Total Price</th>
+            <th>Transaction Date</th>
           </tr>
         </thead>
         <tbody>
@@ -72,11 +98,12 @@ const TransactionHistory = () => {
                 <td>{emp.product_name}</td>
                 <td>{emp.quantity}</td>
                 <td>{emp.total_price}</td>
+                <td>{emp.transaction_date}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="7" style={{ textAlign: "center" }}>
+              <td colSpan="8" style={{ textAlign: "center" }}>
                 {" "}
                 No Transactions Found
               </td>

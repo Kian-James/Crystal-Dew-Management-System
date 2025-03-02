@@ -34,7 +34,7 @@ const Home_Dash = () => {
         );
 
         setExpenses(data.expense || []);
-        setVerified(data.verified || false);
+        setVerified(data.verified);
 
         const total = data.expense.reduce(
           (sum, exp) => sum + Number(exp.expense_cost),
@@ -55,7 +55,7 @@ const Home_Dash = () => {
           }
         );
         setEmployees(data.employees || []);
-        setVerified(data.verified || false);
+        setVerified(data.verified);
       } catch (error) {
         toast.error(
           "Failed to retrieve employee data. Please try again later."
