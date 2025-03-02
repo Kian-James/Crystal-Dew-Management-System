@@ -51,15 +51,43 @@ const ExpenseList = () => {
         }
       );
       setExpenses(expenses.filter((exp) => exp._id !== id));
-      toast.success("Transaction deleted successfully.");
+      toast.success("Expense deleted successfully.");
     } catch (error) {
-      toast.error("Failed to delete transaction. Please try again.");
+      toast.error("Failed to delete expense. Please try again.");
     }
+  };
+
+  const sortExpense = (change) => {
+    const sortedExpense = [...expenses].sort((a, b) => {
+      if (change === "name") {
+        return a.expense_name.localeCompare(b.expense_name);
+      } else if (change === "expense-id") {
+        return a.expense_id - b.expense_id;
+      } else if (change === "date") {
+        return (
+          new Date(a.expense_date) - new Date(b.expense_date) ||
+          a.expense_id - b.expense_id
+        );
+      } else if (change === "amount") {
+        return a.expense_cost - b.expense_cost;
+      }
+      return 0;
+    });
+    setExpenses(sortedExpense);
   };
 
   return (
     <div className="container">
       <h2>Expense List</h2>
+      <div>
+        <select onChange={(e) => sortExpense(e.target.value)}>
+          <option value="">Sort by</option>
+          <option value="name">Name</option>
+          <option value="expense-id">Expense ID</option>
+          <option value="date">Date</option>
+          <option value="amount">Amount</option>
+        </select>
+      </div>
       <div className="table-container">
         <table className="table">
           <thead>

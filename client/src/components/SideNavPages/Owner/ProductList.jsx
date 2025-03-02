@@ -40,15 +40,34 @@ const ProductList = () => {
     fetchData();
   }, [auth?.token]);
 
+  const Delete = async (product_id) => {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/va/auth/product-delete`,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+          data: { product_id: product_id },
+        }
+      );
+      setProducts(products.filter((prod) => prod.product_id !== product_id));
+      toast.success("Product deleted successfully.");
+    } catch (error) {
+      toast.error("Failed to delete product. Please try again.");
+    }
+  };
+
   return (
     <div className="container">
-      <h2>Expense List</h2>
+      <h2>Product List</h2>
       <table className="table">
         <thead>
           <tr>
             <th>Product ID</th>
             <th>Description</th>
             <th>Amount</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -58,11 +77,19 @@ const ProductList = () => {
                 <td>{prod.product_id}</td>
                 <td>{prod.product_name}</td>
                 <td>{formatExpenseCost(prod.product_cost)}</td>
+                <td>
+                  <button
+                    onClick={() => Delete(prod.product_id)}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="3" style={{ textAlign: "center" }}>
+              <td colSpan="4" style={{ textAlign: "center" }}>
                 No Products Found
               </td>
             </tr>

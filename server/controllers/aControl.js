@@ -560,3 +560,36 @@ export const deleteAccountController = async (req, res) => {
     });
   }
 };
+
+export const deleteProductController = async (req, res) => {
+  try {
+    const { product_id } = req.body;
+
+    if (!product_id) {
+      return res.status(400).send({ message: "Product ID is required" });
+    }
+
+    const deletedTransaction = await productModel.findOneAndDelete({
+      product_id: product_id,
+    });
+
+    if (!deletedTransaction) {
+      return res.status(404).send({
+        success: false,
+        message: "Account not found",
+      });
+    }
+    res.status(200).send({
+      success: true,
+      message: "Account deleted successfully",
+      deletedTransaction,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error deleting Account",
+      error,
+    });
+  }
+};
