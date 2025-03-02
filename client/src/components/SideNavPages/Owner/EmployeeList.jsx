@@ -5,9 +5,6 @@ import { useAuth } from "../../../context/auth";
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
-  const sortedEmployees = [...employees].sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
@@ -37,9 +34,52 @@ const EmployeeList = () => {
     fetchData();
   }, [auth?.token]);
 
+  const Delete = async (id, acc_id) => {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/va/auth/employee-delete`,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+          data: { id },
+        }
+      );
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/va/auth/account-delete`,
+        {
+          data: { account_id: acc_id },
+        }
+      );
+      setEmployees(employees.filter((emp) => emp._id !== id));
+      toast.success("Employee deleted successfully.");
+    } catch (error) {
+      toast.error("Failed to delete employee. Please try again.");
+    }
+  };
+
+  const sortEmployees = (criteria) => {
+    const sortedEmployees = [...employees].sort((a, b) => {
+      if (criteria === "name") {
+        return a.name.localeCompare(b.name);
+      } else if (criteria === "accountId") {
+        return a.account_id.localeCompare(b.account_id);
+      }
+      return 0;
+    });
+    setEmployees(sortedEmployees);
+  };
+
   return (
     <div className="container">
       <h2>Employee List</h2>
+      <div>
+        <select onChange={(e) => sortEmployees(e.target.value)}>
+          <option value="">Sort by</option>
+          <option value="name">Name</option>
+          <option value="accountId">Account ID</option>
+        </select>
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -52,13 +92,21 @@ const EmployeeList = () => {
         </thead>
         <tbody>
           {employees.length > 0 ? (
-            sortedEmployees.map((emp) => (
+            employees.map((emp) => (
               <tr key={emp._id}>
                 <td>{emp.name}</td>
                 <td>{emp.email}</td>
                 <td>{emp.phone}</td>
                 <td>{emp.address}</td>
                 <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
+                <td>
+                  <button
+                    onClick={() => Delete(emp._id, emp.account_id)}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))
           ) : (

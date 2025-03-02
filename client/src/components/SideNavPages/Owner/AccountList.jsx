@@ -65,7 +65,6 @@ const AccountList = () => {
           ) : (
             <tr>
               <td colSpan="5" style={{ textAlign: "center" }}>
-                {" "}
                 No Accounts Found
               </td>
             </tr>

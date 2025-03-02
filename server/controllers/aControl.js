@@ -113,7 +113,9 @@ export const loginController = async (req, res) => {
 
 export const getEmployees = async (req, res) => {
   try {
-    const employees = await userModel.find({ role: { $in: [0, 1] } });
+    const employees = await userModel
+      .find({ role: { $in: [0, 1] } })
+      .sort({ account_id: 1 });
     res.status(200).send({
       success: true,
       message: "Employees fetched successfully",
@@ -413,11 +415,13 @@ export const deletePendingTransactionController = async (req, res) => {
 export const saveAccountController = async (req, res) => {
   const { email } = req.body;
   try {
+    await new Promise((resolve) => setTimeout(resolve, 100));
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.send({ message: "User not found." });
+      return res.status(404).send({ message: "User not found." });
     }
-    const account = await new accountModel({
+    const account = new accountModel({
+      account_id: user.account_id,
       name: user.name,
       email: user.email,
       password: user.password,
@@ -485,6 +489,73 @@ export const deleteExpenseController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error deleting expense",
+      error,
+    });
+  }
+};
+
+export const deleteEmployeeController = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    if (!id) {
+      return res.status(400).send({ message: "ID is required" });
+    }
+
+    const deletedTransaction = await userModel.findOneAndDelete({
+      _id: id,
+    });
+
+    if (!deletedTransaction) {
+      return res.status(404).send({
+        success: false,
+        message: "Employee not found",
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "Employee deleted successfully",
+      deletedTransaction,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error deleting employee",
+      error,
+    });
+  }
+};
+
+export const deleteAccountController = async (req, res) => {
+  try {
+    const { account_id } = req.body;
+
+    if (!account_id) {
+      return res.status(400).send({ message: "Account ID is required" });
+    }
+
+    const deletedTransaction = await accountModel.findOneAndDelete({
+      account_id: account_id,
+    });
+
+    if (!deletedTransaction) {
+      return res.status(404).send({
+        success: false,
+        message: "Account not found",
+      });
+    }
+    res.status(200).send({
+      success: true,
+      message: "Account deleted successfully",
+      deletedTransaction,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error deleting Account",
       error,
     });
   }

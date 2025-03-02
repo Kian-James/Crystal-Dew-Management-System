@@ -63,18 +63,6 @@ const CreateTransaction = () => {
       if (!auth?.token) return;
 
       try {
-        // Check Authentication
-        const authRes = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/va/auth/employee-product-list`,
-          {
-            headers: {
-              Authorization: `Bearer ${auth.token}`,
-            },
-          }
-        );
-
-        setVerified(authRes.data.verified || false);
-
         // Fetch Expenses
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/va/auth/employee-product-list`,
@@ -85,6 +73,7 @@ const CreateTransaction = () => {
           }
         );
         setProducts(data.product || []);
+        setVerified(data.verified || false);
       } catch (error) {
         toast.error("Failed to retrieve expense data. Please try again later.");
         setVerified(false);
