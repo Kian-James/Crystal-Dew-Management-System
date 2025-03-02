@@ -26,7 +26,7 @@ const AccountList = () => {
         );
 
         setAccounts(data.accounts || []);
-        setVerified(data.verified || false);
+        setVerified(data.verified);
       } catch (error) {
         toast.error(
           "Failed to retrieve employee data. Please try again later."

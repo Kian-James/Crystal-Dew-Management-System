@@ -17,6 +17,7 @@ import {
   deleteExpenseController,
   deleteEmployeeController,
   deleteAccountController,
+  deleteProductController,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -141,6 +142,16 @@ router.delete(
   "/account-delete",
   requireSignIn,
   deleteAccountController,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
+
+// DELETE PRODUCT
+router.delete(
+  "/product-delete",
+  requireSignIn,
+  deleteProductController,
   (req, res) => {
     res.status(200).send({ verified: true });
   }
