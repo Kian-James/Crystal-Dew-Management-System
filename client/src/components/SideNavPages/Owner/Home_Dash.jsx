@@ -14,11 +14,13 @@ const formatExpenseCost = (cost) => {
 };
 
 const Home_Dash = () => {
+  const [month, setMonth] = useState("");
   const [expenses, setExpenses] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [totalExpense, setTotalExpense] = useState(0);
   const [transaction, setTransactions] = useState(0);
   const [totalTransaction, setTotalTransaction] = useState(0);
+  const [netIncome, setNetIncome] = useState(0);
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
@@ -95,8 +97,62 @@ const Home_Dash = () => {
     fetchData();
   }, [auth?.token]);
 
+  useEffect(() => {
+    setNetIncome(totalTransaction - totalExpense);
+  }, [totalExpense, totalTransaction]);
+
+  const handleFilter = () => {
+    const currentYear = new Date().getFullYear();
+    const filteredExpenses = expenses.filter((expense) => {
+      const expenseDate = new Date(expense.expense_date);
+      return (
+        expenseDate.getMonth() ===
+          new Date(`${month} 1, ${currentYear}`).getMonth() &&
+        expenseDate.getFullYear() === currentYear
+      );
+    });
+
+    const filteredTransactions = transaction.filter((trans) => {
+      const transactionDate = new Date(trans.transaction_date);
+      return (
+        transactionDate.getMonth() ===
+          new Date(`${month} 1, ${currentYear}`).getMonth() &&
+        transactionDate.getFullYear() === currentYear
+      );
+    });
+
+    const totalFilteredExpense = filteredExpenses.reduce(
+      (sum, exp) => sum + Number(exp.expense_cost),
+      0
+    );
+    const totalFilteredTransaction = filteredTransactions.reduce(
+      (sum, trans) => sum + Number(trans.total_price),
+      0
+    );
+
+    setTotalExpense(totalFilteredExpense);
+    setTotalTransaction(totalFilteredTransaction);
+    setNetIncome(totalFilteredTransaction - totalFilteredExpense);
+  };
+
   return (
     <div className="main-container">
+      <div className="container">
+        <h2>Overview</h2>
+      </div>
+      <input
+        type="text"
+        placeholder="Enter Month"
+        value={month}
+        onChange={(e) => setMonth(e.target.value)}
+      />
+      <button onClick={handleFilter}>Search</button>
+      <div className="container">
+        <h2>
+          <FaMoneyBillWave /> Net Income
+        </h2>
+        <h3>Net Income: ${formatExpenseCost(netIncome)}</h3>
+      </div>
       <div className="container">
         <h2>
           <FaMoneyBillWave /> Sales

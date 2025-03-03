@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import Layout from "../../components/Layout/Layout";
-import { useNavigate, useLocation } from "react-router-dom";
-import toast from "react-hot-toast";
 import axios from "axios";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
+import "./Login.css";
 
 // Login component for user authentication
 const Login = () => {
@@ -45,41 +46,78 @@ const Login = () => {
 
   return (
     <Layout title={"Login"}>
-      <div className="form-container">
-        <h1 className="title">Login Page</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="Input-Email"
-              placeholder="Enter Your Email"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="Input-Password"
-              placeholder="Enter your Password"
-              required
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
-        </form>
+      <div className="justify-content-center align-items-center d-flex shadow-lg vh-100">
+        <div className="overlay"></div>
+        <div
+          className="card p-4 shadow-lg"
+          style={{ width: "950px", height: "60%" }}
+        >
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              {/* Left Side: Login inputs*/}
+              <div className="col-md-6">
+                <div className="header-text mb-5 text-center">
+                  <h1>Login</h1>
+                </div>
+
+                <div className="input-group mb-4">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="form-control form-control-lg bg-light fs-6"
+                    style={{ maxWidth: "425px", width: "100%" }}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="input-group mb-4">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="form-control form-control-lg bg-light fs-6"
+                    style={{ maxWidth: "425px", width: "100%" }}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="input-group mb-5 d-flex justify-content-center">
+                  <div className="form-check">
+                    <input type="checkbox" className="form-check-input" />
+                    <label
+                      htmlFor="formcheck"
+                      className="form-check-label text-secondary"
+                    >
+                      <small>Remember me</small>
+                    </label>
+                  </div>
+
+                  <div className="forgotPas">
+                    <small>
+                      <a href="#">Forgot password?</a>
+                    </small>
+                  </div>
+                </div>
+
+                <div className="input-group mb-3 justify-content-center">
+                  <button type="submit" className="btn btn-primary btn-lg fs-6">
+                    <small>Login</small>
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Side: Welcome Message */}
+              <div className="right-side col-md-6">
+                <h1>Welcome!</h1>
+                <p>We are happy to see you again</p>
+                <p>(Add tagline here, kahit wala sila... Isip ako)</p>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </Layout>
   );

@@ -1,7 +1,7 @@
-import { NavLink, Link } from "react-router-dom";
-import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
-import Dashboard from "../../pages/User/Dashboard";
+import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../../context/auth";
+import logo from "../../components/Images/crystalDew_logo.png";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -30,11 +30,7 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <img
-              src={"../components/Images/PBSI-LOGO-1.png"}
-              alt="brand-logo"
-              className="brand-logo"
-            />
+            <img src={logo} alt="brand-logo" className="brand-logo" />
             <Link to="/" className="navbar-brand">
               Crystal Dew Water Station
             </Link>
