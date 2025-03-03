@@ -137,6 +137,9 @@ const Home_Dash = () => {
 
   return (
     <div className="main-container">
+      <div className="container">
+        <h2>Overview</h2>
+      </div>
       <input
         type="text"
         placeholder="Enter Month"
@@ -144,31 +147,29 @@ const Home_Dash = () => {
         onChange={(e) => setMonth(e.target.value)}
       />
       <button onClick={handleFilter}>Search</button>
-      <div className="main-container">
-        <div className="container">
-          <h2>
-            <FaMoneyBillWave /> Net Income
-          </h2>
-          <h3>Net Income: ${formatExpenseCost(netIncome)}</h3>
-        </div>
-        <div className="container">
-          <h2>
-            <FaMoneyBillWave /> Sales
-          </h2>
-          <h3>Total Sales: ${formatExpenseCost(totalTransaction)}</h3>
-        </div>
-        <div className="container">
-          <h2>
-            <MdOutlineMoneyOff /> Expense
-          </h2>
-          <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>
-        </div>
-        <div className="container">
-          <h2>
-            <FaUserGroup /> Employee Counter
-          </h2>
-          <h3>Total Employees: {employees.length}</h3>
-        </div>
+      <div className="container">
+        <h2>
+          <FaMoneyBillWave /> Net Income
+        </h2>
+        <h3>Net Income: ${formatExpenseCost(netIncome)}</h3>
+      </div>
+      <div className="container">
+        <h2>
+          <FaMoneyBillWave /> Sales
+        </h2>
+        <h3>Total Sales: ${formatExpenseCost(totalTransaction)}</h3>
+      </div>
+      <div className="container">
+        <h2>
+          <MdOutlineMoneyOff /> Expense
+        </h2>
+        <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>
+      </div>
+      <div className="container">
+        <h2>
+          <FaUserGroup /> Employee Counter
+        </h2>
+        <h3>Total Employees: {employees.length}</h3>
       </div>
     </div>
   );
