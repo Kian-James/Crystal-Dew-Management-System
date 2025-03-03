@@ -9,6 +9,7 @@ import { FaList } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaAddressBook } from "react-icons/fa6";
+import logo from "../../components/Images/crystalDew_logo.png";
 
 const SideNav = () => {
   const [auth, setAuth] = useAuth();
@@ -17,7 +18,7 @@ const SideNav = () => {
     <div className="nav-container">
       <div className="brand-container">
         <img
-          src={"../components/Images/PBSI-LOGO-1.png"}
+          src={logo}
           alt="Business logo"
           className="brand-logo"
         />

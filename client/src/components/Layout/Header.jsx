@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router-dom";
-import { useAuth } from "../../context/auth";
 import logo from "../../components/Images/crystalDew_logo.png";
+import { useAuth } from "../../context/auth";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
