@@ -14,6 +14,7 @@ const formatExpenseCost = (cost) => {
 };
 
 const Home_Dash = () => {
+  const [month, setMonth] = useState("");
   const [expenses, setExpenses] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [totalExpense, setTotalExpense] = useState(0);
@@ -95,25 +96,67 @@ const Home_Dash = () => {
     fetchData();
   }, [auth?.token]);
 
+  const handleFilter = () => {
+    const currentYear = new Date().getFullYear();
+    const filteredExpenses = expenses.filter((expense) => {
+      const expenseDate = new Date(expense.expense_date);
+      return (
+        expenseDate.getMonth() ===
+          new Date(`${month} 1, ${currentYear}`).getMonth() &&
+        expenseDate.getFullYear() === currentYear
+      );
+    });
+
+    const filteredTransactions = transaction.filter((trans) => {
+      const transactionDate = new Date(trans.transaction_date);
+      return (
+        transactionDate.getMonth() ===
+          new Date(`${month} 1, ${currentYear}`).getMonth() &&
+        transactionDate.getFullYear() === currentYear
+      );
+    });
+
+    const totalFilteredExpense = filteredExpenses.reduce(
+      (sum, exp) => sum + Number(exp.expense_cost),
+      0
+    );
+    const totalFilteredTransaction = filteredTransactions.reduce(
+      (sum, trans) => sum + Number(trans.total_price),
+      0
+    );
+
+    setTotalExpense(totalFilteredExpense);
+    setTotalTransaction(totalFilteredTransaction);
+  };
+
   return (
     <div className="main-container">
-      <div className="container">
-        <h2>
-          <FaMoneyBillWave /> Sales
-        </h2>
-        <h3>Total Sales: ${formatExpenseCost(totalTransaction)}</h3>
-      </div>
-      <div className="container">
-        <h2>
-          <MdOutlineMoneyOff /> Expense
-        </h2>
-        <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>
-      </div>
-      <div className="container">
-        <h2>
-          <FaUserGroup /> Employee Counter
-        </h2>
-        <h3>Total Employees: {employees.length}</h3>
+      <input
+        type="text"
+        placeholder="Enter Month"
+        value={month}
+        onChange={(e) => setMonth(e.target.value)}
+      />
+      <button onClick={handleFilter}>Filter</button>
+      <div className="main-container">
+        <div className="container">
+          <h2>
+            <FaMoneyBillWave /> Sales
+          </h2>
+          <h3>Total Sales: ${formatExpenseCost(totalTransaction)}</h3>
+        </div>
+        <div className="container">
+          <h2>
+            <MdOutlineMoneyOff /> Expense
+          </h2>
+          <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>
+        </div>
+        <div className="container">
+          <h2>
+            <FaUserGroup /> Employee Counter
+          </h2>
+          <h3>Total Employees: {employees.length}</h3>
+        </div>
       </div>
     </div>
   );
