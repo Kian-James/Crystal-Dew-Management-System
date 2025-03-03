@@ -93,10 +93,13 @@ const Home_Dash = () => {
         );
         setVerified(false);
       }
-      setNetIncome(totalTransaction - totalExpense);
     };
     fetchData();
-  }, [auth?.token, totalTransaction, totalExpense]);
+  }, [auth?.token]);
+
+  useEffect(() => {
+    setNetIncome(totalTransaction - totalExpense);
+  }, [totalExpense, totalTransaction]);
 
   const handleFilter = () => {
     const currentYear = new Date().getFullYear();
@@ -140,7 +143,7 @@ const Home_Dash = () => {
         value={month}
         onChange={(e) => setMonth(e.target.value)}
       />
-      <button onClick={handleFilter}>Filter</button>
+      <button onClick={handleFilter}>Search</button>
       <div className="main-container">
         <div className="container">
           <h2>
