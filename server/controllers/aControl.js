@@ -133,49 +133,24 @@ export const getEmployees = async (req, res) => {
 
 export const transactionController = async (req, res) => {
   try {
-    const {
-      customer_name,
-      customer_address,
-      customer_phone,
-      product_name,
-      product_price,
-      quantity,
-      total_price,
-    } = req.body;
-    // VALIDATION
-    if (!customer_name) {
-      return res.send({ message: "Customer Name is Required" });
+    const { order_id } = req.body;
+    const order = await pendingModel.findOne({ order_id });
+    if (!order) {
+      return res.status(404).send({ message: "Order not found." });
     }
-    if (!customer_address) {
-      return res.send({ message: "Customer Address is Required" });
-    }
-    if (!customer_phone) {
-      return res.send({ message: "Customer Phone is Required" });
-    }
-    if (!product_name) {
-      return res.send({ message: "Product Name is Required" });
-    }
-    if (!quantity) {
-      return res.send({ message: "Quantity is Required" });
-    }
-
-    const nextTransaction = await pendingModel.findOneAndUpdate(
-      {},
-      { $inc: { transaction_id: 1 } },
-      { new: true, sort: { transaction_id: -1 } }
-    );
 
     // SAVE
     const transaction = new transactionModel({
-      transaction_id: nextTransaction.transaction_id,
-      customer_name,
-      customer_address,
-      customer_phone,
-      product_name,
-      product_price,
-      quantity,
-      total_price: product_price * quantity,
+      transaction_id: order.order_id,
+      customer_name: order.customer_name,
+      customer_address: order.customer_address,
+      customer_phone: order.customer_phone,
+      product_name: order.product_name,
+      product_price: order.product_price,
+      quantity: order.quantity,
+      total_price: order.total_price,
     }).save();
+
     res.status(201).send({
       success: true,
       message: "Transaction Successful",
@@ -380,14 +355,13 @@ export const getProduct = async (req, res) => {
 
 export const deletePendingTransactionController = async (req, res) => {
   try {
-    const { pending_id } = req.body;
-
-    if (!pending_id) {
+    const { order_id } = req.body;
+    if (!order_id) {
       return res.status(400).send({ message: "ID is required" });
     }
 
     const deletedTransaction = await pendingModel.findOneAndDelete({
-      pending_id: pending_id,
+      order_id: order_id,
     });
 
     if (!deletedTransaction) {

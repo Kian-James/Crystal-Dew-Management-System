@@ -37,33 +37,18 @@ const PendingTransaction = () => {
     fetchData();
   }, [auth?.token]);
 
-  const Done = async (id) => {
+  const Done = async (order_id) => {
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/va/auth/transaction`,
-        {
-          customer_name: pendingTransactions.find((emp) => emp._id === id)
-            .customer_name,
-          customer_address: pendingTransactions.find((emp) => emp._id === id)
-            .customer_address,
-          customer_phone: pendingTransactions.find((emp) => emp._id === id)
-            .customer_phone,
-          product_name: pendingTransactions.find((emp) => emp._id === id)
-            .product_name,
-          product_price: pendingTransactions.find((emp) => emp._id === id)
-            .product_price,
-          quantity: pendingTransactions.find((emp) => emp._id === id).quantity,
-          total_price: pendingTransactions.find((emp) => emp._id === id)
-            .total_price,
-          transaction_id: pendingTransactions.find((emp) => emp._id === id)
-            .transaction_id,
-        },
+        { order_id: order_id },
         {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
         }
       );
+
       await axios.delete(
         `${
           import.meta.env.VITE_API_URL
@@ -72,11 +57,11 @@ const PendingTransaction = () => {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
-          data: { id },
+          data: { order_id: order_id },
         }
       );
       setPendingTransactions(
-        pendingTransactions.filter((emp) => emp._id !== id)
+        pendingTransactions.filter((emp) => emp.order_id !== order_id)
       );
       toast.success("Transaction Added successfully.");
     } catch (error) {
@@ -84,7 +69,7 @@ const PendingTransaction = () => {
     }
   };
 
-  const Delete = async (pending_id) => {
+  const Delete = async (order_id) => {
     try {
       await axios.delete(
         `${
@@ -94,11 +79,11 @@ const PendingTransaction = () => {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
-          data: { pending_id: pending_id },
+          data: { order_id: order_id },
         }
       );
       setPendingTransactions(
-        pendingTransactions.filter((emp) => emp.pending_id !== pending_id)
+        pendingTransactions.filter((emp) => emp.order_id !== order_id)
       );
       toast.success("Transaction deleted successfully.");
     } catch (error) {
@@ -126,7 +111,7 @@ const PendingTransaction = () => {
           <tbody>
             {pendingTransactions.length > 0 ? (
               pendingTransactions.map((emp) => (
-                <tr key={emp._id}>
+                <tr key={emp.order_id}>
                   <td>{emp.customer_name}</td>
                   <td>{emp.customer_address}</td>
                   <td>{emp.customer_phone}</td>
@@ -135,7 +120,7 @@ const PendingTransaction = () => {
                   <td>{emp.total_price}</td>
                   <td>
                     <button
-                      onClick={() => Done(emp.pending_id)}
+                      onClick={() => Done(emp.order_id)}
                       className="btn btn-danger"
                     >
                       Accept
@@ -143,7 +128,7 @@ const PendingTransaction = () => {
                   </td>
                   <td>
                     <button
-                      onClick={() => Delete(emp.pending_id)}
+                      onClick={() => Delete(emp.order_id)}
                       className="btn btn-danger"
                     >
                       Delete
