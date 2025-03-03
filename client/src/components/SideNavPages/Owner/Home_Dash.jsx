@@ -20,6 +20,7 @@ const Home_Dash = () => {
   const [totalExpense, setTotalExpense] = useState(0);
   const [transaction, setTransactions] = useState(0);
   const [totalTransaction, setTotalTransaction] = useState(0);
+  const [netIncome, setNetIncome] = useState(0);
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
@@ -92,9 +93,10 @@ const Home_Dash = () => {
         );
         setVerified(false);
       }
+      setNetIncome(totalTransaction - totalExpense);
     };
     fetchData();
-  }, [auth?.token]);
+  }, [auth?.token, totalTransaction, totalExpense]);
 
   const handleFilter = () => {
     const currentYear = new Date().getFullYear();
@@ -127,6 +129,7 @@ const Home_Dash = () => {
 
     setTotalExpense(totalFilteredExpense);
     setTotalTransaction(totalFilteredTransaction);
+    setNetIncome(totalFilteredTransaction - totalFilteredExpense);
   };
 
   return (
@@ -139,6 +142,12 @@ const Home_Dash = () => {
       />
       <button onClick={handleFilter}>Filter</button>
       <div className="main-container">
+        <div className="container">
+          <h2>
+            <FaMoneyBillWave /> Net Income
+          </h2>
+          <h3>Net Income: ${formatExpenseCost(netIncome)}</h3>
+        </div>
         <div className="container">
           <h2>
             <FaMoneyBillWave /> Sales
