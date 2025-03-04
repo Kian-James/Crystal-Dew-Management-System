@@ -14,7 +14,7 @@ const formatExpenseCost = (cost) => {
 };
 
 const Home_Dash = () => {
-  const [month, setMonth] = useState("");
+  const [dateInput, setDateInput] = useState("");
   const [expenses, setExpenses] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [totalExpense, setTotalExpense] = useState(0);
@@ -103,23 +103,57 @@ const Home_Dash = () => {
 
   const handleFilter = () => {
     const currentYear = new Date().getFullYear();
-    const filteredExpenses = expenses.filter((expense) => {
-      const expenseDate = new Date(expense.expense_date);
-      return (
-        expenseDate.getMonth() ===
-          new Date(`${month} 1, ${currentYear}`).getMonth() &&
-        expenseDate.getFullYear() === currentYear
-      );
-    });
+    const inputDate = dateInput.split("/");
+    let filteredExpenses = expenses;
+    let filteredTransactions = transaction;
 
-    const filteredTransactions = transaction.filter((trans) => {
-      const transactionDate = new Date(trans.transaction_date);
-      return (
-        transactionDate.getMonth() ===
-          new Date(`${month} 1, ${currentYear}`).getMonth() &&
-        transactionDate.getFullYear() === currentYear
-      );
-    });
+    if (inputDate.length === 2) {
+      const filterMonth = parseInt(inputDate[0], 10) - 1;
+      const filterYear = parseInt(inputDate[1], 10);
+      filteredExpenses = expenses.filter((expense) => {
+        const expenseDate = new Date(expense.expense_date);
+        return (
+          expenseDate.getMonth() === filterMonth &&
+          expenseDate.getFullYear() === filterYear
+        );
+      });
+    } else if (inputDate.length === 3) {
+      const filterMonth = parseInt(inputDate[0], 10) - 1;
+      const filterDate = parseInt(inputDate[1], 10);
+      const filterYear = parseInt(inputDate[2], 10);
+      filteredExpenses = expenses.filter((expense) => {
+        const expenseDate = new Date(expense.expense_date);
+        return (
+          expenseDate.getDate() === filterDate &&
+          expenseDate.getMonth() === filterMonth &&
+          expenseDate.getFullYear() === filterYear
+        );
+      });
+    }
+
+    if (inputDate.length === 2) {
+      const filterMonth = parseInt(inputDate[0], 10) - 1;
+      const filterYear = parseInt(inputDate[1], 10);
+      filteredTransactions = transaction.filter((trans) => {
+        const transactionDate = new Date(trans.transaction_date);
+        return (
+          transactionDate.getMonth() === filterMonth &&
+          transactionDate.getFullYear() === filterYear
+        );
+      });
+    } else if (inputDate.length === 3) {
+      const filterMonth = parseInt(inputDate[0], 10) - 1;
+      const filterDate = parseInt(inputDate[1], 10);
+      const filterYear = parseInt(inputDate[2], 10);
+      filteredTransactions = transaction.filter((trans) => {
+        const transactionDate = new Date(trans.transaction_date);
+        return (
+          transactionDate.getDate() === filterDate &&
+          transactionDate.getMonth() === filterMonth &&
+          transactionDate.getFullYear() === filterYear
+        );
+      });
+    }
 
     const totalFilteredExpense = filteredExpenses.reduce(
       (sum, exp) => sum + Number(exp.expense_cost),
@@ -142,9 +176,9 @@ const Home_Dash = () => {
       </div>
       <input
         type="text"
-        placeholder="Enter Month"
-        value={month}
-        onChange={(e) => setMonth(e.target.value)}
+        placeholder="Enter Date (MM/DD/YYYY or MM/YYYY)"
+        value={dateInput}
+        onChange={(e) => setDateInput(e.target.value)}
       />
       <button onClick={handleFilter}>Search</button>
       <div className="container">
