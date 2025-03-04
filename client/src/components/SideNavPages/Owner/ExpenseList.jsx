@@ -15,6 +15,7 @@ const ExpenseList = () => {
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
   const [filterDate, setFilterDate] = useState("");
+  const [totalExpense, setTotalExpense] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +78,6 @@ const ExpenseList = () => {
     setExpenses(sortedExpense);
   };
 
-  // Filtered expenses based on the selected date
   const filteredExpenses = filterDate
     ? expenses.filter((expense) => {
         const expenseDate = new Date(expense.expense_date);
@@ -86,9 +86,18 @@ const ExpenseList = () => {
       })
     : expenses;
 
+  useEffect(() => {
+    const expense = filteredExpenses.reduce(
+      (acc, expense) => acc + expense.expense_cost,
+      0
+    );
+    setTotalExpense(expense);
+  }, [filteredExpenses]);
+
   return (
     <div className="container">
       <h2>Expense List</h2>
+      <div>Total Expense: Php{formatExpenseCost(totalExpense)}</div>
       <div>
         <input
           type="date"
