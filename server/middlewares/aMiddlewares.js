@@ -1,5 +1,5 @@
 import JWT from "jsonwebtoken";
-import userModel from "../models/uModels.js";
+import accountModels from "../models/accountModels.js";
 
 // ROUTE PROTECTOR TOKEN
 export const requireSignIn = async (req, res, next) => {
@@ -14,7 +14,7 @@ export const requireSignIn = async (req, res, next) => {
     }
     const token = authHeader.split(" ")[1];
     const decode = JWT.verify(token, process.env.JWT_SECRET);
-    req.user = decode;
+    req.account = decode;
     next();
   } catch (error) {
     console.log("Token verification error:", error);
@@ -29,8 +29,8 @@ export const requireSignIn = async (req, res, next) => {
 // ADMIN
 export const isAdmin = async (req, res, next) => {
   try {
-    const user = await userModel.findById(req.user._id);
-    if (user.role !== 1) {
+    const account = await accountModels.findById(req.account._id);
+    if (account.role !== 1) {
       return res.status(401).send({
         success: false,
         message: "UNAUTHORIZED ACCESS",

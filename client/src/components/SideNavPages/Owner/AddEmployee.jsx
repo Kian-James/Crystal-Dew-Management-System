@@ -10,6 +10,7 @@ const AddEmployee = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     if (firstName && lastName) {
@@ -28,7 +29,7 @@ const AddEmployee = () => {
       // API call to register user
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/va/auth/register`,
-        { name, email, password, phone, address }
+        { name, email, password, phone, address, role }
       );
 
       await axios.post(
@@ -115,6 +116,24 @@ const AddEmployee = () => {
             placeholder="Enter Your Home Address"
             required
           />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="roleSelect" className="form-label">
+            Role
+          </label>
+          <select
+            id="roleSelect"
+            className="form-control"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            required
+          >
+            <option value="" disabled>
+              Select Role
+            </option>
+            <option value="1">Admin</option>
+            <option value="0">Employee</option>
+          </select>
         </div>
         <button type="submit" className="btn btn-primary">
           Submit

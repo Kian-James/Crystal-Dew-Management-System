@@ -75,7 +75,9 @@ const EmployeeList = () => {
       <h2>Employee List</h2>
       <div>
         <select onChange={(e) => sortEmployees(e.target.value)}>
-          <option value="">Sort by</option>
+          <option value="" disabled selected>
+            Sort by
+          </option>
           <option value="name">Name</option>
           <option value="account-id">Account ID</option>
         </select>
@@ -84,22 +86,25 @@ const EmployeeList = () => {
         <table className="table">
           <thead>
             <tr>
+              <th>Employee ID</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Address</th>
               <th>Role</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {employees.length > 0 ? (
               employees.map((emp) => (
                 <tr key={emp._id}>
+                  <td>{emp.employee_id}</td>
                   <td>{emp.name}</td>
                   <td>{emp.email}</td>
                   <td>{emp.phone}</td>
                   <td>{emp.address}</td>
-                  <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
+                  <td>{emp.role === 1 ? "Admin" : "Employee"}</td>
                   <td>
                     <button
                       onClick={() => Delete(emp.employee_id)}
