@@ -39,7 +39,7 @@ const PendingTransaction = () => {
 
   const Done = async (order_id) => {
     try {
-      const res = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URL}/api/va/auth/transaction`,
         { order_id: order_id },
         {
@@ -60,9 +60,12 @@ const PendingTransaction = () => {
           data: { order_id: order_id },
         }
       );
-      setPendingTransactions(
-        pendingTransactions.filter((emp) => emp.order_id !== order_id)
-      );
+
+      const updatedTransactions = pendingTransactions
+        .filter((emp) => emp.order_id !== order_id)
+        .map((emp, index) => ({ ...emp, pending_id: index + 1 }));
+
+      setPendingTransactions(updatedTransactions);
       toast.success("Transaction Added successfully.");
     } catch (error) {
       toast.error("Failed to delete transaction. Please try again.");
@@ -82,9 +85,12 @@ const PendingTransaction = () => {
           data: { order_id: order_id },
         }
       );
-      setPendingTransactions(
-        pendingTransactions.filter((emp) => emp.order_id !== order_id)
-      );
+
+      const updatedTransactions = pendingTransactions
+        .filter((emp) => emp.order_id !== order_id)
+        .map((emp, index) => ({ ...emp, pending_id: index + 1 }));
+
+      setPendingTransactions(updatedTransactions);
       toast.success("Transaction deleted successfully.");
     } catch (error) {
       toast.error("Failed to delete transaction. Please try again.");
@@ -98,6 +104,7 @@ const PendingTransaction = () => {
         <table className="table">
           <thead>
             <tr>
+              <th>Task No.</th>
               <th>Customer Name</th>
               <th>Address</th>
               <th>Phone</th>
@@ -112,6 +119,7 @@ const PendingTransaction = () => {
             {pendingTransactions.length > 0 ? (
               pendingTransactions.map((emp) => (
                 <tr key={emp.order_id}>
+                  <td>{emp.pending_id}</td>
                   <td>{emp.customer_name}</td>
                   <td>{emp.customer_address}</td>
                   <td>{emp.customer_phone}</td>

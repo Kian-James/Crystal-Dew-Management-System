@@ -12,6 +12,7 @@ const CreateTransaction = () => {
   const [product_price, setproductPrice] = useState(0);
   const [quantity, setQuantity] = useState("");
   const [total_price, settotalPrice] = useState(0);
+  const [pendingTransactions, setPendingTransactions] = useState([]);
 
   // ARRAY
   const [auth, setAuth] = useAuth();
@@ -41,6 +42,7 @@ const CreateTransaction = () => {
       } else {
         toast.error(res.data.message);
       }
+
       setcustomerName("");
       setcustomerAddress("");
       setcustomerPhone("");
@@ -146,7 +148,9 @@ const CreateTransaction = () => {
               setproductPrice(selectedProduct.product_cost);
             }}
           >
-            <option value="">Select a product</option>
+            <option value="" disabled selected>
+              Select a product
+            </option>
             {products.map((prod) => (
               <option key={prod._id} value={prod.product_name}>
                 {prod.product_name}
