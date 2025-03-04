@@ -8,6 +8,7 @@ const TransactionHistory = () => {
   const [filterDate, setFilterDate] = useState("");
   const [auth, setAuth] = useAuth();
   const [verified, setVerified] = useState(false);
+  const [totalRevenue, setTotalRevenue] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,6 +62,14 @@ const TransactionHistory = () => {
       })
     : transactions;
 
+  useEffect(() => {
+    const revenue = filteredTransactions.reduce(
+      (acc, transaction) => acc + transaction.total_price,
+      0
+    );
+    setTotalRevenue(revenue);
+  }, [filteredTransactions]);
+
   return (
     <div className="container">
       <h2>Transactions</h2>
@@ -70,6 +79,7 @@ const TransactionHistory = () => {
         value={filterDate}
         onChange={(e) => setFilterDate(e.target.value)}
       />
+      <div>Total Revenue: Php{totalRevenue.toFixed(2)}</div>
       <div>
         <select onChange={(e) => sortTransaction(e.target.value)}>
           <option value="">Sort by</option>

@@ -151,13 +151,13 @@ const Home_Dash = () => {
         <h2>
           <FaMoneyBillWave /> Net Income
         </h2>
-        <h3>Net Income: ${formatExpenseCost(netIncome)}</h3>
+        <h3>Net Income: Php{formatExpenseCost(netIncome)}</h3>
       </div>
       <div className="container">
         <h2>
           <FaMoneyBillWave /> Sales
         </h2>
-        <h3>Total Sales: ${formatExpenseCost(totalTransaction)}</h3>
+        <h3>Total Sales: Php{formatExpenseCost(totalTransaction)}</h3>
       </div>
       <div className="container">
         <h2>
