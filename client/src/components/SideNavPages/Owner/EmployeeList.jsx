@@ -75,7 +75,9 @@ const EmployeeList = () => {
       <h2>Employee List</h2>
       <div>
         <select onChange={(e) => sortEmployees(e.target.value)}>
-          <option value="">Sort by</option>
+          <option value="" disabled selected>
+            Sort by
+          </option>
           <option value="name">Name</option>
           <option value="account-id">Account ID</option>
         </select>
@@ -99,7 +101,7 @@ const EmployeeList = () => {
                   <td>{emp.email}</td>
                   <td>{emp.phone}</td>
                   <td>{emp.address}</td>
-                  <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
+                  <td>{emp.role === 1 ? "Admin" : "Employee"}</td>
                   <td>
                     <button
                       onClick={() => Delete(emp.employee_id)}

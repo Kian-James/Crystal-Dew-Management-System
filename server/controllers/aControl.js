@@ -9,7 +9,7 @@ import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address } = req.body;
+    const { name, email, password, phone, address, role } = req.body;
     // VALIDATION
     if (!name) {
       return res.send({ message: "Name is Required" });
@@ -25,6 +25,9 @@ export const registerController = async (req, res) => {
     }
     if (!address) {
       return res.send({ message: "Address is Required" });
+    }
+    if (!role) {
+      return res.send({ message: "Role is Required" });
     }
 
     // CHECK USER
@@ -71,14 +74,14 @@ export const loginController = async (req, res) => {
         message: "Invalid Email or Password",
       });
     }
-    const user = await userModel.findOne({ email });
-    if (!user) {
+    const account = await accountModel.findOne({ email });
+    if (!account) {
       return res.status(404).send({
         success: false,
         message: "Email is not Registered, Kindly Register",
       });
     }
-    const match = await comparePassword(password, user.password);
+    const match = await comparePassword(password, account.password);
     if (!match) {
       return res.status(200).send({
         success: false,
@@ -86,18 +89,18 @@ export const loginController = async (req, res) => {
       });
     }
     // GENERATE JWT
-    const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+    const token = await JWT.sign({ _id: account._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
     res.status(200).send({
       success: true,
       message: "Login Successfully",
       user: {
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        role: user.role,
+        name: account.name,
+        email: account.email,
+        phone: account.phone,
+        address: account.address,
+        role: account.role,
       },
       token,
     });
