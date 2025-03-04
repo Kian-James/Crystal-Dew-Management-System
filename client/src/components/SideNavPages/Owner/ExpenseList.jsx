@@ -14,6 +14,7 @@ const ExpenseList = () => {
   const [expenses, setExpenses] = useState([]);
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
+  const [filterDate, setFilterDate] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,10 +77,24 @@ const ExpenseList = () => {
     setExpenses(sortedExpense);
   };
 
+  // Filtered expenses based on the selected date
+  const filteredExpenses = filterDate
+    ? expenses.filter((expense) => {
+        const expenseDate = new Date(expense.expense_date);
+        const inputDate = new Date(filterDate);
+        return expenseDate.toDateString() === inputDate.toDateString();
+      })
+    : expenses;
+
   return (
     <div className="container">
       <h2>Expense List</h2>
       <div>
+        <input
+          type="date"
+          value={filterDate}
+          onChange={(e) => setFilterDate(e.target.value)}
+        />
         <select onChange={(e) => sortExpense(e.target.value)}>
           <option value="">Sort by</option>
           <option value="name">Name</option>
@@ -100,8 +115,8 @@ const ExpenseList = () => {
             </tr>
           </thead>
           <tbody>
-            {expenses.length > 0 ? (
-              expenses.map((exp) => (
+            {filteredExpenses.length > 0 ? (
+              filteredExpenses.map((exp) => (
                 <tr key={exp._id}>
                   <td>{exp.expense_id}</td>
                   <td>{exp.expense_name}</td>

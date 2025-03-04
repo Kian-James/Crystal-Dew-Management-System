@@ -74,8 +74,7 @@ const TransactionHistory = () => {
     <div className="container">
       <h2>Transactions</h2>
       <input
-        type="text"
-        placeholder="Enter date (e.g., February 22 2025)"
+        type="date"
         value={filterDate}
         onChange={(e) => setFilterDate(e.target.value)}
       />
