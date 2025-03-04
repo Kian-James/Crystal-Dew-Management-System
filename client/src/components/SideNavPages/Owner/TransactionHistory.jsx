@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 const TransactionHistory = () => {
   const [transactions, setTransactions] = useState([]);
+  const [filterDate, setFilterDate] = useState("");
   const [auth, setAuth] = useAuth();
   const [verified, setVerified] = useState(false);
 
@@ -52,9 +53,23 @@ const TransactionHistory = () => {
     setTransactions(sortedTransaction);
   };
 
+  const filteredTransactions = filterDate
+    ? transactions.filter((transaction) => {
+        const transactionDate = new Date(transaction.transaction_date);
+        const inputDate = new Date(filterDate);
+        return transactionDate.toDateString() === inputDate.toDateString();
+      })
+    : transactions;
+
   return (
     <div className="container">
       <h2>Transactions</h2>
+      <input
+        type="text"
+        placeholder="Enter date (e.g., February 22 2025)"
+        value={filterDate}
+        onChange={(e) => setFilterDate(e.target.value)}
+      />
       <div>
         <select onChange={(e) => sortTransaction(e.target.value)}>
           <option value="">Sort by</option>
@@ -78,8 +93,8 @@ const TransactionHistory = () => {
             </tr>
           </thead>
           <tbody>
-            {transactions.length > 0 ? (
-              transactions.map((emp) => (
+            {filteredTransactions.length > 0 ? (
+              filteredTransactions.map((emp) => (
                 <tr key={emp._id}>
                   <td>{emp.transaction_id}</td>
                   <td>{emp.customer_name}</td>
