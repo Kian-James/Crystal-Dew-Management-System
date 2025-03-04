@@ -73,20 +73,22 @@ const TransactionHistory = () => {
   return (
     <div className="container">
       <h2>Transactions</h2>
+      <div>
+        <select onChange={(e) => sortTransaction(e.target.value)}>
+          <option value="" disabled selected>
+            Sort by
+          </option>
+          <option value="name">Name</option>
+          <option value="transaction-id">Transaction ID</option>
+          <option value="date">Date</option>
+        </select>
+      </div>
       <input
         type="date"
         value={filterDate}
         onChange={(e) => setFilterDate(e.target.value)}
       />
       <div>Total Revenue: Php{totalRevenue.toFixed(2)}</div>
-      <div>
-        <select onChange={(e) => sortTransaction(e.target.value)}>
-          <option value="">Sort by</option>
-          <option value="name">Name</option>
-          <option value="transaction-id">Transaction ID</option>
-          <option value="date">Date</option>
-        </select>
-      </div>
       <div className="table-container">
         <table className="table">
           <thead>
