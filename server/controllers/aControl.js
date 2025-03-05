@@ -143,29 +143,7 @@ export const transactionController = async (req, res) => {
       return res.status(404).send({ message: "Order not found." });
     }
 
-    let customer = await customerModel.findOne({
-      customer_name: order.customer_name,
-      customer_address: order.customer_address,
-    });
-
-    if (!customer) {
-      customer = new customerModel({
-        customer_name: order.customer_name,
-        customer_address: order.customer_address,
-      });
-      await customer.save();
-    } else if (customer.transaction_count > 1) {
-      await customerModel.findOneAndUpdate(
-        {
-          customer_name: order.customer_name,
-          customer_address: order.customer_address,
-        },
-        { $inc: { transaction_count: 1 } }
-      );
-    }
-
-    // SAVE
-    const transaction = new transactionModel({
+    const transaction = await new transactionModel({
       transaction_id: order.order_id,
       customer_name: order.customer_name,
       customer_address: order.customer_address,
@@ -175,6 +153,23 @@ export const transactionController = async (req, res) => {
       quantity: order.quantity,
       total_price: order.total_price,
     }).save();
+
+    let customer = await customerModel.findOne({
+      customer_name: order.customer_name,
+      customer_address: order.customer_address,
+    });
+
+    if (customer) {
+      customer.transaction_count += 1;
+      await customer.save();
+    } else {
+      customer = new customerModel({
+        customer_name: order.customer_name,
+        customer_address: order.customer_address,
+        transaction_count: 1,
+      });
+      await customer.save();
+    }
 
     res.status(201).send({
       success: true,

@@ -74,7 +74,7 @@ const CustomerDetails = () => {
           <tbody>
             {customer.length > 0 ? (
               customer.map((emp) => (
-                <tr key={emp._id}>
+                <tr key={emp.customer_id}>
                   <td>{emp.customer_id}</td>
                   <td>{emp.customer_name}</td>
                   <td>{emp.customer_address}</td>
@@ -83,7 +83,7 @@ const CustomerDetails = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" style={{ textAlign: "center" }}>
+                <td colSpan="4" style={{ textAlign: "center" }}>
                   {" "}
                   No Customers Found
                 </td>
