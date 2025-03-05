@@ -18,21 +18,8 @@ const customerSchema = new mongoose.Schema({
   },
   transaction_count: {
     type: Number,
-    default: 1,
   },
 });
-
-(customerSchema.methods.countTransactions = async function () {
-  const transactionCount = await mongoose.model("transactions").countDocuments({
-    customer_name: this.customer_name,
-    customer_address: this.customer_address,
-  });
-  this.transaction_count = transactionCount;
-}),
-  customerSchema.pre("save", async function (next) {
-    await this.countTransactions();
-    next();
-  });
 
 customerSchema.plugin(AutoIncrement, { inc_field: "customer_id" });
 
