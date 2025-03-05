@@ -10,16 +10,13 @@ import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address, role } = req.body;
+    const { name, email, phone, address, role } = req.body;
     // VALIDATION
     if (!name) {
       return res.send({ message: "Name is Required" });
     }
     if (!email) {
       return res.send({ message: "Email is Required" });
-    }
-    if (!password) {
-      return res.send({ message: "Password is Required" });
     }
     if (!phone) {
       return res.send({ message: "Phone No. is Required" });
@@ -39,8 +36,6 @@ export const registerController = async (req, res) => {
         message: "User Already Exist",
       });
     }
-    // REGISTER USER
-    const hashedPass = await hashPassword(password);
 
     // SAVE
     const user = new userModel({
@@ -48,7 +43,6 @@ export const registerController = async (req, res) => {
       email,
       phone,
       address,
-      password: hashedPass,
     }).save();
     res.status(201).send({
       success: true,
@@ -432,11 +426,13 @@ export const saveAccountController = async (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "User not found." });
     }
+    const hashedPass = await hashPassword(user.phone);
+
     const account = new accountModel({
       account_id: user.employee_id,
       name: user.name,
       email: user.email,
-      password: user.password,
+      password: hashedPass,
       role: user.role,
     }).save();
     res.status(201).send({

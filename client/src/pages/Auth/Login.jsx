@@ -65,7 +65,6 @@ const Login = () => {
                     type="email"
                     placeholder="Email"
                     className="form-control form-control-lg bg-light fs-6"
-                    style={{ maxWidth: "425px", width: "100%" }}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -77,29 +76,10 @@ const Login = () => {
                     type="password"
                     placeholder="Password"
                     className="form-control form-control-lg bg-light fs-6"
-                    style={{ maxWidth: "425px", width: "100%" }}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                </div>
-
-                <div className="input-group mb-5 d-flex justify-content-center">
-                  <div className="form-check">
-                    <input type="checkbox" className="form-check-input" />
-                    <label
-                      htmlFor="formcheck"
-                      className="form-check-label text-secondary"
-                    >
-                      <small>Remember me</small>
-                    </label>
-                  </div>
-
-                  <div className="forgotPas">
-                    <small>
-                      <a href="#">Forgot password?</a>
-                    </small>
-                  </div>
                 </div>
 
                 <div className="input-group mb-3 justify-content-center">
@@ -110,10 +90,9 @@ const Login = () => {
               </div>
 
               {/* Right Side: Welcome Message */}
-              <div className="right-side col-md-6">
-                <h1>Welcome!</h1>
-                <p>We are happy to see you again</p>
-                <p>(Add tagline here, kahit wala sila... Isip ako)</p>
+              <div className="right-side col-md-6 d-none d-md-block">                       {/*d-md-block only shows on >=768px */}
+                <h1>Welcome</h1>
+                <p>We are happy to see you again! Please login to your account.</p>
               </div>
             </div>
           </form>

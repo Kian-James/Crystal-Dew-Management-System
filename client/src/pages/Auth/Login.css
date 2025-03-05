@@ -6,8 +6,13 @@ body {
   background-repeat: no-repeat;
 }
 
-.card,
-.right-side {
+@media (max-width: 768px) {
+  .right-side {
+    display: none;
+  }
+}
+
+.card, .right-side {
   border-radius: 5%;
 }
 
@@ -17,7 +22,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.345); /* White overlay */
+  background-color: rgba(185, 236, 242, 0.651); /* White overlay  rgba(255, 255, 255, 0.345)*/
 }
 
 .right-box {
@@ -33,7 +38,7 @@ body {
   font-weight: 400;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin-top: 10px;
+  margin-top: 30px;
   width: 50%;
 }
 
@@ -41,17 +46,12 @@ body {
   background-color: var(--shadow-color);
 }
 
-.header-text h1,
-.forgotPas a {
+.header-text h1{
   color: var(--darkest-color);
 }
 
 .header-text {
   text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-}
-
-.forgotPas {
-  padding-left: 175px;
 }
 
 .right-side {
@@ -80,4 +80,5 @@ p {
 .right-side,
 p {
   font-size: 20px;
+  padding: 20px;
 }

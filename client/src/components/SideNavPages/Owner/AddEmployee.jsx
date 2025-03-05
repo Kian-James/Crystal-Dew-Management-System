@@ -7,7 +7,6 @@ const AddEmployee = () => {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [role, setRole] = useState("");
@@ -15,9 +14,7 @@ const AddEmployee = () => {
   useEffect(() => {
     if (firstName && lastName) {
       const formattedEmail = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@cd.com`;
-      const formattedPassword = `${phone}`;
       setEmail(formattedEmail);
-      setPassword(formattedPassword);
     }
   }, [firstName, lastName, phone]);
 
@@ -29,7 +26,7 @@ const AddEmployee = () => {
       // API call to register user
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/va/auth/register`,
-        { name, email, password, phone, address, role }
+        { name, email, phone, address, role }
       );
 
       await axios.post(
