@@ -4,7 +4,7 @@ import expenseModel from "../models/eModel.js";
 import productModel from "../models/pModel.js";
 import accountModel from "../models/accountModels.js";
 import pendingModel from "../models/pendModel.js";
-import customerModel from "../models/customerModel.js"; // Import customer model
+import customerModel from "../models/customerModel.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
 
@@ -152,7 +152,6 @@ export const transactionController = async (req, res) => {
       customer = new customerModel({
         customer_name: order.customer_name,
         customer_address: order.customer_address,
-        customer_phone: order.customer_phone,
       });
       await customer.save();
     } else {
