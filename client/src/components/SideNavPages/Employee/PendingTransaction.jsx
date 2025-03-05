@@ -146,7 +146,7 @@ const PendingTransaction = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="8" style={{ textAlign: "center" }}>
+                <td colSpan="9" style={{ textAlign: "center" }}>
                   {" "}
                   No Pending Transactions Found
                 </td>
