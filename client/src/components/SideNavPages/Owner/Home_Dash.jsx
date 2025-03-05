@@ -5,6 +5,7 @@ import { useAuth } from "../../../context/auth";
 import { MdOutlineMoneyOff } from "react-icons/md";
 import { FaUserGroup } from "react-icons/fa6";
 import { FaMoneyBillWave } from "react-icons/fa";
+import { GoGraph } from "react-icons/go";
 
 const formatExpenseCost = (cost) => {
   return Number(cost).toLocaleString("en-US", {
@@ -183,7 +184,7 @@ const Home_Dash = () => {
       <button onClick={handleFilter}>Search</button>
       <div className="container">
         <h2>
-          <FaMoneyBillWave /> Net Income
+          <GoGraph /> Net Income
         </h2>
         <h3>Net Income: Php{formatExpenseCost(netIncome)}</h3>
       </div>
