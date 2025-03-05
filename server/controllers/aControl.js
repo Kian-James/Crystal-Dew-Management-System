@@ -154,7 +154,7 @@ export const transactionController = async (req, res) => {
         customer_address: order.customer_address,
       });
       await customer.save();
-    } else {
+    } else if (customer.transaction_count > 1) {
       await customerModel.findOneAndUpdate(
         {
           customer_name: order.customer_name,
