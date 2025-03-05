@@ -40,6 +40,8 @@ const CustomerDetails = () => {
         return a.name.localeCompare(b.name);
       } else if (change === "customer-id") {
         return a.customer_id - b.customer_id;
+      } else if (change === "transaction-count") {
+        return a.transaction_count - b.transaction_count;
       }
       return 0;
     });
@@ -56,6 +58,7 @@ const CustomerDetails = () => {
           </option>
           <option value="name">Name</option>
           <option value="customer-id">Customer ID</option>
+          <option value="transaction-count">Transaction Count</option>
         </select>
       </div>
       <div className="table-container">
