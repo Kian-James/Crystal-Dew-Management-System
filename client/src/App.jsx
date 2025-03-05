@@ -21,6 +21,7 @@ import PrivateEmployeeRoute from "./components/Routes/PrivateEmployee";
 import AddProduct from "./components/SideNavPages/Owner/AddProduct";
 import ProductList from "./components/SideNavPages/Owner/ProductList";
 import AccountList from "./components/SideNavPages/Owner/AccountList";
+import CustomerDetails from "./components/SideNavPages/Owner/CustomerDetails";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="add-employee" element={<AddEmployee />} />
             <Route path="employee-list" element={<EmployeeList />} />
             <Route path="account-list" element={<AccountList />} />
+            <Route path="customer-list" element={<CustomerDetails />} />
             <Route
               path="transaction-history"
               element={<TransactionHistory />}
