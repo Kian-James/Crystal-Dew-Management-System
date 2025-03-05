@@ -4,6 +4,7 @@ import expenseModel from "../models/eModel.js";
 import productModel from "../models/pModel.js";
 import accountModel from "../models/accountModels.js";
 import pendingModel from "../models/pendModel.js";
+import customerModel from "../models/customerModel.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
 
@@ -142,8 +143,7 @@ export const transactionController = async (req, res) => {
       return res.status(404).send({ message: "Order not found." });
     }
 
-    // SAVE
-    const transaction = new transactionModel({
+    const transaction = await new transactionModel({
       transaction_id: order.order_id,
       customer_name: order.customer_name,
       customer_address: order.customer_address,
@@ -153,6 +153,23 @@ export const transactionController = async (req, res) => {
       quantity: order.quantity,
       total_price: order.total_price,
     }).save();
+
+    let customer = await customerModel.findOne({
+      customer_name: order.customer_name,
+      customer_address: order.customer_address,
+    });
+
+    if (customer) {
+      customer.transaction_count += 1;
+      await customer.save();
+    } else {
+      customer = new customerModel({
+        customer_name: order.customer_name,
+        customer_address: order.customer_address,
+        transaction_count: 1,
+      });
+      await customer.save();
+    }
 
     res.status(201).send({
       success: true,
@@ -182,6 +199,24 @@ export const getTransaction = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error while fetching Transactions",
+      error,
+    });
+  }
+};
+
+export const getCustomerDetails = async (req, res) => {
+  try {
+    const customer = await customerModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "Customers fetched successfully",
+      customer,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching Customers",
       error,
     });
   }
