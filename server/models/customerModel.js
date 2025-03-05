@@ -18,7 +18,7 @@ const customerSchema = new mongoose.Schema({
   },
   transaction_count: {
     type: Number,
-    default: 0,
+    default: 1,
   },
 });
 
