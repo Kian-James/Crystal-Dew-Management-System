@@ -18,6 +18,7 @@ import {
   deleteEmployeeController,
   deleteAccountController,
   deleteProductController,
+  getCustomerDetails,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -80,6 +81,15 @@ router.get("/employee-product-list", requireSignIn, getProduct, (req, res) => {
 router.get("/transactions", requireSignIn, getTransaction, (req, res) => {
   res.status(200).send({ verified: true });
 });
+
+router.get(
+  "/customer-details",
+  requireSignIn,
+  getCustomerDetails,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
 
 // GET TRANSACTION ADMIN
 router.get(
