@@ -71,11 +71,10 @@ const CustomerDetails = () => {
           <tbody>
             {customer.length > 0 ? (
               customer.map((emp) => (
-                <tr key={emp.customer_id}>
+                <tr key={emp._id}>
                   <td>{emp.customer_id}</td>
                   <td>{emp.customer_name}</td>
                   <td>{emp.customer_address}</td>
-                  <td>{emp.customer_phone}</td>
                   <td>{emp.transaction_count}</td>
                 </tr>
               ))
