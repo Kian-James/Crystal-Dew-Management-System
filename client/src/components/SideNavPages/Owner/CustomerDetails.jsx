@@ -37,7 +37,7 @@ const CustomerDetails = () => {
   const sortCustomers = (change) => {
     const sortedCustomers = [...customer].sort((a, b) => {
       if (change === "name") {
-        return a.name.localeCompare(b.name);
+        return a.customer_name.localeCompare(b.customer_name);
       } else if (change === "customer-id") {
         return a.customer_id - b.customer_id;
       } else if (change === "transaction-count") {

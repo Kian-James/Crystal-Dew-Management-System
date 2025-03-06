@@ -194,6 +194,15 @@ const Home_Dash = () => {
         <h2>Overview</h2>
         <div className="container">
           <h2>Net Income Overview</h2>
+          {!verified ? (
+            netIncomeData.length > 0 ? (
+              <LineGraph netIncome={netIncomeData} />
+            ) : (
+              <p>No data available</p>
+            )
+          ) : (
+            <p>Verifying access...</p>
+          )}
         </div>
       </div>
       <input
