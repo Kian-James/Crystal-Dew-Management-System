@@ -21,7 +21,7 @@ const SideNav = () => {
         <img src={logo} alt="brand-logo" className="brand-logo" />
         <div className="brand-text">
           <p className="brand-name text-white fs-6 fw-bold">
-            Crystal Dew <br/>
+            Crystal Dew <br />
             Water Station
           </p>
           <p className="brand-slogan text-white">Water for Everyone</p>
@@ -178,16 +178,14 @@ const SideNav = () => {
         )}
       </div>
       <div className="contact-us d-flex flex-column align-items-start w-90">
-              <p>
-                <FaAddressCard /> &nbsp; Contact Developer
-              </p>
-              <p>
-                For any issue or feature request
-              </p>
-              <p>
-                <FaPhoneAlt /> &nbsp; 0949-417-7230
-              </p>
-            </div>
+        <p>
+          <FaAddressCard /> &nbsp; Contact Developer
+        </p>
+        <p>For any issue or feature request</p>
+        <p>
+          <FaPhoneAlt /> &nbsp; 0949-417-7230
+        </p>
+      </div>
     </div>
   );
 };

@@ -27,7 +27,6 @@
   }
 }
 
-
 /* NAVBAR */
 
 .navbar {
@@ -118,6 +117,11 @@
 .footer a:hover {
   color: #e4b722;
   border-bottom: 1px solid #e4b722;
+}
+
+.footer-links {
+  margin: 0;
+  padding: 0;
 }
 
 .footer-links {
@@ -277,7 +281,8 @@ h2 {
   margin-bottom: 20px;
 }
 
-select, input[type="date"] {
+select,
+input[type="date"] {
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ced4da;
@@ -313,8 +318,8 @@ select, input[type="date"] {
   padding-bottom: 1rem;
 }
 
-input[type="text"], 
-input[type="tel"], 
+input[type="text"],
+input[type="tel"],
 select[type="role"] {
   width: calc(100% - 200px);
   padding: 10px;
@@ -355,7 +360,8 @@ h3 {
   color: #159a8e;
 }
 
-h2 svg, h3 svg {
+h2 svg,
+h3 svg {
   margin-right: 10px;
 }
 
@@ -439,7 +445,6 @@ p {
 .outlet-area {
   padding: 10px;
 }
-
 
 /* SCROLLABILITY */
 .table-container {
