@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LineGraph from "../../Chart/LineGraph";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../../context/auth";
@@ -174,6 +175,10 @@ const Home_Dash = () => {
     <div className="main-container">
       <div className="container">
         <h2>Overview</h2>
+        <div className="container">
+          <h2>Net Income Overview</h2>
+          <LineGraph netIncome={netIncome} />{" "}
+        </div>
       </div>
       <input
         type="text"
