@@ -16,6 +16,7 @@ const formatExpenseCost = (cost) => {
 };
 
 const Home_Dash = () => {
+  const [netIncomeData, setNetIncomeData] = useState("");
   const [dateInput, setDateInput] = useState("");
   const [expenses, setExpenses] = useState([]);
   const [employees, setEmployees] = useState([]);
@@ -29,6 +30,23 @@ const Home_Dash = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
+
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/va/auth/net-income-list`,
+          {
+            headers: {
+              Authorization: `Bearer ${auth.token}`,
+            },
+          }
+        );
+        setNetIncomeData(data.netIncomeData || []);
+        setVerified(data.verified);
+      } catch (error) {
+        toast.error("Failed to fetch net income data");
+        console.error(error);
+        setVerified(false);
+      }
 
       try {
         const { data } = await axios.get(
@@ -54,7 +72,6 @@ const Home_Dash = () => {
       }
 
       try {
-        // Fetch Expenses
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/va/auth/transactions-admin`,
           {
@@ -177,7 +194,7 @@ const Home_Dash = () => {
         <h2>Overview</h2>
         <div className="container">
           <h2>Net Income Overview</h2>
-          <LineGraph netIncome={netIncome} />{" "}
+          <LineGraph netIncome={netIncomeData} />{" "}
         </div>
       </div>
       <input
