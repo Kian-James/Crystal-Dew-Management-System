@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LineGraph from "../../Chart/LineGraph";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../../context/auth";
@@ -15,6 +16,7 @@ const formatExpenseCost = (cost) => {
 };
 
 const Home_Dash = () => {
+  const [netIncomeData, setNetIncomeData] = useState("");
   const [dateInput, setDateInput] = useState("");
   const [expenses, setExpenses] = useState([]);
   const [employees, setEmployees] = useState([]);
@@ -28,6 +30,23 @@ const Home_Dash = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
+
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/va/auth/net-income-list`,
+          {
+            headers: {
+              Authorization: `Bearer ${auth.token}`,
+            },
+          }
+        );
+        setNetIncomeData(data.netIncomeData || []);
+        setVerified(data.verified);
+      } catch (error) {
+        toast.error("Failed to fetch net income data");
+        console.error(error);
+        setVerified(false);
+      }
 
       try {
         const { data } = await axios.get(
@@ -53,7 +72,6 @@ const Home_Dash = () => {
       }
 
       try {
-        // Fetch Expenses
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/va/auth/transactions-admin`,
           {
@@ -174,6 +192,18 @@ const Home_Dash = () => {
     <div className="main-container">
       <div className="container">
         <h2>Overview</h2>
+        <div className="container">
+          <h2>Net Income Overview</h2>
+          {!verified ? (
+            netIncomeData.length > 0 ? (
+              <LineGraph netIncome={netIncomeData} />
+            ) : (
+              <p>No data available</p>
+            )
+          ) : (
+            <p>Verifying access...</p>
+          )}
+        </div>
       </div>
       <input
         type="text"

@@ -600,3 +600,43 @@ export const deleteProductController = async (req, res) => {
     });
   }
 };
+
+export const getNetIncomePerDay = async (req, res) => {
+  try {
+    const incomeData = await transactionModel.aggregate([
+      {
+        $group: {
+          _id: "$transaction_date",
+          totalIncome: { $sum: "$total_price" },
+        },
+      },
+    ]);
+
+    const expenseData = await expenseModel.aggregate([
+      {
+        $group: {
+          _id: "$expense_date",
+          totalExpenses: { $sum: "$expense_cost" },
+        },
+      },
+    ]);
+
+    const netIncomeData = incomeData.map((income) => {
+      const expense = expenseData.find(
+        (exp) => exp._id.toString() === income.t_id.toString()
+      );
+      return {
+        date: income._id,
+        netIncome: income.totalIncome - (expense ? expense.totalExpenses : 0),
+      };
+    });
+
+    res.status(200).send({
+      success: true,
+      message: "Net Income fetched successfully",
+      netIncomeData,
+    });
+  } catch (error) {
+    res.status(500).send({ message: "Internal server error", error });
+  }
+};
