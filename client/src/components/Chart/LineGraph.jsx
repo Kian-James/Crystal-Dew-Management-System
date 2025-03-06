@@ -22,12 +22,15 @@ ChartJS.register(
 );
 
 const LineGraph = ({ netIncome }) => {
+  const dates = netIncome.map((entry) => entry.date);
+  const incomeValues = netIncome.map((entry) => entry.netIncome);
+
   const data = {
-    labels: ["Net Income"],
+    labels: dates,
     datasets: [
       {
         label: "Net Income",
-        data: [netIncome],
+        data: incomeValues,
         borderColor: "rgba(75, 192, 192, 1)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         fill: true,
