@@ -194,7 +194,6 @@ const Home_Dash = () => {
         <h2>Overview</h2>
         <div className="container">
           <h2>Net Income Overview</h2>
-          <LineGraph netIncome={netIncomeData} />{" "}
         </div>
       </div>
       <input

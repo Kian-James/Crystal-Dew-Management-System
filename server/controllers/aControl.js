@@ -623,7 +623,7 @@ export const getNetIncomePerDay = async (req, res) => {
 
     const netIncomeData = incomeData.map((income) => {
       const expense = expenseData.find(
-        (exp) => exp._id.toString() === income._id.toString()
+        (exp) => exp._id.toString() === income.t_id.toString()
       );
       return {
         date: income._id,
@@ -631,7 +631,11 @@ export const getNetIncomePerDay = async (req, res) => {
       };
     });
 
-    res.status(200).send(netIncomeData);
+    res.status(200).send({
+      success: true,
+      message: "Net Income fetched successfully",
+      netIncomeData,
+    });
   } catch (error) {
     res.status(500).send({ message: "Internal server error", error });
   }
