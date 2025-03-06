@@ -47,6 +47,12 @@
   color: var(--accent-color) !important;
 }
 
+.active:hover {
+  color: var(--darkest-color) !important;
+  border-bottom: 3px solid var(--darkest-color);
+  font-weight: 700 !important;
+}
+
 .navbar-brand {
   font-weight: 700;
   font-family: "Roboto", sans-serif;
@@ -64,10 +70,6 @@
   font-family: "Roboto", sans-serif;
   letter-spacing: 3px;
   padding-left: 10px;
-}
-
-.brand-logo {
-  border-radius: 20% !important;
 }
 
 /* FOOTER */
@@ -242,6 +244,14 @@
   padding: 0;
 }
 
+.container {
+  padding-right: 30px;
+}
+
+.main-container {
+  padding: 0px;
+}
+
 .logout-btn {
   background-color: var(--accent-color-light);
   color: white;
@@ -254,19 +264,21 @@
 /* SIDENAV */
 
 .sidebar-text {
+  max-width: 200px;
   color: white;
   font-size: 20px;
   font-weight: 500;
-  margin-left: 10px;
-  padding-bottom: 10px;
+  margin: 10px 0px 0px 10px;
 }
 
 .brand-container {
   display: flex;
-  height: 15%;
+  height: 130px;
   width: 100%;
   align-items: center;
   gap: 5px;
+  margin: 0;
+  padding: 0;
 }
 
 .brand-name {
@@ -314,6 +326,7 @@
 .contact-us {
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
   margin-left: 5px;
   width: 90%;
   color: yellow;
@@ -323,6 +336,7 @@
 .outlet-area {
   padding: 10px;
 }
+
 
 /* SCROLLABILITY */
 .table-container {

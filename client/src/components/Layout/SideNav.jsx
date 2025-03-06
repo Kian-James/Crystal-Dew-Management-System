@@ -16,7 +16,7 @@ const SideNav = () => {
   const location = useLocation();
   return (
     <div className="nav-container">
-      <div className="sidebar-text">{auth.user.name}!</div>
+      <div className="sidebar-text fw-bold fs-4">Welcome {auth.user.name}!</div>
       <div className="brand-container d-flex align-items-center w-100">
         <img src={logo} alt="brand-logo" className="brand-logo" />
         <div className="brand-text">

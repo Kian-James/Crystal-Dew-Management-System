@@ -40,7 +40,7 @@ const AccountList = () => {
 
   return (
     <div className="container">
-      <h2>Account List</h2>
+      <h1>Account List</h1>
       <div className="table-container">
         <table className="table">
           <thead>
