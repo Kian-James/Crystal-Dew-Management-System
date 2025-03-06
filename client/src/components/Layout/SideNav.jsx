@@ -16,19 +16,15 @@ const SideNav = () => {
   const location = useLocation();
   return (
     <div className="nav-container">
-      <div className="brand-container">
-        <img
-          src={logo}
-          alt="Business logo"
-          className="brand-logo"
-        />
-        <div>
-          <p className="brand-name">
-            Crystal Dew
-            <br />
+      <div className="sidebar-text">{auth.user.name}!</div>
+      <div className="brand-container d-flex align-items-center w-100">
+        <img src={logo} alt="brand-logo" className="brand-logo" />
+        <div className="brand-text">
+          <p className="brand-name text-white fs-6 fw-bold">
+            Crystal Dew <br/>
             Water Station
           </p>
-          <p className="brand-slogan">Water for Everyone</p>
+          <p className="brand-slogan text-white">Water for Everyone</p>
         </div>
       </div>
       <div className="menu-container">
@@ -181,15 +177,17 @@ const SideNav = () => {
           </>
         )}
       </div>
-      <div className="contact-us">
-        <p>
-          <FaAddressCard /> Contact Developer
-        </p>
-        <p>For any issue or feature request</p>
-        <p>
-          <FaPhoneAlt /> 0949-417-7230
-        </p>
-      </div>
+      <div className="contact-us d-flex flex-column align-items-start w-90">
+              <p>
+                <FaAddressCard /> &nbsp; Contact Developer
+              </p>
+              <p>
+                For any issue or feature request
+              </p>
+              <p>
+                <FaPhoneAlt /> &nbsp; 0949-417-7230
+              </p>
+            </div>
     </div>
   );
 };
