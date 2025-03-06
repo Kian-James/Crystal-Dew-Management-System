@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js/auto";
 
+// Registering the necessary components for Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,10 +22,13 @@ ChartJS.register(
   Legend
 );
 
+// LineGraph component definition
 const LineGraph = ({ netIncome }) => {
+  // Extracting dates and income values from the netIncome prop
   const dates = netIncome.map((entry) => entry.date);
   const incomeValues = netIncome.map((entry) => entry.netIncome);
 
+  // Defining the data structure for the chart
   const data = {
     labels: dates,
     datasets: [
@@ -38,6 +42,7 @@ const LineGraph = ({ netIncome }) => {
     ],
   };
 
+  // Rendering the Line component with the prepared data
   return <Line data={data} />;
 };
 

@@ -8,6 +8,7 @@ import customerModel from "../models/customerModel.js";
 import { comparePassword, hashPassword } from "../helpers/aHelp.js";
 import JWT from "jsonwebtoken";
 
+// REGISTERS USER
 export const registerController = async (req, res) => {
   try {
     const { name, email, phone, address, role } = req.body;
@@ -59,6 +60,7 @@ export const registerController = async (req, res) => {
   }
 };
 
+// LOGIN
 export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -109,113 +111,72 @@ export const loginController = async (req, res) => {
   }
 };
 
-export const getEmployees = async (req, res) => {
+// CREATE ACCOUNT DETAILS
+export const saveAccountController = async (req, res) => {
+  const { email } = req.body;
   try {
-    const employees = await userModel
-      .find({ role: { $in: [0, 1] } })
-      .sort({ account_id: 1 });
-    res.status(200).send({
-      success: true,
-      message: "Employees fetched successfully",
-      employees,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error while fetching employees",
-      error,
-    });
-  }
-};
-
-export const transactionController = async (req, res) => {
-  try {
-    const { order_id } = req.body;
-    const order = await pendingModel.findOne({ order_id });
-    if (!order) {
-      return res.status(404).send({ message: "Order not found." });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.status(404).send({ message: "User not found." });
     }
+    const hashedPass = await hashPassword(user.phone);
 
-    const transaction = await new transactionModel({
-      transaction_id: order.order_id,
-      customer_name: order.customer_name,
-      customer_address: order.customer_address,
-      customer_phone: order.customer_phone,
-      product_name: order.product_name,
-      product_price: order.product_price,
-      quantity: order.quantity,
-      total_price: order.total_price,
+    const account = new accountModel({
+      account_id: user.employee_id,
+      name: user.name,
+      email: user.email,
+      password: hashedPass,
+      role: user.role,
     }).save();
-
-    let customer = await customerModel.findOne({
-      customer_name: order.customer_name,
-      customer_address: order.customer_address,
-    });
-
-    if (customer) {
-      customer.transaction_count += 1;
-      await customer.save();
-    } else {
-      customer = new customerModel({
-        customer_name: order.customer_name,
-        customer_address: order.customer_address,
-        transaction_count: 1,
-      });
-      await customer.save();
-    }
-
     res.status(201).send({
       success: true,
-      message: "Transaction Successful",
-      transaction,
+      message: "Account Registered Successfully",
+      account,
     });
   } catch (message) {
     console.log(message);
     res.status(500).send({
       success: false,
-      message: "Transaction Unsuccessful",
+      message: "Account Registration Unsuccessful",
       message,
     });
   }
 };
 
-export const getTransaction = async (req, res) => {
+// CREATE PRODUCT
+export const productController = async (req, res) => {
   try {
-    const transaction = await transactionModel.find({});
-    res.status(200).send({
+    const { product_name, product_cost } = req.body;
+    // VALIDATION
+    if (!product_name) {
+      return res.send({ message: "Product Name is Required" });
+    }
+    if (!product_cost) {
+      return res.send({ message: "Product Cost is Required" });
+    }
+
+    // SAVE
+    const product = new productModel({
+      product_name,
+      product_cost,
+    }).save();
+    res.status(201).send({
       success: true,
-      message: "Transaction fetched successfully",
-      transaction,
+      message: "Product Listed Successfully",
+      product,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (message) {
+    console.log(message);
     res.status(500).send({
       success: false,
-      message: "Error while fetching Transactions",
-      error,
+      message: "Product Listed Failed",
+      message,
     });
   }
 };
 
-export const getCustomerDetails = async (req, res) => {
-  try {
-    const customer = await customerModel.find({});
-    res.status(200).send({
-      success: true,
-      message: "Customers fetched successfully",
-      customer,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error while fetching Customers",
-      error,
-    });
-  }
-};
-
+// CREATE PENDING TRANSACTION
 export const pendingTransactionController = async (req, res) => {
   try {
     const {
@@ -269,24 +230,59 @@ export const pendingTransactionController = async (req, res) => {
   }
 };
 
-export const getPendingTransaction = async (req, res) => {
+// CREATE TRANSACTION
+export const transactionController = async (req, res) => {
   try {
-    const pendingTransaction = await pendingModel.find({});
-    res.status(200).send({
-      success: true,
-      message: "Pending Transaction fetched successfully",
-      pendingTransaction,
+    const { order_id } = req.body;
+    const order = await pendingModel.findOne({ order_id });
+    if (!order) {
+      return res.status(404).send({ message: "Order not found." });
+    }
+
+    const transaction = await new transactionModel({
+      transaction_id: order.order_id,
+      customer_name: order.customer_name,
+      customer_address: order.customer_address,
+      customer_phone: order.customer_phone,
+      product_name: order.product_name,
+      product_price: order.product_price,
+      quantity: order.quantity,
+      total_price: order.total_price,
+    }).save();
+
+    let customer = await customerModel.findOne({
+      customer_name: order.customer_name,
+      customer_address: order.customer_address,
     });
-  } catch (error) {
-    console.log(error);
+
+    if (customer) {
+      customer.transaction_count += 1;
+      await customer.save();
+    } else {
+      customer = new customerModel({
+        customer_name: order.customer_name,
+        customer_address: order.customer_address,
+        transaction_count: 1,
+      });
+      await customer.save();
+    }
+
+    res.status(201).send({
+      success: true,
+      message: "Transaction Successful",
+      transaction,
+    });
+  } catch (message) {
+    console.log(message);
     res.status(500).send({
       success: false,
-      message: "Error while fetching Pending Transactions",
-      error,
+      message: "Transaction Unsuccessful",
+      message,
     });
   }
 };
 
+// CREATE EXPENSE
 export const expenseController = async (req, res) => {
   try {
     const { expense_name, expense_cost } = req.body;
@@ -318,6 +314,85 @@ export const expenseController = async (req, res) => {
   }
 };
 
+// GET TRANSACTION DATA
+export const getTransaction = async (req, res) => {
+  try {
+    const transaction = await transactionModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "Transaction fetched successfully",
+      transaction,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching Transactions",
+      error,
+    });
+  }
+};
+
+// GET EMPLOYEE DATA
+export const getEmployees = async (req, res) => {
+  try {
+    const employees = await userModel
+      .find({ role: { $in: [0, 1] } })
+      .sort({ account_id: 1 });
+    res.status(200).send({
+      success: true,
+      message: "Employees fetched successfully",
+      employees,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching employees",
+      error,
+    });
+  }
+};
+
+// GET CUSTOMER DETAILS
+export const getCustomerDetails = async (req, res) => {
+  try {
+    const customer = await customerModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "Customers fetched successfully",
+      customer,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching Customers",
+      error,
+    });
+  }
+};
+
+// GET PENDING TRANSACTION INFORMATION
+export const getPendingTransaction = async (req, res) => {
+  try {
+    const pendingTransaction = await pendingModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "Pending Transaction fetched successfully",
+      pendingTransaction,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching Pending Transactions",
+      error,
+    });
+  }
+};
+
+// GET EXPENSE LIST
 export const getExpense = async (req, res) => {
   try {
     const expense = await expenseModel.find({});
@@ -336,37 +411,7 @@ export const getExpense = async (req, res) => {
   }
 };
 
-export const productController = async (req, res) => {
-  try {
-    const { product_name, product_cost } = req.body;
-    // VALIDATION
-    if (!product_name) {
-      return res.send({ message: "Product Name is Required" });
-    }
-    if (!product_cost) {
-      return res.send({ message: "Product Cost is Required" });
-    }
-
-    // SAVE
-    const product = new productModel({
-      product_name,
-      product_cost,
-    }).save();
-    res.status(201).send({
-      success: true,
-      message: "Product Listed Successfully",
-      product,
-    });
-  } catch (message) {
-    console.log(message);
-    res.status(500).send({
-      success: false,
-      message: "Product Listed Failed",
-      message,
-    });
-  }
-};
-
+// GET PRODUCT LIST
 export const getProduct = async (req, res) => {
   try {
     const product = await productModel.find({});
@@ -385,6 +430,26 @@ export const getProduct = async (req, res) => {
   }
 };
 
+// GET ACCOUNT LIST
+export const getAccounts = async (req, res) => {
+  try {
+    const accounts = await accountModel.find({ role: { $in: [0, 1] } });
+    res.status(200).send({
+      success: true,
+      message: "Accounts fetched successfully",
+      accounts,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching accounts",
+      error,
+    });
+  }
+};
+
+// DELETE PENDING TRANSACTION
 export const deletePendingTransactionController = async (req, res) => {
   try {
     const { order_id } = req.body;
@@ -418,56 +483,7 @@ export const deletePendingTransactionController = async (req, res) => {
   }
 };
 
-export const saveAccountController = async (req, res) => {
-  const { email } = req.body;
-  try {
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    const user = await userModel.findOne({ email });
-    if (!user) {
-      return res.status(404).send({ message: "User not found." });
-    }
-    const hashedPass = await hashPassword(user.phone);
-
-    const account = new accountModel({
-      account_id: user.employee_id,
-      name: user.name,
-      email: user.email,
-      password: hashedPass,
-      role: user.role,
-    }).save();
-    res.status(201).send({
-      success: true,
-      message: "Account Registered Successfully",
-      account,
-    });
-  } catch (message) {
-    console.log(message);
-    res.status(500).send({
-      success: false,
-      message: "Account Registration Unsuccessful",
-      message,
-    });
-  }
-};
-
-export const getAccounts = async (req, res) => {
-  try {
-    const accounts = await accountModel.find({ role: { $in: [0, 1] } });
-    res.status(200).send({
-      success: true,
-      message: "Accounts fetched successfully",
-      accounts,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error while fetching accounts",
-      error,
-    });
-  }
-};
-
+// DELETE EXPENSE
 export const deleteExpenseController = async (req, res) => {
   try {
     const { expense_id } = req.body;
@@ -502,6 +518,7 @@ export const deleteExpenseController = async (req, res) => {
   }
 };
 
+// DELETE EMPLOYEE
 export const deleteEmployeeController = async (req, res) => {
   try {
     const { employee_id } = req.body;
@@ -535,6 +552,7 @@ export const deleteEmployeeController = async (req, res) => {
   }
 };
 
+// DELETE ACCOUNT
 export const deleteAccountController = async (req, res) => {
   try {
     const { account_id } = req.body;
@@ -568,6 +586,7 @@ export const deleteAccountController = async (req, res) => {
   }
 };
 
+// DELETE PRODUCT
 export const deleteProductController = async (req, res) => {
   try {
     const { product_id } = req.body;
@@ -601,6 +620,7 @@ export const deleteProductController = async (req, res) => {
   }
 };
 
+// AGGREGATE NET INCOME
 export const getNetIncomePerDay = async (req, res) => {
   try {
     const incomeData = await transactionModel.aggregate([
