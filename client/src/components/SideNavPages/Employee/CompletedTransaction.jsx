@@ -56,7 +56,7 @@ const CompletedTransaction = () => {
 
   return (
     <div className="container">
-      <h2>Transactions</h2>
+      <h1>Transactions</h1>
       <div style={{ textAlign: "right", marginTop: "20px" }}>
         <strong>Total Revenue: </strong>Php {totalRevenue.toFixed(2)}
       </div>

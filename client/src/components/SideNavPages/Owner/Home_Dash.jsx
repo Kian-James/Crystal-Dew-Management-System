@@ -191,7 +191,7 @@ const Home_Dash = () => {
   return (
     <div className="main-container">
       <div className="container">
-        <h2>Overview</h2>
+        <h1>Overview</h1>
         <div className="container">
           <h2>Net Income Overview</h2>
           {!verified ? (

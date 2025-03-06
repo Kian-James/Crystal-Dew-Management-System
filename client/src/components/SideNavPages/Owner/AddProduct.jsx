@@ -31,7 +31,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="container">
       <h1 className="title">Create Product</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

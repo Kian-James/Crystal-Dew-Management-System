@@ -53,7 +53,7 @@ const AddEmployee = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="container">
       <h1 className="title">Register Employee</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

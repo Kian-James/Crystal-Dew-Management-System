@@ -96,7 +96,7 @@ const ExpenseList = () => {
 
   return (
     <div className="container">
-      <h2>Expense List</h2>
+      <h1>Expense List</h1>
       <div>
         <select onChange={(e) => sortExpense(e.target.value)}>
           <option value="" disabled selected>
