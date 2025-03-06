@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../../../context/auth";
 import axios from "axios";
 import toast from "react-hot-toast";
+import './TransactionHistory.css';
 
 const TransactionHistory = () => {
   const [transactions, setTransactions] = useState([]);
@@ -71,10 +72,10 @@ const TransactionHistory = () => {
   }, [filteredTransactions]);
 
   return (
-    <div className="container">
-      <h2>Transactions</h2>
-      <div>
-        <select onChange={(e) => sortTransaction(e.target.value)}>
+    <div className="container mt-4">
+      <h1 className="mb-4">Transactions</h1>
+      <div className="mb-3">
+        <select className="form-select" onChange={(e) => sortTransaction(e.target.value)}>
           <option value="" disabled selected>
             Sort by
           </option>
@@ -83,15 +84,20 @@ const TransactionHistory = () => {
           <option value="date">Date</option>
         </select>
       </div>
-      <input
-        type="date"
-        value={filterDate}
-        onChange={(e) => setFilterDate(e.target.value)}
-      />
-      <div>Total Revenue: Php{totalRevenue.toFixed(2)}</div>
-      <div className="table-container">
-        <table className="table">
-          <thead>
+      <div className="mb-3">
+        <input
+          type="date"
+          className="form-control"
+          value={filterDate}
+          onChange={(e) => setFilterDate(e.target.value)}
+        />
+      </div>
+      <div className="mb-3 total-revenue">
+        Total Revenue: Php{totalRevenue.toFixed(2)}
+      </div>
+      <div className="table-responsive">
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
             <tr>
               <th>Transaction id</th>
               <th>Customer Name</th>
@@ -119,7 +125,7 @@ const TransactionHistory = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="8" style={{ textAlign: "center" }}>
+                <td colSpan="8" className="text-center">
                   No Transactions Found
                 </td>
               </tr>

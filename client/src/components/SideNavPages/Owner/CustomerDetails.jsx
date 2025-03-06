@@ -50,7 +50,7 @@ const CustomerDetails = () => {
 
   return (
     <div className="container">
-      <h2>Customer List</h2>
+      <h1>Customer List</h1>
       <div>
         <select onChange={(e) => sortCustomers(e.target.value)}>
           <option value="" disabled selected>

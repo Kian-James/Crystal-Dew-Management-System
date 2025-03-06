@@ -72,7 +72,7 @@ const EmployeeList = () => {
 
   return (
     <div className="container">
-      <h2>Employee List</h2>
+      <h1>Employee List</h1>
       <div>
         <select onChange={(e) => sortEmployees(e.target.value)}>
           <option value="" disabled selected>

@@ -60,7 +60,7 @@ const ProductList = () => {
 
   return (
     <div className="container">
-      <h2>Product List</h2>
+      <h1>Product List</h1>
       <table className="table">
         <thead>
           <tr>
