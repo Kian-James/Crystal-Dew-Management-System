@@ -7,6 +7,7 @@ import { MdOutlineMoneyOff } from "react-icons/md";
 import { FaUserGroup } from "react-icons/fa6";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { GoGraph } from "react-icons/go";
+import "./Home_Dash.css";
 
 const formatExpenseCost = (cost) => {
   return Number(cost).toLocaleString("en-US", {
@@ -206,12 +207,12 @@ const Home_Dash = () => {
             <p>Verifying access...</p>
           )}
         </div>
-          <input
-            type="text"
-            placeholder="Enter Date (MM/DD/YYYY or MM/YYYY)"
-            value={dateInput}
-            onChange={(e) => setDateInput(e.target.value)}
-          />
+        <input
+          type="text"
+          placeholder="Enter Date (MM/DD/YYYY or MM/YYYY)"
+          value={dateInput}
+          onChange={(e) => setDateInput(e.target.value)}
+        />
         <button onClick={handleFilter}>Search</button>
         <div className="container pb-3">
           <h2>
