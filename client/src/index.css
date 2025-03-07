@@ -292,7 +292,8 @@ input[type="date"] {
   box-sizing: border-box;
 }
 
-.total-revenue, .total-expense {
+.total-revenue,
+.total-expense {
   font-weight: bold;
   font-size: 1.2em;
 }

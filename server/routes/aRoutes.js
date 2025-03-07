@@ -20,6 +20,7 @@ import {
   deleteProductController,
   getCustomerDetails,
   getNetIncomePerDay,
+  updateProductCostController,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -173,6 +174,15 @@ router.delete(
   "/product-delete",
   requireSignIn,
   deleteProductController,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
+
+router.put(
+  "/product-update",
+  requireSignIn,
+  updateProductCostController,
   (req, res) => {
     res.status(200).send({ verified: true });
   }
