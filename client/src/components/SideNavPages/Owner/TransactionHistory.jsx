@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../../../context/auth";
 import axios from "axios";
 import toast from "react-hot-toast";
-import './TransactionHistory.css';
 
 const TransactionHistory = () => {
   const [transactions, setTransactions] = useState([]);
