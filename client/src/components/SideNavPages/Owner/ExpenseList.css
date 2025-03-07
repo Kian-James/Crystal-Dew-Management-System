@@ -2,7 +2,7 @@
     margin: 20px;
 }
 
-h2 {
+h1 {
     margin-bottom: 20px;
 }
 
@@ -44,17 +44,7 @@ select, input[type="date"] {
     box-sizing: border-box;
 }
 
-select {
-    margin-bottom: 0px;
-    padding-bottom: 0;
-}
-
-input[type="date"] {
-    margin-top: 0;
-    padding-top: 0;
-}
-
-.total-revenue {
+.total-expense {
     font-weight: bold;
     font-size: 1.2em;
 }
