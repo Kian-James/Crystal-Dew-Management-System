@@ -63,7 +63,7 @@ const CustomerDetails = () => {
       </div>
       <div className="table-container">
         <table className="table table-striped table-hover">
-          <thead>
+          <thead className="table-dark">
             <tr>
               <th>Customer ID</th>
               <th>Name</th>
