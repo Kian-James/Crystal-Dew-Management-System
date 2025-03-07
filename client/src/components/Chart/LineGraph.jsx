@@ -24,9 +24,14 @@ ChartJS.register(
 
 // LineGraph component definition
 const LineGraph = ({ netIncome }) => {
-  // Extracting dates and income values from the netIncome prop
-  const dates = netIncome.map((entry) => entry.date);
-  const incomeValues = netIncome.map((entry) => entry.netIncome);
+  // Sort the netIncome array by date
+  const sortedNetIncome = netIncome.sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+
+  // Extracting dates and income values from the sorted netIncome prop
+  const dates = sortedNetIncome.map((entry) => entry.date);
+  const incomeValues = sortedNetIncome.map((entry) => entry.netIncome);
 
   // Defining the data structure for the chart
   const data = {
