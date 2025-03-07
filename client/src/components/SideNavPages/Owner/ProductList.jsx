@@ -11,6 +11,7 @@ const formatExpenseCost = (cost) => {
 };
 
 const ProductList = () => {
+  const [isEditing, setIsEditing] = useState(false);
   const [products, setProducts] = useState([]);
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
@@ -39,6 +40,33 @@ const ProductList = () => {
 
     fetchData();
   }, [auth?.token]);
+
+  const handleCostUpdate = async (product_id, newCost) => {
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/api/va/auth/product-update`,
+        {
+          product_id: product_id,
+          product_cost: newCost,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }
+      );
+      setProducts(
+        products.map((prod) =>
+          prod.product_id === product_id
+            ? { ...prod, product_cost: newCost }
+            : prod
+        )
+      );
+      toast.success("Product cost updated successfully.");
+    } catch (error) {
+      toast.error("Failed to update product cost. Please try again.");
+    }
+  };
 
   const Delete = async (product_id) => {
     try {
@@ -76,7 +104,24 @@ const ProductList = () => {
               <tr key={prod._id}>
                 <td>{prod.product_id}</td>
                 <td>{prod.product_name}</td>
-                <td>{formatExpenseCost(prod.product_cost)}</td>
+                <td>
+                  <input
+                    type="number"
+                    value={prod.product_cost}
+                    onChange={(e) =>
+                      isEditing
+                        ? handleCostUpdate(prod.product_id, e.target.value)
+                        : null
+                    }
+                    readOnly={!isEditing}
+                  />
+                  <button
+                    onClick={() => setIsEditing(!isEditing)}
+                    className="btn btn-primary"
+                  >
+                    {isEditing ? "Save" : "Edit"}
+                  </button>
+                </td>
                 <td>
                   <button
                     onClick={() => Delete(prod.product_id)}
