@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import './AddEmployee.css';
 
 const AddEmployee = () => {
   // State variables for user input fields
