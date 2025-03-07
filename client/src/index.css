@@ -313,7 +313,9 @@ select, input[type="date"] {
   padding-bottom: 1rem;
 }
 
-input[type="text"] {
+input[type="text"], 
+input[type="tel"], 
+select[type="role"] {
   width: calc(100% - 200px);
   padding: 10px;
   margin-left: 10px;
@@ -334,10 +336,10 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-
-h1, h2, h3 {
-  margin: 0;
-  padding: 0 0;
+h1 {
+  font-size: 2.5rem;
+  color: #159a8e;
+  padding-bottom: 10px;
 }
 
 h2 {

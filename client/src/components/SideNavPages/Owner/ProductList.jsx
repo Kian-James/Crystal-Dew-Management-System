@@ -62,7 +62,7 @@ const ProductList = () => {
     <div className="container">
       <h1>Product List</h1>
       <table className="table table-striped table-hover">
-        <thead>
+        <thead className="table-dark">
           <tr>
             <th>Product ID</th>
             <th>Description</th>
