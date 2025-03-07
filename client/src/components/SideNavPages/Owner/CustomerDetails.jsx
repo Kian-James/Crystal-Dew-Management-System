@@ -62,7 +62,7 @@ const CustomerDetails = () => {
         </select>
       </div>
       <div className="table-container">
-        <table className="table">
+        <table className="table table-striped table-hover">
           <thead>
             <tr>
               <th>Customer ID</th>

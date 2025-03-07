@@ -42,7 +42,7 @@ const AccountList = () => {
     <div className="container">
       <h1>Account List</h1>
       <div className="table-container">
-        <table className="table">
+        <table className="table table-striped table-hover">
           <thead>
             <tr>
               <th>Account ID</th>

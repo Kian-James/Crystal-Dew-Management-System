@@ -83,7 +83,7 @@ const EmployeeList = () => {
         </select>
       </div>
       <div className="table-container">
-        <table className="table">
+        <table className="table table-striped table-hover">
           <thead>
             <tr>
               <th>Employee ID</th>
