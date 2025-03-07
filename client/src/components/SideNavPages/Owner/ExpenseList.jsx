@@ -115,7 +115,7 @@ const ExpenseList = () => {
           onChange={(e) => setFilterDate(e.target.value)}
         />
       </div>
-      <div className="total-expense">Total Expense: Php{formatExpenseCost(totalExpense)}</div>
+      <div className="mb-3 total-expense">Total Expense: Php{formatExpenseCost(totalExpense)}</div>
       <div className="table-container">
         <table className="table table-striped table-hover">
           <thead className="table-dark">
