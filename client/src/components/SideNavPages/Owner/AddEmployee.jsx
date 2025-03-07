@@ -53,7 +53,7 @@ const AddEmployee = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="container">
       <h1 className="title">Register Employee</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -119,6 +119,7 @@ const AddEmployee = () => {
             Role
           </label>
           <select
+            type="role"
             id="roleSelect"
             className="form-control"
             value={role}
@@ -132,7 +133,7 @@ const AddEmployee = () => {
             <option value="0">Employee</option>
           </select>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="button">
           Submit
         </button>
       </form>

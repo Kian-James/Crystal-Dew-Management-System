@@ -191,12 +191,14 @@ const Home_Dash = () => {
   return (
     <div className="main-container">
       <div className="container">
-        <h2>Overview</h2>
+        <h1>Overview</h1>
         <div className="container">
           <h2>Net Income Overview</h2>
           {!verified ? (
             netIncomeData.length > 0 ? (
-              <LineGraph netIncome={netIncomeData} />
+              <div className="line-graph-container">
+                <LineGraph netIncome={netIncomeData} />
+              </div>
             ) : (
               <p>No data available</p>
             )
@@ -204,37 +206,37 @@ const Home_Dash = () => {
             <p>Verifying access...</p>
           )}
         </div>
-      </div>
-      <input
-        type="text"
-        placeholder="Enter Date (MM/DD/YYYY or MM/YYYY)"
-        value={dateInput}
-        onChange={(e) => setDateInput(e.target.value)}
-      />
-      <button onClick={handleFilter}>Search</button>
-      <div className="container">
-        <h2>
-          <GoGraph /> Net Income
-        </h2>
-        <h3>Net Income: Php{formatExpenseCost(netIncome)}</h3>
-      </div>
-      <div className="container">
-        <h2>
-          <FaMoneyBillWave /> Sales
-        </h2>
-        <h3>Total Sales: Php{formatExpenseCost(totalTransaction)}</h3>
-      </div>
-      <div className="container">
-        <h2>
-          <MdOutlineMoneyOff /> Expense
-        </h2>
-        <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>
-      </div>
-      <div className="container">
-        <h2>
-          <FaUserGroup /> Employee Counter
-        </h2>
-        <h3>Total Employees: {employees.length}</h3>
+          <input
+            type="text"
+            placeholder="Enter Date (MM/DD/YYYY or MM/YYYY)"
+            value={dateInput}
+            onChange={(e) => setDateInput(e.target.value)}
+          />
+        <button onClick={handleFilter}>Search</button>
+        <div className="container pb-3">
+          <h2>
+            <GoGraph /> Net Income
+          </h2>
+          <h3>Net Income: Php{formatExpenseCost(netIncome)}</h3>
+        </div>
+        <div className="container pb-3">
+          <h2>
+            <FaMoneyBillWave /> Sales
+          </h2>
+          <h3>Total Sales: Php{formatExpenseCost(totalTransaction)}</h3>
+        </div>
+        <div className="container pb-3">
+          <h2>
+            <MdOutlineMoneyOff /> Expense
+          </h2>
+          <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>
+        </div>
+        <div className="container pb-3">
+          <h2>
+            <FaUserGroup /> Employee Counter
+          </h2>
+          <h3>Total Employees: {employees.length}</h3>
+        </div>
       </div>
     </div>
   );

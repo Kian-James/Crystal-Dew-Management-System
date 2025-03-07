@@ -72,7 +72,7 @@ const EmployeeList = () => {
 
   return (
     <div className="container">
-      <h2>Employee List</h2>
+      <h1>Employee List</h1>
       <div>
         <select onChange={(e) => sortEmployees(e.target.value)}>
           <option value="" disabled selected>
@@ -83,8 +83,8 @@ const EmployeeList = () => {
         </select>
       </div>
       <div className="table-container">
-        <table className="table">
-          <thead>
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
             <tr>
               <th>Employee ID</th>
               <th>Name</th>

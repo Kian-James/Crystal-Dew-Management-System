@@ -62,7 +62,7 @@ const Header = () => {
                       Dashboard
                     </NavLink>
                   </li>
-                  <span className="navbar-text">{auth.user.name}!</span>
+                  {/* <span className="navbar-text">{auth.user.name}!</span> */}
                   <li className="nav-item">
                     <NavLink
                       onClick={handleLogout}

@@ -50,7 +50,7 @@ const CustomerDetails = () => {
 
   return (
     <div className="container">
-      <h2>Customer List</h2>
+      <h1>Customer List</h1>
       <div>
         <select onChange={(e) => sortCustomers(e.target.value)}>
           <option value="" disabled selected>
@@ -62,8 +62,8 @@ const CustomerDetails = () => {
         </select>
       </div>
       <div className="table-container">
-        <table className="table">
-          <thead>
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
             <tr>
               <th>Customer ID</th>
               <th>Name</th>

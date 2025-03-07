@@ -31,7 +31,7 @@ const AddExpense = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="container">
       <h1 className="title">Add Expense</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -73,9 +73,9 @@ const AddExpense = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Add Expense
-        </button>
+          <button type="submit" className="button">
+            Add Expense
+          </button>
       </form>
     </div>
   );

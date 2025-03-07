@@ -40,10 +40,10 @@ const AccountList = () => {
 
   return (
     <div className="container">
-      <h2>Account List</h2>
+      <h1>Account List</h1>
       <div className="table-container">
-        <table className="table">
-          <thead>
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
             <tr>
               <th>Account ID</th>
               <th>Name</th>
