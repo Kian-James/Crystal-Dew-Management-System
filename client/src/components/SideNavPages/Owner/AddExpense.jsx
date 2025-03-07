@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import './AddExpense.css';
 
 const AddExpense = () => {
   // State variables for user input fields
