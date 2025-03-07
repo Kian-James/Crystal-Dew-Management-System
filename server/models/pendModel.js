@@ -53,6 +53,5 @@ const pendingTransactionSchema = new mongoose.Schema({
 });
 
 pendingTransactionSchema.plugin(AutoIncrement, { inc_field: "order_id" });
-pendingTransactionSchema.plugin(AutoIncrement, { inc_field: "pending_id" });
 
 export default mongoose.model("pending-transactions", pendingTransactionSchema);

@@ -205,8 +205,16 @@ export const pendingTransactionController = async (req, res) => {
       return res.send({ message: "Quantity is Required" });
     }
 
+    const maxPendingTransaction = await pendingModel
+      .findOne()
+      .sort({ pending_id: -1 });
+    const newPendingId = maxPendingTransaction
+      ? maxPendingTransaction.pending_id + 1
+      : 1;
+
     // SAVE
     const pendingTransaction = new pendingModel({
+      pending_id: newPendingId,
       customer_name,
       customer_address,
       customer_phone,

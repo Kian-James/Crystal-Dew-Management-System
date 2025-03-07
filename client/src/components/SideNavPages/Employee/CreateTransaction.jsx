@@ -173,7 +173,7 @@ const CreateTransaction = () => {
               setQuantity(value);
             }}
             onKeyDown={(e) => {
-              if (e.key === "-" || e.key === "0") {
+              if (e.key === "-") {
                 e.preventDefault();
               }
             }}
@@ -184,7 +184,6 @@ const CreateTransaction = () => {
             min="1"
           />
         </div>
-
         <div className="mb-3">
           <p>Total Price: {total_price}</p>
         </div>
