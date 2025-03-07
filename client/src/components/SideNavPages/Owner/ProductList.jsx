@@ -61,7 +61,7 @@ const ProductList = () => {
   return (
     <div className="container">
       <h1>Product List</h1>
-      <table className="table">
+      <table className="table table-striped table-hover">
         <thead>
           <tr>
             <th>Product ID</th>

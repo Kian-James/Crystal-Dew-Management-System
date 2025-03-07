@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../../context/auth";
-import './ExpenseList.css';
 
 const formatExpenseCost = (cost) => {
   return Number(cost).toLocaleString("en-US", {
@@ -118,7 +117,7 @@ const ExpenseList = () => {
       </div>
       <div className="total-expense">Total Expense: Php{formatExpenseCost(totalExpense)}</div>
       <div className="table-container">
-        <table className="table">
+        <table className="table table-striped table-hover">
           <thead>
             <tr>
               <th>Expense ID</th>
