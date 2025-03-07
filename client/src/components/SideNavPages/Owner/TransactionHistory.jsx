@@ -74,8 +74,8 @@ const TransactionHistory = () => {
   return (
     <div className="container mt-4">
       <h1 className="mb-4">Transactions</h1>
-      <div className="mb-3">
-        <select className="form-select" onChange={(e) => sortTransaction(e.target.value)}>
+      <div className="">
+        <select className="" onChange={(e) => sortTransaction(e.target.value)}>
           <option value="" disabled selected>
             Sort by
           </option>

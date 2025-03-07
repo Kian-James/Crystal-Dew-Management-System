@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import './AddEmployee.css';
 
 const AddEmployee = () => {
   // State variables for user input fields
@@ -119,6 +120,7 @@ const AddEmployee = () => {
             Role
           </label>
           <select
+            type="role"
             id="roleSelect"
             className="form-control"
             value={role}
@@ -132,7 +134,7 @@ const AddEmployee = () => {
             <option value="0">Employee</option>
           </select>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="button">
           Submit
         </button>
       </form>

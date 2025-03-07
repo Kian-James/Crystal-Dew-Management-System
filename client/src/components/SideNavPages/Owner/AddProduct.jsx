@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import './AddProduct.css';
 
 const AddProduct = () => {
   // State variables for user input fields
@@ -73,7 +74,7 @@ const AddProduct = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="button">
           Create Product
         </button>
       </form>
