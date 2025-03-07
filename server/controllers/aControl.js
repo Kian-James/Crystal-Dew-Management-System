@@ -660,3 +660,40 @@ export const getNetIncomePerDay = async (req, res) => {
     res.status(500).send({ message: "Internal server error", error });
   }
 };
+
+export const updateProductCostController = async (req, res) => {
+  try {
+    const { product_id, product_cost } = req.body;
+
+    // VALIDATION
+    if (!product_id) {
+      return res.status(400).send({ message: "Product ID is required" });
+    }
+    if (product_cost === undefined) {
+      return res.status(400).send({ message: "Product cost is required" });
+    }
+
+    const product = await productModel.findOneAndUpdate(
+      { product_id },
+      { product_cost },
+      { new: true }
+    );
+
+    if (!product) {
+      return res.status(404).send({ message: "Product not found" });
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "Product cost updated successfully",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error updating product cost",
+      error,
+    });
+  }
+};
