@@ -373,6 +373,16 @@ p {
   font-size: 1rem;
 }
 
+.top-sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+select, input[type="date"] {
+  min-width: 200px;
+}
+
 /* SIDENAV */
 
 .sidebar-text {
