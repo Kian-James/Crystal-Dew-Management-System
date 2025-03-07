@@ -7,6 +7,7 @@ import { MdOutlineMoneyOff } from "react-icons/md";
 import { FaUserGroup } from "react-icons/fa6";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { GoGraph } from "react-icons/go";
+import './Home_Dash.css';
 
 const formatExpenseCost = (cost) => {
   return Number(cost).toLocaleString("en-US", {
@@ -206,37 +207,39 @@ const Home_Dash = () => {
             <p>Verifying access...</p>
           )}
         </div>
-      </div>
-      <input
-        type="text"
-        placeholder="Enter Date (MM/DD/YYYY or MM/YYYY)"
-        value={dateInput}
-        onChange={(e) => setDateInput(e.target.value)}
-      />
-      <button onClick={handleFilter}>Search</button>
-      <div className="container">
-        <h2>
-          <GoGraph /> Net Income
-        </h2>
-        <h3>Net Income: Php{formatExpenseCost(netIncome)}</h3>
-      </div>
-      <div className="container">
-        <h2>
-          <FaMoneyBillWave /> Sales
-        </h2>
-        <h3>Total Sales: Php{formatExpenseCost(totalTransaction)}</h3>
-      </div>
-      <div className="container">
-        <h2>
-          <MdOutlineMoneyOff /> Expense
-        </h2>
-        <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>
-      </div>
-      <div className="container">
-        <h2>
-          <FaUserGroup /> Employee Counter
-        </h2>
-        <h3>Total Employees: {employees.length}</h3>
+        <div className="pb-3">
+          <input
+            type="text"
+            placeholder="Enter Date (MM/DD/YYYY or MM/YYYY)"
+            value={dateInput}
+            onChange={(e) => setDateInput(e.target.value)}
+          />
+        <button onClick={handleFilter}>Search</button>
+        </div>
+        <div className="container pb-3">
+          <h2>
+            <GoGraph /> Net Income
+          </h2>
+          <h3>Net Income: Php{formatExpenseCost(netIncome)}</h3>
+        </div>
+        <div className="container pb-3">
+          <h2>
+            <FaMoneyBillWave /> Sales
+          </h2>
+          <h3>Total Sales: Php{formatExpenseCost(totalTransaction)}</h3>
+        </div>
+        <div className="container pb-3">
+          <h2>
+            <MdOutlineMoneyOff /> Expense
+          </h2>
+          <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>
+        </div>
+        <div className="container pb-3">
+          <h2>
+            <FaUserGroup /> Employee Counter
+          </h2>
+          <h3>Total Employees: {employees.length}</h3>
+        </div>
       </div>
     </div>
   );
