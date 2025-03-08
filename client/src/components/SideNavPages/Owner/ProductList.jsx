@@ -87,7 +87,7 @@ const ProductList = () => {
   };
 
   return (
-    <div className="container">
+    <div className="table-container">
       <h1>Product List</h1>
       <table className="table table-striped table-hover">
         <thead className="table-dark">

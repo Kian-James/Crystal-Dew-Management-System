@@ -18,6 +18,10 @@ const Header = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
+          <img src={logo} alt="brand-logo" className="brand-logo" />
+          <Link to="/" className="navbar-brand">
+            Crystal Dew Water Station
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -30,13 +34,9 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <img src={logo} alt="brand-logo" className="brand-logo" />
-            <Link to="/" className="navbar-brand">
-              Crystal Dew Water Station
-            </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink to="/" className="nav-link">
+                <NavLink to="/" className="nav-link top-nav-link">
                   Home
                 </NavLink>
               </li>
@@ -62,7 +62,6 @@ const Header = () => {
                       Dashboard
                     </NavLink>
                   </li>
-                  {/* <span className="navbar-text">{auth.user.name}!</span> */}
                   <li className="nav-item">
                     <NavLink
                       onClick={handleLogout}
