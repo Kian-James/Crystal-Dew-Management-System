@@ -2,9 +2,13 @@ import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../components/Images/crystalDew_logo.png";
 import { useAuth } from "../../context/auth";
+import { useState } from "react";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [sidebar, setSidebar] = useState(false);
+  const showSidebar = () => setSidebar(!sidebar);
+
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -21,6 +25,7 @@ const Header = () => {
           <button
             className="navbar-toggler"
             type="button"
+            onClick={showSidebar}
             data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01"
@@ -29,8 +34,8 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <img src={logo} alt="brand-logo" className="brand-logo" />
+          <div className={`collapse navbar-collapse ${sidebar ? "show" : ""}`} id="navbarTogglerDemo01">
+            <img src={logo} alt="brand-logo" className="brand-logo m-lg-0 m-3" />
             <Link to="/" className="navbar-brand">
               Crystal Dew Water Station
             </Link>

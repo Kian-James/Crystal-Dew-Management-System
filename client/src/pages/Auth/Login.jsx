@@ -46,56 +46,58 @@ const Login = () => {
 
   return (
     <Layout title={"Login"}>
-      <div className="justify-content-center align-items-center d-flex shadow-lg vh-100">
-        <div className="overlay"></div>
-        <div
-          className="card p-4 shadow-lg"
-          style={{ width: "950px", height: "60%" }}
-        >
-          <form onSubmit={handleSubmit}>
-            <div className="row">
-              {/* Left Side: Login inputs*/}
-              <div className="col-md-6">
-                <div className="header-text mb-5 text-center">
-                  <h1>Login</h1>
+      <div className="login-page">
+        <div className="justify-content-center align-items-center d-flex shadow-lg vh-100">
+          <div className="overlay"></div>
+          <div
+            className="card p-4 shadow-lg"
+            style={{ width: "950px", height: "400px" }}
+          >
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                {/* Left Side: Login inputs*/}
+                <div className="col-md-6">
+                  <div className="header-text mb-5 text-center">
+                    <h1>Login</h1>
+                  </div>
+
+                  <div className="input-group mb-4">
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      className="form-control form-control-lg bg-light fs-6"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <div className="input-group mb-4">
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      className="form-control form-control-lg bg-light fs-6"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <div className="input-group mb-3 justify-content-center">
+                    <button type="submit" className="btn btn-primary btn-lg fs-6">
+                      <small>Login</small>
+                    </button>
+                  </div>
                 </div>
 
-                <div className="input-group mb-4">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="form-control form-control-lg bg-light fs-6"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="input-group mb-4">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    className="form-control form-control-lg bg-light fs-6"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="input-group mb-3 justify-content-center">
-                  <button type="submit" className="btn btn-primary btn-lg fs-6">
-                    <small>Login</small>
-                  </button>
+                {/* Right Side: Welcome Message */}
+                <div className="right-side col-md-6 d-none d-md-block text-white shadow-lg">                       {/*d-md-block only shows on >=768px */}
+                  <h1>Welcome</h1>
+                  <p>We are happy to see you again! To start today's journey please login to your account.</p>
                 </div>
               </div>
-
-              {/* Right Side: Welcome Message */}
-              <div className="right-side col-md-6 d-none d-md-block">                       {/*d-md-block only shows on >=768px */}
-                <h1>Welcome</h1>
-                <p>We are happy to see you again! Please login to your account.</p>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </Layout>

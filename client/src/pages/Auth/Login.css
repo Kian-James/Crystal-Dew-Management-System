@@ -1,4 +1,4 @@
-body {
+.login-page {
   font-family: "Poppins", sans-serif;
   background-image: url("../../components/images/Background-image.png");
   background-size: cover;
@@ -75,6 +75,7 @@ p {
   /*"Welcome"*/
   margin-top: 70px;
   font-size: 60px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .right-side,
