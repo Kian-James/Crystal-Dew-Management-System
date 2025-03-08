@@ -208,7 +208,7 @@ const Home_Dash = () => {
         </div>
         <div className="container home-dash pb-3">
           <input
-            type="date"
+            type="input"
             placeholder="Enter Date (MM/DD/YYYY or MM/YYYY)"
             value={dateInput}
             onChange={(e) => setDateInput(e.target.value)}
