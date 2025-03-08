@@ -17,6 +17,7 @@ const formatExpenseCost = (cost) => {
 };
 
 const Home_Dash = () => {
+  const [selectedView, setSelectedView] = useState("month");
   const [netIncomeData, setNetIncomeData] = useState("");
   const [dateInput, setDateInput] = useState("");
   const [expenses, setExpenses] = useState([]);
@@ -194,11 +195,22 @@ const Home_Dash = () => {
       <div className="container">
         <h1>Overview</h1>
         <div className="container">
+          <select
+            value={selectedView}
+            onChange={(e) => setSelectedView(e.target.value)}
+          >
+            <option value="Month">Month</option>
+            <option value="Date">Date</option>
+            <option value="Year">Year</option>
+          </select>
           <h2>Net Income Overview</h2>
           {!verified ? (
             netIncomeData.length > 0 ? (
               <div className="line-graph-container">
-                <LineGraph netIncome={netIncomeData} />
+                <LineGraph
+                  netIncome={netIncomeData}
+                  selectedView={selectedView}
+                />
               </div>
             ) : (
               <p>No data available</p>
@@ -230,7 +242,7 @@ const Home_Dash = () => {
           <h2>
             <MdOutlineMoneyOff /> Expense
           </h2>
-          <h3>Total Expenses: ${formatExpenseCost(totalExpense)}</h3>
+          <h3>Total Expenses: Php{formatExpenseCost(totalExpense)}</h3>
         </div>
         <div className="container pb-3">
           <h2>
