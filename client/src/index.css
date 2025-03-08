@@ -21,6 +21,13 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+  .brand-logo {
+    margin-top: 20px;
+  }
+}
+
+
 /* NAVBAR */
 
 .navbar {

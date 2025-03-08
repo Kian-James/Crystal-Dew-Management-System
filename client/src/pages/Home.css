@@ -6,6 +6,11 @@
     .home .media-icons{
         right: 15px;
     }
+
+    .navbar-brand {
+        font-size: 10px;
+        padding: 0;
+    }
 }
 
 .home .media-icons a:not(:last-child){
