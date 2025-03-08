@@ -73,7 +73,8 @@ const TransactionHistory = () => {
   return (
     <div className="container mt-4">
       <h1>Transactions</h1>
-      <div className="">
+      <div className="top-sort d-flex justify-content-left">
+      <div>
         <select className="" onChange={(e) => sortTransaction(e.target.value)}>
           <option value="" disabled selected>
             Sort by
@@ -83,13 +84,14 @@ const TransactionHistory = () => {
           <option value="date">Date</option>
         </select>
       </div>
-      <div className="mb-3">
+      <div>
         <input
           type="date"
           className="form-control"
           value={filterDate}
           onChange={(e) => setFilterDate(e.target.value)}
         />
+      </div>
       </div>
       <div className="mb-3 total-revenue">
         Total Revenue: Php{totalRevenue.toFixed(2)}

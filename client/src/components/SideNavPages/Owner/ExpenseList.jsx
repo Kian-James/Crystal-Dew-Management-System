@@ -97,23 +97,25 @@ const ExpenseList = () => {
   return (
     <div className="container">
       <h1>Expense List</h1>
-      <div>
-        <select onChange={(e) => sortExpense(e.target.value)}>
-          <option value="" disabled selected>
-            Sort by
-          </option>
-          <option value="name">Name</option>
-          <option value="expense-id">Expense ID</option>
-          <option value="date">Date</option>
-          <option value="amount">Amount</option>
-        </select>
-      </div>
-      <div>
-        <input
-          type="date"
-          value={filterDate}
-          onChange={(e) => setFilterDate(e.target.value)}
-        />
+      <div className="top-sort d-flex justify-content-left">
+        <div>
+          <select onChange={(e) => sortExpense(e.target.value)}>
+            <option value="" disabled selected>
+              Sort by
+            </option>
+            <option value="name">Name</option>
+            <option value="expense-id">Expense ID</option>
+            <option value="date">Date</option>
+            <option value="amount">Amount</option>
+          </select>
+        </div>
+        <div>
+          <input
+            type="date"
+            value={filterDate}
+            onChange={(e) => setFilterDate(e.target.value)}
+          />
+        </div>
       </div>
       <div className="mb-3 total-expense">Total Expense: Php{formatExpenseCost(totalExpense)}</div>
       <div className="table-container">

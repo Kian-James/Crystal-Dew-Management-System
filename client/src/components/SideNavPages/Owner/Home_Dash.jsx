@@ -206,13 +206,15 @@ const Home_Dash = () => {
             <p>Verifying access...</p>
           )}
         </div>
+        <div className="container home-dash pb-3">
           <input
-            type="text"
+            type="input"
             placeholder="Enter Date (MM/DD/YYYY or MM/YYYY)"
             value={dateInput}
             onChange={(e) => setDateInput(e.target.value)}
           />
-        <button onClick={handleFilter}>Search</button>
+          <button onClick={handleFilter}>Search</button>
+        </div>
         <div className="container pb-3">
           <h2>
             <GoGraph /> Net Income
