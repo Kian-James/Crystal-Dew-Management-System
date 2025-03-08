@@ -4,6 +4,28 @@ import { toast } from "react-hot-toast";
 import { useAuth } from "../../../context/auth";
 
 const AccountList = () => {
+  const [editPassword, setEditPassword] = useState(null);
+  const [newPassword, setNewPassword] = useState("");
+
+  const handlePasswordChange = async (accountId) => {
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/api/va/auth/update-password`,
+        {
+          accountId,
+          newPassword,
+        }
+      );
+      toast.success("Password updated successfully!");
+      setEditPassword(null);
+    } catch (error) {
+      toast.error("Failed to update password. Please try again.");
+    }
+  };
+
+  const toggleEditPassword = (accountId) => {
+    setEditPassword(editPassword === accountId ? null : accountId);
+  };
   const [accounts, setAccounts] = useState([]);
   const sortedAccounts = [...accounts].sort((a, b) =>
     a.name.localeCompare(b.name)
@@ -49,6 +71,7 @@ const AccountList = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Password</th>
+              <th>Edit</th>
               <th>Role</th>
             </tr>
           </thead>
@@ -59,7 +82,29 @@ const AccountList = () => {
                   <td>{emp.account_id}</td>
                   <td>{emp.name}</td>
                   <td>{emp.email}</td>
-                  <td>***********</td>
+                  <td>
+                    {editPassword === emp.account_id ? (
+                      <input
+                        type="text"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                      />
+                    ) : (
+                      "********"
+                    )}
+                  </td>
+                  <td>
+                    <button onClick={() => toggleEditPassword(emp.account_id)}>
+                      {editPassword === emp.account_id ? "Cancel" : "Edit"}
+                    </button>
+                    {editPassword === emp.account_id && (
+                      <button
+                        onClick={() => handlePasswordChange(emp.account_id)}
+                      >
+                        Save
+                      </button>
+                    )}
+                  </td>
                   <td>{emp.role === 1 ? "Owner" : "Employee"}</td>
                 </tr>
               ))

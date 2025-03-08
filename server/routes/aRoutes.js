@@ -21,6 +21,7 @@ import {
   getCustomerDetails,
   getNetIncomePerDay,
   updateProductCostController,
+  updatePasswordController,
 } from "../controllers/aControl.js";
 import { isAdmin, requireSignIn } from "../middlewares/aMiddlewares.js";
 
@@ -179,10 +180,21 @@ router.delete(
   }
 );
 
+// PRODUCT PRICE EDIT
 router.put(
   "/product-update",
   requireSignIn,
   updateProductCostController,
+  (req, res) => {
+    res.status(200).send({ verified: true });
+  }
+);
+
+// CHANGE PASSWORD
+router.put(
+  "/update-password",
+  requireSignIn,
+  updatePasswordController,
   (req, res) => {
     res.status(200).send({ verified: true });
   }

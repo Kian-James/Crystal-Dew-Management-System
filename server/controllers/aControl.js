@@ -651,7 +651,7 @@ export const getNetIncomePerDay = async (req, res) => {
 
     const netIncomeData = incomeData.map((income) => {
       const expense = expenseData.find(
-        (exp) => exp._id.toString() === income.t_id.toString()
+        (exp) => exp._id.toString() === income._id.toString()
       );
       return {
         date: income._id,
@@ -701,6 +701,45 @@ export const updateProductCostController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error updating product cost",
+      error,
+    });
+  }
+};
+
+// UPDATE PASSWORD CONTROLLER
+export const updatePasswordController = async (req, res) => {
+  try {
+    const { accountId, newPassword } = req.body;
+
+    // VALIDATION
+    if (!accountId || !newPassword) {
+      return res
+        .status(400)
+        .send({ message: "Account ID and new password are required." });
+    }
+
+    // FIND USER
+    const user = await accountModel.findOne({ account_id: accountId });
+    if (!user) {
+      return res.status(404).send({ message: "User not found." });
+    }
+
+    // HASH NEW PASSWORD
+    const hashedPassword = await hashPassword(newPassword);
+
+    // UPDATE PASSWORD
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).send({
+      success: true,
+      message: "Password updated successfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error updating password.",
       error,
     });
   }
