@@ -22,18 +22,35 @@ ChartJS.register(
   Legend
 );
 
-// LineGraph component definition
-const LineGraph = ({ netIncome }) => {
-  // Sort the netIncome array by date
+const LineGraph = ({ netIncome, selectedView }) => {
   const sortedNetIncome = netIncome.sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
 
-  // Extracting dates and income values from the sorted netIncome prop
-  const dates = sortedNetIncome.map((entry) => entry.date);
-  const incomeValues = sortedNetIncome.map((entry) => entry.netIncome);
+  const filteredNetIncome = sortedNetIncome.reduce((acc, entry) => {
+    const date = new Date(entry.date);
+    let key;
 
-  // Defining the data structure for the chart
+    if (selectedView === "Month") {
+      key = date.toLocaleString("default", { month: "long", year: "numeric" });
+    } else if (selectedView === "Date") {
+      key = date.toLocaleDateString();
+    } else {
+      key = date.getFullYear();
+    }
+
+    if (!acc[key]) {
+      acc[key] = { date: key, netIncome: 0 };
+    }
+    acc[key].netIncome += entry.netIncome;
+    return acc;
+  }, {});
+
+  const dates = Object.keys(filteredNetIncome);
+  const incomeValues = Object.values(filteredNetIncome).map(
+    (entry) => entry.netIncome
+  );
+
   const data = {
     labels: dates,
     datasets: [
