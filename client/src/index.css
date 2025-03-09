@@ -90,6 +90,7 @@
 .table-container {
   max-height: 750px;
   overflow-y: auto;
+  margin-right: 30px;
 }
 
 .table thead {
@@ -116,13 +117,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* DASHBOARD */
-/* TURN CSS INTO BOOTSTRAP (One at a time) */
-/* TURN CSS INTO BOOTSTRAP (One at a time) */
-/* TURN CSS INTO BOOTSTRAP (One at a time) */
-
-.container {
-  width: 100%;
-  padding-right: 30px;
+.pr-30 {
+  padding-right: 30px !important;
 }
 
 .main-container {

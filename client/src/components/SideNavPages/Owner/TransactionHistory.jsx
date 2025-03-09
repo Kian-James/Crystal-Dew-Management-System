@@ -95,11 +95,11 @@ const TransactionHistory = () => {
             onChange={(e) => setFilterDate(e.target.value)}
           />
         </div>
-      </div>
+      </div >
       <div className="mb-3 total-revenue">
         Total Revenue: Php{totalRevenue.toFixed(2)}
       </div>
-      <div className="table-responsive">
+      <div className="table-responsive table-container">
         <table className="table table-striped table-hover">
           <thead className="table-dark">
             <tr>
