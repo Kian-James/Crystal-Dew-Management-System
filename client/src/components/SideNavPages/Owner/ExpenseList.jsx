@@ -95,7 +95,7 @@ const ExpenseList = () => {
   }, [filteredExpenses]);
 
   return (
-    <div className="container">
+    <div className="container ms-3 mt-3">
       <h1>Expense List</h1>
       <div className="top-sort d-flex justify-content-left">
         <div>

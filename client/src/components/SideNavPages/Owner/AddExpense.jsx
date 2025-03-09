@@ -31,7 +31,7 @@ const AddExpense = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container ms-3 mt-3">
       <h1 className="title">Add Expense</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

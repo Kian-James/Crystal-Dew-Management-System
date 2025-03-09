@@ -86,7 +86,7 @@ const CreateTransaction = () => {
   }, [auth?.token]);
 
   return (
-    <div className="form-container">
+    <div className="form-container container ms-3 mt-3">
       <h1 className="title">Create Transaction</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

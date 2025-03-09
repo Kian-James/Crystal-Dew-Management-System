@@ -71,7 +71,7 @@ const TransactionHistory = () => {
   }, [filteredTransactions]);
 
   return (
-    <div className="container mt-4">
+    <div className="container ms-3 mt-3">
       <h1>Transactions</h1>
       <div className="top-sort d-flex justify-content-left">
         <div>
