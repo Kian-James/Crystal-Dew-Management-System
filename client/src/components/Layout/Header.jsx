@@ -38,18 +38,7 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div
-            className={`collapse navbar-collapse ${sidebar ? "show" : ""}`}
-            id="navbarTogglerDemo01"
-          >
-            <img
-              src={logo}
-              alt="brand-logo"
-              className="brand-logo m-lg-0 m-3"
-            />
-            <Link to="/" className="navbar-brand">
-              Crystal Dew Water Station
-            </Link>
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link top-nav-link">

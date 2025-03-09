@@ -124,11 +124,6 @@
   padding: 0;
 }
 
-.footer-links {
-  margin: 0;
-  padding: 0;
-}
-
 /* PAGE NOT FOUND */
 
 .pnf {
@@ -310,8 +305,6 @@ input[type="tel"],
 select[type="role"],
 input[type="date"],
 input[type="input"],
-input[type="input"],
-input[type="input"],
 select {
   width: 90%;
   padding: 10px;
@@ -374,7 +367,6 @@ p {
 select,
 input[type="date"],
 input[type="input"] {
-select, input[type="date"], input[type="input"] {
   min-width: 150px;
 }
 
@@ -632,8 +624,6 @@ input[type="number"]::-webkit-outer-spin-button {
   input,
   input[type="date"],
   input[type="input"] {
-  select, input,
-  input[type="date"], input[type="input"] {
     min-width: 100px;
   }
 }
