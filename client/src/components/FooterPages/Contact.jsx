@@ -15,10 +15,10 @@ const Contact = () => {
             Any Query and Info About Product Feel Free to Call Anytime
           </p>
           <p className="mt-3">
-            <BiMailSend /> Email: blablabla@bla.com
+            <BiMailSend /> Email: crystaldewpuriwater@gmail.com
           </p>
           <p className="mt-3">
-            <BiPhoneCall /> 045-512-9802
+            <BiPhoneCall /> +63-999-183-2875
           </p>
           <p className="mt-3">
             <BiSupport /> 1800-0000-0000

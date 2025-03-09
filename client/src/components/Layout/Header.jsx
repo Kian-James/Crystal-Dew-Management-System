@@ -2,9 +2,13 @@ import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../components/Images/crystalDew_logo.png";
 import { useAuth } from "../../context/auth";
+import { useState } from "react";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [sidebar, setSidebar] = useState(false);
+  const showSidebar = () => setSidebar(!sidebar);
+
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -25,6 +29,7 @@ const Header = () => {
           <button
             className="navbar-toggler"
             type="button"
+            onClick={showSidebar}
             data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01"

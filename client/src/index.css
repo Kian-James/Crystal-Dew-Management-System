@@ -21,6 +21,12 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+  .brand-logo {
+    margin-top: 20px;
+  }
+}
+
 /* NAVBAR */
 
 .navbar {
@@ -358,7 +364,9 @@ p {
   gap: 10px;
 }
 
-select, input[type="date"], input[type="input"] {
+select,
+input[type="date"],
+input[type="input"] {
   min-width: 150px;
 }
 
@@ -612,8 +620,10 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-top: 15px;
   }
 
-  select, input,
-  input[type="date"], input[type="input"] {
+  select,
+  input,
+  input[type="date"],
+  input[type="input"] {
     min-width: 100px;
   }
 }
@@ -631,4 +641,11 @@ input[type="number"] {
 
 .footer {
   height: fit-content;
+}
+
+h2,
+.form-label,
+.total-expense,
+.total-revenue {
+  color: black;
 }
