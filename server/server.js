@@ -24,9 +24,7 @@ connectDB();
 // MIDDLEWARES
 app.use(
   cors({
-    origin: "crystal-dew-management-system-frontend.vercel.app",
-    methods: ["POST", "GET", "DELETE", "PUT"],
-    credentials: true,
+    origin: "https://crystal-dew-management-system-frontend.onrender.com",
   })
 );
 app.use(express.json());
