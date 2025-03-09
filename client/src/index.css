@@ -642,3 +642,10 @@ input[type="number"] {
 .footer {
   height: fit-content;
 }
+
+h2,
+.form-label,
+.total-expense,
+.total-revenue {
+  color: black;
+}
