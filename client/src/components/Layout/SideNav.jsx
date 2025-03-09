@@ -10,12 +10,13 @@ import { FaAddressCard } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaAddressBook } from "react-icons/fa6";
 import logo from "../../components/Images/crystalDew_logo.png";
+import "./SideNav.css";
 
 const SideNav = () => {
   const [auth, setAuth] = useAuth();
   const location = useLocation();
   return (
-    <div className="nav-container">
+    <div className="nav-container d-flex flex-column p-3">
       <div className="sidebar-text fw-bold fs-4">Welcome {auth.user.name}!</div>
       <div className="brand-container d-flex align-items-center w-100">
         <img src={logo} alt="brand-logo" className="brand-logo" />

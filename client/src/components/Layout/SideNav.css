@@ -1,0 +1,72 @@
+.nav-container {
+    min-width: 250px;
+    background-color: var(--darkest-color);
+    color: white;
+}
+
+.brand-container {
+    height: auto;
+    gap: 5px;
+}
+
+.brand-logo {
+    width: 70px;
+    height: 70px;
+}
+
+.brand-text {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+}
+
+.brand-name {
+    font-size: 20px;
+    margin: 10px;
+    padding: 0;
+}
+
+.brand-slogan {
+    font-size: 12px;
+    position: relative;
+    margin: 20px;
+    padding: 0;
+}
+
+.menu-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px;
+}
+
+.menu-link, .menu-active-link {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+}
+
+.menu-active-link {
+    background-color: rgba(26, 8, 63, 0.5);
+}
+
+.menu-link:hover {
+    background-color: rgba(26, 8, 63, 0.5);
+    transition: 0.5s;
+}
+
+.contact-us {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.contact-us p {
+    color: var(--shadow-color);
+    font-size: 0.8em;
+    margin-bottom: 0;
+    padding: 0;
+}

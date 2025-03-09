@@ -27,10 +27,6 @@
   }
 }
 
-
-
-
-
 /* PAGE NOT FOUND */
 
 .pnf {
@@ -59,6 +55,7 @@
 }
 
 /* ABOUT US PRIVACY POLICY CONTACT US FORMAT */
+
 .contact {
   margin: 0;
   padding: 0;
@@ -85,15 +82,6 @@
   flex: 1;
 }
 
-.nav-container {
-  min-width: 250px;
-  background-color: var(--darkest-color);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
 .main-container {
   flex: 1;
   padding: 20px;
@@ -103,53 +91,6 @@
 .line-graph-container {
   width: 100%;
   height: 400px;
-}
-
-.brand-text {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  padding-top: 20px;
-}
-
-.brand-logo {
-  width: 70px;
-  height: 70px;
-}
-
-.brand-container {
-  height: 15%;
-  gap: 5px;
-}
-
-.menu-container {
-  gap: 5px;
-}
-
-.brand-name {
-  font-size: 20px;
-  margin: 10px;
-  padding: 0;
-}
-
-.brand-slogan {
-  font-size: 12px;
-  position: relative;
-  margin: 20px;
-  padding: 0;
-}
-
-.contact-us {
-  text-align: left;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.contact-us p {
-  color: var(--shadow-color);
-  font-size: 0.8em;
-  margin-bottom: 0;
-  padding: 0;
 }
 
 .container {
@@ -320,45 +261,6 @@ input[type="input"] {
   color: yellow;
   position: relative;
   top: -10px;
-}
-
-.menu-container {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.menu-link {
-  color: white;
-  text-decoration: none;
-  font-size: 15px;
-  padding: 10px;
-  width: 90%;
-  border-radius: 5px;
-}
-
-.menu-active-link {
-  color: white;
-  text-decoration: none;
-  font-size: 15px;
-  padding: 10px;
-  width: 90%;
-  border-radius: 5px;
-  background-color: rgba(26, 8, 63, 0.5);
-}
-
-.menu-link:hover {
-  background-color: rgba(26, 8, 63, 0.5);
-  transition: 0.5s;
-}
-
-.contact-us {
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-  margin-left: 5px;
-  width: 90%;
-  color: yellow;
 }
 
 /* MAIN CONTAINER */
