@@ -1,6 +1,6 @@
 body {
   font-family: "Poppins", sans-serif;
-  background-image: url("../../components/images/Background-image.png");
+  background-image: url("../../components/Images/Background-image.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,7 +12,8 @@ body {
   }
 }
 
-.card, .right-side {
+.card,
+.right-side {
   border-radius: 5%;
 }
 
@@ -22,7 +23,12 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(185, 236, 242, 0.651); /* White overlay  rgba(255, 255, 255, 0.345)*/
+  background-color: rgba(
+    185,
+    236,
+    242,
+    0.651
+  ); /* White overlay  rgba(255, 255, 255, 0.345)*/
 }
 
 .right-box {
@@ -46,7 +52,7 @@ body {
   background-color: var(--shadow-color);
 }
 
-.header-text h1{
+.header-text h1 {
   color: var(--darkest-color);
 }
 
