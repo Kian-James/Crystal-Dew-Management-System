@@ -70,3 +70,15 @@
     margin-bottom: 0;
     padding: 0;
 }
+
+.sidebar-text {
+    max-width: 200px;
+}
+
+.brand-container {
+    gap: 5px;
+}
+
+.brand-slogan {
+    top: -10px;
+}
