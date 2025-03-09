@@ -22,13 +22,7 @@ app.get("/", (req, res) => {
 connectDB();
 
 // MIDDLEWARES
-app.use(
-  cors({
-    origin: "crystal-dew-management-system-frontend.vercel.app",
-    methods: ["POST", "GET", "DELETE", "PUT"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
