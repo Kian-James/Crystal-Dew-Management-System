@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { imagemin } from "vite-plugin-imagemin";
+import imagemin from "vite-plugin-imagemin";
 
 // https://vite.dev/config/
 export default defineConfig({
