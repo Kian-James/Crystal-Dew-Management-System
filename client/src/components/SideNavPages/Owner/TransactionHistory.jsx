@@ -96,7 +96,7 @@ const TransactionHistory = () => {
           />
         </div>
       </div >
-      <div className="mb-3 total-revenue">
+      <div className="mb-3 total-revenue fw-bold fs-5 text-black">
         Total Revenue: Php{totalRevenue.toFixed(2)}
       </div>
       <div className="table-responsive table-container">

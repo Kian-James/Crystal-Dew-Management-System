@@ -117,7 +117,7 @@ const ExpenseList = () => {
           />
         </div>
       </div>
-      <div className="mb-3 total-expense">
+      <div className="mb-3 total-expense fw-bold fs-5 text-black">
         Total Expense: Php{formatExpenseCost(totalExpense)}
       </div>
       <div className="table-container">

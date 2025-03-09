@@ -194,14 +194,16 @@ const Home_Dash = () => {
       <div className="container ms-3 mt-3">
         <h1>Overview</h1>
         <div className="container">
-          <select
-            value={selectedView}
-            onChange={(e) => setSelectedView(e.target.value)}
-          >
-            <option value="Month">Month</option>
-            <option value="Date">Date</option>
-            <option value="Year">Year</option>
-          </select>
+          <div className="w-100">
+            <select
+              value={selectedView}
+              onChange={(e) => setSelectedView(e.target.value)}
+            >
+              <option value="Month">Month</option>
+              <option value="Date">Date</option>
+              <option value="Year">Year</option>
+            </select>
+          </div>
           <h2>Net Income Overview</h2>
           {!verified ? (
             netIncomeData.length > 0 ? (
