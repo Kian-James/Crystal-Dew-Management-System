@@ -1,0 +1,46 @@
+/* NAVBAR */
+
+.navbar {
+    font-family: "Poppins", serif;
+    font-size: 17px;
+    text-transform: uppercase;
+    border-bottom: solid rgba(30, 28, 28, 0.847) !important;
+}
+
+.nav-link {
+    font-weight: 500 !important;
+}
+
+.active {
+    color: var(--darkest-color) !important;
+    border-bottom: 3px solid var(--darkest-color);
+    font-weight: 700 !important;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+.active:hover {
+    color: var(--darkest-color) !important;
+    border-bottom: 3px solid var(--darkest-color);
+    font-weight: 700 !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 3px;
+    color: var(--primary-color) !important;
+}
+
+.brand-logo {
+    border-radius: 20% !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 3px;
+    padding-left: 10px;
+}

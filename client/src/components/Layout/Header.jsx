@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../components/Images/crystalDew_logo.png";
 import { useAuth } from "../../context/auth";
 import { useState } from "react";
+import "./Header.css";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -20,7 +21,7 @@ const Header = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-light shadow-sm">
         <div className="container-fluid">
           <img src={logo} alt="brand-logo" className="brand-logo" />
           <Link to="/" className="navbar-brand">
@@ -42,7 +43,7 @@ const Header = () => {
             className={`collapse navbar-collapse ${sidebar ? "show" : ""}`}
             id="navbarTogglerDemo01"
           >
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ml-auto">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link top-nav-link">
                   Home
