@@ -649,3 +649,7 @@ h2,
 .total-revenue {
   color: black;
 }
+
+h2 em {
+  color: white;
+}
