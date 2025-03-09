@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import "../../../index.css" ;
 
 const AddEmployee = () => {
   // State variables for user input fields
@@ -53,7 +54,7 @@ const AddEmployee = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container ms-3 mt-3">
       <h1 className="title">Register Employee</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

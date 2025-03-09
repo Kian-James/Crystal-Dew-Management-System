@@ -95,7 +95,7 @@ const ExpenseList = () => {
   }, [filteredExpenses]);
 
   return (
-    <div className="container">
+    <div className="container ms-3 mt-3">
       <h1>Expense List</h1>
       <div className="top-sort d-flex justify-content-left">
         <div>
@@ -117,7 +117,7 @@ const ExpenseList = () => {
           />
         </div>
       </div>
-      <div className="mb-3 total-expense">
+      <div className="mb-3 total-expense fw-bold fs-5 text-black">
         Total Expense: Php{formatExpenseCost(totalExpense)}
       </div>
       <div className="table-container">

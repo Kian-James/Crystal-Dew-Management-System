@@ -71,7 +71,7 @@ const TransactionHistory = () => {
   }, [filteredTransactions]);
 
   return (
-    <div className="container mt-4">
+    <div className="container ms-3 mt-3">
       <h1>Transactions</h1>
       <div className="top-sort d-flex justify-content-left">
         <div>
@@ -95,11 +95,11 @@ const TransactionHistory = () => {
             onChange={(e) => setFilterDate(e.target.value)}
           />
         </div>
-      </div>
-      <div className="mb-3 total-revenue">
+      </div >
+      <div className="mb-3 total-revenue fw-bold fs-5 text-black">
         Total Revenue: Php{totalRevenue.toFixed(2)}
       </div>
-      <div className="table-responsive">
+      <div className="table-responsive table-container">
         <table className="table table-striped table-hover">
           <thead className="table-dark">
             <tr>

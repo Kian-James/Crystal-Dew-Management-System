@@ -1,0 +1,35 @@
+/* FOOTER */
+
+.footer {
+    padding: 20px;
+    background: -webkit-linear-gradient(to right, #434343, #000);
+    background: linear-gradient(to right, #434343, #000);
+    height: fit-content;
+}
+
+.footer h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.footer p {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-bottom: 1px solid transparent;
+}
+
+.footer a:hover {
+    color: #e4b722;
+    border-bottom: 1px solid #e4b722;
+}
+
+.footer-links {
+    margin: 0;
+    padding: 0;
+}

@@ -61,8 +61,8 @@ const AccountList = () => {
   }, [auth?.token]);
 
   return (
-    <div className="container">
-      <h1>Account List</h1>
+    <div className="container ms-3 mt-3">
+      <h1 >Account List</h1>
       <div className="table-container">
         <table className="table table-striped table-hover">
           <thead className="table-dark">
