@@ -248,6 +248,32 @@ input[type="input"] {
   margin-bottom: 20px;
 }
 
+input[type="number"] {
+  min-width: 70px;
+  width: 40%;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.footer {
+  height: fit-content;
+}
+
+h2,
+.form-label,
+.total-expense,
+.total-revenue {
+  color: black;
+}
+
+h2 em {
+  color: white;
+}
+
 /*Responsiveness*/
 @media (max-width: 768px) {
   .dashboard-container {
@@ -381,30 +407,4 @@ input[type="input"] {
   input[type="input"] {
     min-width: 100px;
   }
-}
-
-input[type="number"] {
-  min-width: 70px;
-  width: 40%;
-  padding: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.footer {
-  height: fit-content;
-}
-
-h2,
-.form-label,
-.total-expense,
-.total-revenue {
-  color: black;
-}
-
-h2 em {
-  color: white;
 }
