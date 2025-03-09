@@ -168,7 +168,7 @@ const SideNav = () => {
           </>
         )}
       </div>
-      <div className="contact-us d-flex flex-column align-items-start w-90">
+      <div className="contact-us d-flex flex-column align-items-start w-90 pt-3">
         <p>
           <FaAddressCard /> &nbsp; Contact Developer
         </p>

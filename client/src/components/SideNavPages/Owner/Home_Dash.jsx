@@ -196,6 +196,7 @@ const Home_Dash = () => {
         <div className="container">
           <div className="w-100">
             <select
+              type="sort" 
               value={selectedView}
               onChange={(e) => setSelectedView(e.target.value)}
             >
