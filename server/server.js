@@ -12,7 +12,6 @@ dotenv.config();
 
 // OBJECTS
 const app = express();
-const cors = require("cors");
 
 // API
 app.get("/", (req, res) => {
