@@ -1,47 +1,51 @@
 .about-page {
-    background-image: url("../../components/images/aboutbackground.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    height: auto;
+  background-image: url("../../components/images/aboutbackground.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: auto;
 }
 
 .about-overlay {
-    position: absolute;
-    margin-top: 5px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(122, 210, 219, 0.544);     /* White overlay  rgba(255, 255, 255, 0.345)*/
+  position: absolute;
+  margin-top: 5px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    122,
+    210,
+    219,
+    0.544
+  ); /* White overlay  rgba(255, 255, 255, 0.345)*/
 }
 
-.contact{
-    position: relative;
-    z-index: 2;
+.contact {
+  position: relative;
+  z-index: 2;
 }
 
 .service-list {
-    list-style: none;                                   /* Removes default bullets */
+  list-style: none; /* Removes default bullets */
 }
 
-.card{
-    background-color: rgb(252, 246, 246);
-
+.card {
+  background-color: rgb(252, 246, 246);
 }
 
 .service-list li {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .service-list .icon {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
-.title{
-    padding-left: 20px;
-    padding-top: 20px;
-    color: var(--darkest-color);
-    text-align: center;
+.title {
+  padding-left: 20px;
+  padding-top: 20px;
+  color: var(--darkest-color);
+  text-align: center;
 }
