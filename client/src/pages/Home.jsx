@@ -12,7 +12,7 @@ const Home = () => {
         <div className="vid-overlay position-absolute top-50 end-0 translate-middle-y d-flex flex-column p-0 m-0">
           <div className="content">
             <section className="home text-white d-flex align-items-center min-vh-100">
-              <div className="container text-center">
+              <div className="container text-center home-content">
                 <div className="row justify-content-center">
                   <div className="col-md-8">
                     <h2 className="display-4 fw-bold text-uppercase mt-4">

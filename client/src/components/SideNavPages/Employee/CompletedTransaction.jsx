@@ -55,7 +55,7 @@ const CompletedTransaction = () => {
   }, [filteredTransactions]);
 
   return (
-    <div className="container">
+    <div className="container ms-3 mt-3">
       <h1>Transactions</h1>
       <div style={{ textAlign: "right", marginTop: "20px" }}>
         <strong>Total Revenue: </strong>Php {totalRevenue.toFixed(2)}

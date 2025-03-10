@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js/auto";
+import "./LineGraph.css";
 
 // Registering the necessary components for Chart.js
 ChartJS.register(

@@ -98,7 +98,7 @@ const PendingTransaction = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container ms-3 mt-3">
       <h1>Pending Transactions</h1>
       <div className="table-container">
         <table className="table">

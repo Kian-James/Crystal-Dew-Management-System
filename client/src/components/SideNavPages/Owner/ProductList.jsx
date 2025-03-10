@@ -87,8 +87,9 @@ const ProductList = () => {
   };
 
   return (
-    <div className="table-container">
+    <div className="container ms-3 mt-3">
       <h1>Product List</h1>
+      <div className="table-responsive table-container">
       <table className="table table-striped table-hover">
         <thead className="table-dark">
           <tr>
@@ -141,6 +142,7 @@ const ProductList = () => {
           )}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };
