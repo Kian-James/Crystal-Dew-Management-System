@@ -1,4 +1,6 @@
 import mongoose, { mongo } from "mongoose";
+import SequenceFactory from "mongoose-sequence";
+const AutoIncrement = SequenceFactory(mongoose);
 
 const transactionSchema = new mongoose.Schema({
   transaction_id: {
@@ -45,5 +47,7 @@ const transactionSchema = new mongoose.Schema({
     },
   },
 });
+
+transactionSchema.plugin(AutoIncrement, { inc_field: "transaction_id" });
 
 export default mongoose.model("transactions", transactionSchema);

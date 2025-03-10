@@ -248,7 +248,6 @@ export const transactionController = async (req, res) => {
     }
 
     const transaction = await new transactionModel({
-      transaction_id: order.order_id,
       customer_name: order.customer_name,
       customer_address: order.customer_address,
       customer_phone: order.customer_phone,
