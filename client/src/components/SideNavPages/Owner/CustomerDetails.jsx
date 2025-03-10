@@ -52,7 +52,7 @@ const CustomerDetails = () => {
     <div className="container ms-3 mt-3">
       <h1>Customer List</h1>
       <div className="top-sort">
-        <select onChange={(e) => sortCustomers(e.target.value)}>
+        <select type="sort" onChange={(e) => sortCustomers(e.target.value)}>
           <option value="" disabled selected>
             Sort by
           </option>

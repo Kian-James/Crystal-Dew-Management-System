@@ -136,6 +136,7 @@ input[type="tel"],
 select[type="role"],
 input[type="date"],
 input[type="input"],
+select[type="sort"],
 select {
   width: 100%;
   padding: 10px;
@@ -209,8 +210,6 @@ input[type="input"] {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  max-width: fit-content;
-  gap: 10px;
 }
 
 input[type="number"] { /* Product List amount */
