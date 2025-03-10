@@ -74,7 +74,7 @@ const EmployeeList = () => {
     <div className="container ms-3 mt-3">
       <h1>Employee List</h1>
       <div className="top-sort">
-        <select onChange={(e) => sortEmployees(e.target.value)}>
+        <select type="sort" onChange={(e) => sortEmployees(e.target.value)}>
           <option value="" disabled selected>
             Sort by
           </option>

@@ -98,8 +98,8 @@ const ExpenseList = () => {
     <div className="container ms-3 mt-3">
       <h1>Expense List</h1>
       <div className="top-sort d-flex justify-content-left">
-        <div>
-          <select onChange={(e) => sortExpense(e.target.value)}>
+        <div className="w-50 px-3">
+          <select type="sort" onChange={(e) => sortExpense(e.target.value)}>
             <option value="" disabled selected>
               Sort by
             </option>
@@ -109,7 +109,7 @@ const ExpenseList = () => {
             <option value="amount">Amount</option>
           </select>
         </div>
-        <div>
+        <div className="w-50 px-3">
           <input
             type="date"
             value={filterDate}
