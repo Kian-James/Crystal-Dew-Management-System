@@ -1,4 +1,3 @@
-// IMPORTS
 import express from "express";
 import colors from "colors";
 import dotenv from "dotenv";
@@ -29,19 +28,22 @@ app.use(
     credentials: true,
   })
 );
-app.options("*", cors);
 app.use(express.json());
 app.use(morgan("dev"));
 
 // ROUTES
 app.use("/api/va/auth", authRoutes);
 
-// SERVE STATIC
+// 🔹 Serve frontend static files
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "client", "dist")));
+const frontendPath = path.join(__dirname, "client", "dist"); // Change to "build" for Create React App
 
+console.log("Serving frontend from:", frontendPath);
+app.use(express.static(frontendPath));
+
+// 🔹 Redirect all unknown routes to React index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
 // PORT
