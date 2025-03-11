@@ -22,7 +22,17 @@ app.get("/", (req, res) => {
 connectDB();
 
 // MIDDLEWARES
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://crystal-dew-management-system-frontend.onrender.com",
+      "http://localhost:5173",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 app.options("*", cors);
 app.use(express.json());
 app.use(morgan("dev"));
