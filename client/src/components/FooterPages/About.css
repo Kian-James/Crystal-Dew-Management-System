@@ -1,25 +1,19 @@
-.about-page {
-  background-image: url("../../components/images/aboutbackground.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
+
+.vid-container {
+  width: 100%;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
+}
+
+.bg-video {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   height: auto;
 }
 
-.about-overlay {
-  position: absolute;
-  margin-top: 5px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(
-    122,
-    210,
-    219,
-    0.544
-  ); /* White overlay  rgba(255, 255, 255, 0.345)*/
-}
 
 .contact {
   position: relative;
@@ -48,4 +42,12 @@
   padding-top: 20px;
   color: var(--darkest-color);
   text-align: center;
+}
+
+.bg-video {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
 }
