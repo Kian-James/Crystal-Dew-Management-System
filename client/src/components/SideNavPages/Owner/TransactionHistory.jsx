@@ -74,8 +74,9 @@ const TransactionHistory = () => {
     <div className="container ms-3 mt-3">
       <h1>Transactions</h1>
       <div className="top-sort d-flex justify-content-left">
-        <div>
+        <div className="w-50 px-3">
           <select
+            type="sort" 
             className=""
             onChange={(e) => sortTransaction(e.target.value)}
           >
@@ -87,7 +88,7 @@ const TransactionHistory = () => {
             <option value="date">Date</option>
           </select>
         </div>
-        <div>
+        <div className="w-50 px-3">
           <input
             type="date"
             className="form-control"

@@ -2,6 +2,13 @@
     min-width: 250px;
     background-color: var(--darkest-color);
     color: white;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.nav-container.visible {
+    height: 100%;
+    max-height: 1000vh;
 }
 
 .brand-container {
@@ -81,4 +88,96 @@
 
 .brand-slogan {
     top: -10px;
+}
+
+.toggle-button {
+    display: none;
+}
+
+/* SIDE NAV RESPONSIVENESS */
+@media (max-width: 768px) {
+    .hidden {
+        max-height: 0;
+        transition: max-height 0.3s ease;
+    }
+    
+    .visible {
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-container {
+        min-width: 100%;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .sidebar-text {
+        max-width: 100%;
+        padding-top: 10px;
+    }
+
+    .nav-container {
+        min-width: 100%;
+        padding: 10px;
+    }
+
+    .brand-slogan {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .menu-container {
+        gap: 10px;
+    }
+
+    .menu-link, .menu-active-link {
+        font-size: 14px;
+        padding: 8px;
+        width: 100%;
+    }
+
+    .contact-us {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .contact-us p {
+        font-size: 0.7em;
+    }
+
+    .toggle-button {
+        width: 99999%;
+        display: block;
+        background-color: transparent;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 10px;
+    }
+    
+    .toggle-button:hover {
+        background-color: rgba(26, 8, 63, 0.5);
+        transition: background-color 0.3s ease;
+    }
+    
+    .toggle-button-container {
+        margin: 0;
+        padding: 0;
+        background-color: #175167;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: solid 3px rgba(30, 28, 28, 0.3);
+    }
+}
+
+/* Landscape mode */
+@media (orientation: landscape) {
+    .nav-container {
+        max-height: 1000vh;
+    }
 }
