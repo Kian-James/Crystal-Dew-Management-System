@@ -16,7 +16,7 @@ const formatExpenseCost = (cost) => {
 };
 
 const Home_Dash = () => {
-  const [selectedView, setSelectedView] = useState("month");
+  const [selectedView, setSelectedView] = useState("Date");
   const [netIncomeData, setNetIncomeData] = useState("");
   const [dateInput, setDateInput] = useState("");
   const [expenses, setExpenses] = useState([]);
@@ -196,12 +196,12 @@ const Home_Dash = () => {
         <div className="container">
           <div className="w-100">
             <select
-              type="sort" 
+              type="sort"
               value={selectedView}
               onChange={(e) => setSelectedView(e.target.value)}
             >
-              <option value="Month">Month</option>
               <option value="Date">Date</option>
+              <option value="Month">Month</option>
               <option value="Year">Year</option>
             </select>
           </div>
