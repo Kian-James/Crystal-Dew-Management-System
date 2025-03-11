@@ -13,12 +13,7 @@ dotenv.config();
 // OBJECTS
 const app = express();
 
-// API
-app.get("/", (req, res) => {
-  res.send("<h1>Welcome to our Web Application using MERN STACK</h1>");
-});
-
-// DATABASE CONFIGS
+// DATABASE CONFIG
 connectDB();
 
 // MIDDLEWARES
@@ -39,6 +34,14 @@ app.use(morgan("dev"));
 
 // ROUTES
 app.use("/api/va/auth", authRoutes);
+
+// SERVE STATIC
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "client", "dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 // PORT
 const PORT = process.env.PORT || 8080;
