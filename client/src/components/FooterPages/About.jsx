@@ -12,9 +12,9 @@ const About = () => {
       <div className="about-page">
         <div className="vid-container">
           <video className="bg-video" src={vd2} autoPlay muted loop></video>
-          <div className="vid-overlay position-absolute top-50 end-0 translate-middle-y d-flex flex-column p-0 m-0">
+          <div className="vid-overlay2 position-absolute top-50 end-0 translate-middle-y d-flex flex-column p-0 m-0">
             <div className="content"></div>
-            <div className="container d-flex justify-content-center align-items-center min-vh-100">
+            <div className="container d-flex flex-column-reverse flex-md-row justify-content-center align-items-center min-vh-100">
               <div className="col-md-6 mx-2">
                 <div className="card shadow-lg">
                   <h2 className="title fw-bold">Our Service Section</h2>
@@ -49,10 +49,9 @@ const About = () => {
                   </ul>
                 </div>
               </div>
-              <div className="col-md-4 mx-2">
+              <div className="col-md-6 mx-2 mb-3 mb-md-0 mt-5">
                 <div
                   className="card shadow-lg"
-                  style={{ width: "100%", height: "370px" }}
                 >
                   <h2 className="title fw-bold">About Us</h2>
                   <p className="text-justify mt-2">
