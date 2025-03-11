@@ -8,6 +8,7 @@ export default defineConfig({
   server: {
     host: true,
     open: true,
+    historyApiFallback: true,
   },
   build: {
     rollupOptions: {
