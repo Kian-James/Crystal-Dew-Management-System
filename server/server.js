@@ -4,11 +4,15 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/database.js";
 import authRoutes from "./routes/aRoutes.js";
+import { fileURLToPath } from "url";
 import cors from "cors";
 import path from "path";
 
 // CONFIG ENV
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // OBJECTS
 const app = express();
@@ -34,16 +38,10 @@ app.use(morgan("dev"));
 // ROUTES
 app.use("/api/va/auth", authRoutes);
 
-// 🔹 Serve frontend static files
-const __dirname = path.resolve();
-const frontendPath = path.join(__dirname, "client", "dist"); // Change to "build" for Create React App
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
-console.log("Serving frontend from:", frontendPath);
-app.use(express.static(frontendPath));
-
-// 🔹 Redirect all unknown routes to React index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });
 
 // PORT
