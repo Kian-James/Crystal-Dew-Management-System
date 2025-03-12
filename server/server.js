@@ -44,16 +44,26 @@ app.use("/api/va/auth", authRoutes);
 const PORT = process.env.PORT || 8080;
 
 // Keeps Server Online
-const keepAlive = () => {
-  setInterval(async () => {
-    try {
-      await axios.get("https://crystal-dew-management-system.onrender.com");
-      console.log("Pinged server to keep it alive");
-    } catch (error) {
-      console.error("Error pinging server:", error);
-    }
-  }, 30000);
-};
+const url = `https://crystal-dew-management-system.onrender.com`;
+const interval = 30000;
+
+function reloadWebsite() {
+  axios
+    .get(url)
+    .then((response) => {
+      console.log(
+        `Reloaded at ${new Date().toISOString()}: Status Code ${
+          response.status
+        }`
+      );
+    })
+    .catch((error) => {
+      console.error(
+        `Error reloading at ${new Date().toISOString()}:`,
+        error.message
+      );
+    });
+}
 
 // RUN LISTEN
 app.listen(PORT, () => {
@@ -61,5 +71,5 @@ app.listen(PORT, () => {
     `Server is running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgWhite
       .black
   );
-  keepAlive();
+  setInterval(reloadWebsite, interval);
 });
