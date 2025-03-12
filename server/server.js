@@ -43,14 +43,6 @@ app.use("/api/va/auth", authRoutes);
 // PORT
 const PORT = process.env.PORT || 8080;
 
-// RUN LISTEN
-app.listen(PORT, () => {
-  console.log(
-    `Server is running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgWhite
-      .black
-  );
-});
-
 // Keeps Server Online
 const keepAlive = () => {
   setInterval(async () => {
@@ -60,6 +52,14 @@ const keepAlive = () => {
     } catch (error) {
       console.error("Error pinging server:", error);
     }
-  }, 3000);
+  }, 30000);
 };
-keepAlive();
+
+// RUN LISTEN
+app.listen(PORT, () => {
+  console.log(
+    `Server is running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgWhite
+      .black
+  );
+  keepAlive();
+});
