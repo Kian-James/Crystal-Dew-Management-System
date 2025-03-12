@@ -12,6 +12,7 @@ dotenv.config();
 
 // OBJECTS
 const app = express();
+const axios = require("axios");
 
 // API
 app.get("/", (req, res) => {
@@ -43,30 +44,6 @@ app.use("/api/va/auth", authRoutes);
 // PORT
 const PORT = process.env.PORT || 8080;
 
-// Keeps Server Online
-const url = `https://crystal-dew-management-system.onrender.com`;
-const interval = 30000;
-
-function reloadWebsite() {
-  axios
-    .get(url)
-    .then((response) => {
-      console.log(
-        `Reloaded at ${new Date().toISOString()}: Status Code ${
-          response.status
-        }`
-      );
-    })
-    .catch((error) => {
-      console.error(
-        `Error reloading at ${new Date().toISOString()}:`,
-        error.message
-      );
-    });
-}
-
-setInterval(reloadWebsite, interval);
-
 // RUN LISTEN
 app.listen(PORT, () => {
   console.log(
@@ -74,3 +51,16 @@ app.listen(PORT, () => {
       .black
   );
 });
+
+// Keeps Server Online
+const keepAlive = () => {
+  setInterval(async () => {
+    try {
+      await axios.get("https://crystal-dew-management-system.onrender.com");
+      console.log("Pinged server to keep it alive");
+    } catch (error) {
+      console.error("Error pinging server:", error);
+    }
+  }, 3000);
+};
+keepAlive();
