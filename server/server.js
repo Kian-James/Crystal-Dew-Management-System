@@ -1,4 +1,3 @@
-//IMPORTS
 import express from "express";
 import colors from "colors";
 import dotenv from "dotenv";
@@ -6,6 +5,7 @@ import morgan from "morgan";
 import connectDB from "./config/database.js";
 import authRoutes from "./routes/aRoutes.js";
 import cors from "cors";
+import axios from "axios";
 
 // CONFIG ENV
 dotenv.config();
