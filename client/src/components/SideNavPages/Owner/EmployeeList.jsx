@@ -8,6 +8,7 @@ const EmployeeList = () => {
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
+  // FETCHES EMPLOYEE DATA
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
@@ -34,6 +35,7 @@ const EmployeeList = () => {
     fetchData();
   }, [auth?.token]);
 
+  // DELETE API KEY
   const Delete = async (emp_id) => {
     try {
       await axios.delete(
@@ -58,6 +60,7 @@ const EmployeeList = () => {
     }
   };
 
+  // SORTS EMPLOYEES
   const sortEmployees = (change) => {
     const sortedEmployees = [...employees].sort((a, b) => {
       if (change === "name") {
