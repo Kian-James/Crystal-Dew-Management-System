@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import "../../../index.css" ;
+import "../../../index.css";
 
 const AddEmployee = () => {
   // State variables for user input fields
@@ -12,6 +12,7 @@ const AddEmployee = () => {
   const [address, setAddress] = useState("");
   const [role, setRole] = useState("");
 
+  // CREATES EMAIL
   useEffect(() => {
     if (firstName && lastName) {
       const formattedEmail = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@cd.com`;
@@ -30,6 +31,7 @@ const AddEmployee = () => {
         { name, email, phone, address, role }
       );
 
+      // API CALL TO REGISTER TO ACCOUNTS
       await axios.post(
         `${import.meta.env.VITE_API_URL}/api/va/auth/save-account`,
         {
