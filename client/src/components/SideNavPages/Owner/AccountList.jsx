@@ -10,6 +10,7 @@ const AccountList = () => {
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
+  // GETTING ACCOUNT VALUES
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
@@ -37,6 +38,7 @@ const AccountList = () => {
     fetchData();
   }, [auth?.token]);
 
+  // CHANGE PASSWORD
   const handlePasswordChange = async (accountId) => {
     try {
       await axios.put(
@@ -57,6 +59,7 @@ const AccountList = () => {
     setEditPassword(editPassword === accountId ? null : accountId);
   };
 
+  // SORTS ACCOUNT VALUES
   const sortAccounts = (change) => {
     const sortedAccounts = [...accounts].sort((a, b) => {
       if (change === "name") {
