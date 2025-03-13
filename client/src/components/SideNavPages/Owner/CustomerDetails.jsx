@@ -8,6 +8,7 @@ const CustomerDetails = () => {
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
+  // FETCHES CUSTOMER DETAILS
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
@@ -34,6 +35,7 @@ const CustomerDetails = () => {
     fetchData();
   }, [auth?.token]);
 
+  // SORTS CUSTOMERS
   const sortCustomers = (change) => {
     const sortedCustomers = [...customer].sort((a, b) => {
       if (change === "name") {
