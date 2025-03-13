@@ -10,6 +10,8 @@ export default defineConfig({
     open: true,
     historyApiFallback: true,
   },
+
+  // Image Chunking for Uploading
   build: {
     rollupOptions: {
       output: {
