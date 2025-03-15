@@ -13,7 +13,6 @@ const PendingTransaction = () => {
       if (!auth?.token) return;
 
       try {
-        // PENDING TRANSACTIONS
         const { data } = await axios.get(
           `${
             import.meta.env.VITE_API_URL
@@ -73,6 +72,9 @@ const PendingTransaction = () => {
   };
 
   const Delete = async (order_id) => {
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
+
     try {
       await axios.delete(
         `${
@@ -147,7 +149,6 @@ const PendingTransaction = () => {
             ) : (
               <tr>
                 <td colSpan="9" style={{ textAlign: "center" }}>
-                  {" "}
                   No Pending Transactions Found
                 </td>
               </tr>

@@ -37,6 +37,8 @@ const EmployeeList = () => {
 
   // DELETE API KEY
   const Delete = async (emp_id) => {
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
     try {
       await axios.delete(
         `${import.meta.env.VITE_API_URL}/api/va/auth/employee-delete`,
