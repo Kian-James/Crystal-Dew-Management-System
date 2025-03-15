@@ -12,7 +12,7 @@ const formatExpenseCost = (cost) => {
 };
 
 const ExpenseList = () => {
-  // Sets up Variabless
+  // Sets up Variables
   const [expenses, setExpenses] = useState([]);
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
@@ -46,8 +46,6 @@ const ExpenseList = () => {
 
   // DELETE EXPENSE API CALL
   const Delete = async (expense_id) => {
-    const confirmDelete = window.confirm("Are you sure?");
-    if (!confirmDelete) return;
     try {
       await axios.delete(
         `${import.meta.env.VITE_API_URL}/api/va/auth/expense-delete`,
