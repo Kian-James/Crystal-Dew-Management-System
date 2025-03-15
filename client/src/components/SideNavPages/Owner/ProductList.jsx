@@ -15,14 +15,13 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
-  const [showModal, setShowModal] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
 
       try {
+        // Fetch Expenses
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/va/auth/product-list`,
           {
@@ -69,14 +68,9 @@ const ProductList = () => {
     }
   };
 
-  const handleDeleteClick = (product) => {
-    setSelectedProduct(product);
-    setShowModal(true);
-  };
-
-  const confirmDelete = async () => {
-    if (!selectedProduct) return;
-
+  const Delete = async (product_id) => {
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
     try {
       await axios.delete(
         `${import.meta.env.VITE_API_URL}/api/va/auth/product-delete`,
@@ -84,21 +78,14 @@ const ProductList = () => {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
-          data: { product_id: selectedProduct.product_id },
+          data: { product_id: product_id },
         }
       );
-      setProducts(
-        products.filter(
-          (prod) => prod.product_id !== selectedProduct.product_id
-        )
-      );
+      setProducts(products.filter((prod) => prod.product_id !== product_id));
       toast.success("Product deleted successfully.");
     } catch (error) {
       toast.error("Failed to delete product. Please try again.");
     }
-
-    setShowModal(false);
-    setSelectedProduct(null);
   };
 
   return (
@@ -133,14 +120,14 @@ const ProductList = () => {
                     />
                     <button
                       onClick={() => setIsEditing(!isEditing)}
-                      className="btn btn-primary ms-2"
+                      className="btn btn-primary"
                     >
                       {isEditing ? "Save" : "Edit"}
                     </button>
                   </td>
                   <td>
                     <button
-                      onClick={() => handleDeleteClick(prod)}
+                      onClick={() => Delete(prod.product_id)}
                       className="btn btn-danger"
                     >
                       Delete
@@ -158,39 +145,6 @@ const ProductList = () => {
           </tbody>
         </table>
       </div>
-
-      {showModal && (
-        <div
-          className="modal show d-block"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Confirm Delete</h5>
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="btn-close"
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p>Are you sure you want to delete?</p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="btn btn-secondary"
-                >
-                  Cancel
-                </button>
-                <button onClick={confirmDelete} className="btn btn-danger">
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
