@@ -12,7 +12,6 @@ dotenv.config();
 
 // OBJECTS
 const app = express();
-const axios = require("axios");
 
 // API
 app.get("/", (req, res) => {

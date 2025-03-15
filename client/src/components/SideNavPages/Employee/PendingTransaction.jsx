@@ -72,8 +72,8 @@ const PendingTransaction = () => {
   };
 
   const Delete = async (order_id) => {
-    const confirmDelete = window.confirm("ARE YOU SURE?");
-    if (!confirmDelete) return; // Exit if the user clicks "No"
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
 
     try {
       await axios.delete(
