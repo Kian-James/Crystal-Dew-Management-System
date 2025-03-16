@@ -353,32 +353,3 @@ h2 em {
     min-width: 100px;
   }
 }
-
-.modal {
-  display: block;
-  position: fixed;
-  z-index: 1050;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-dialog {
-  position: relative;
-  margin: auto;
-  top: 10%;
-}
-
-.modal-content {
-  background-color: #fff;
-  border: none;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.modal-body p {
-  color: black;
-}
