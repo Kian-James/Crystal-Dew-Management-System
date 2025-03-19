@@ -100,9 +100,9 @@ const PendingTransaction = () => {
   return (
     <div className="container ms-3 mt-3">
       <h1>Pending Transactions</h1>
-      <div className="table-container">
-        <table className="table">
-          <thead>
+      <div className="table-responsive table-container">
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
             <tr>
               <th>Task No.</th>
               <th>Customer Name</th>
