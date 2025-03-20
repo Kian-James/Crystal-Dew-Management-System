@@ -60,9 +60,9 @@ const CompletedTransaction = () => {
       <div style={{ textAlign: "right", marginTop: "20px" }}>
         <strong>Total Revenue: </strong>Php {totalRevenue.toFixed(2)}
       </div>
-      <div className="table-container">
-        <table className="table">
-          <thead>
+      <div className="table-responsive table-container">
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
             <tr>
               <th>Transaction id</th>
               <th>Customer Name</th>
