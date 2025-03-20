@@ -8,6 +8,7 @@ const EmployeeList = () => {
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
+  // FETCHES EMPLOYEE DATA
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
@@ -34,7 +35,10 @@ const EmployeeList = () => {
     fetchData();
   }, [auth?.token]);
 
+  // DELETE API KEY
   const Delete = async (emp_id) => {
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
     try {
       await axios.delete(
         `${import.meta.env.VITE_API_URL}/api/va/auth/employee-delete`,
@@ -58,11 +62,12 @@ const EmployeeList = () => {
     }
   };
 
+  // SORTS EMPLOYEES
   const sortEmployees = (change) => {
     const sortedEmployees = [...employees].sort((a, b) => {
       if (change === "name") {
         return a.name.localeCompare(b.name);
-      } else if (change === "account-id") {
+      } else if (change === "employee-id") {
         return a.employee_id - b.employee_id;
       }
       return 0;
@@ -79,7 +84,7 @@ const EmployeeList = () => {
             Sort by
           </option>
           <option value="name">Name</option>
-          <option value="account-id">Account ID</option>
+          <option value="employee-id">Employee ID</option>
         </select>
       </div>
       <div className="table-container">

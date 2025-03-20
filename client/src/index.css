@@ -122,10 +122,9 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-bottom: 20px;
 }
 
-
 /* Owner Dashboard */
 h2,
-.form-label{
+.form-label {
   font-size: 1.5em;
   font-weight: bold;
   color: rgb(34, 34, 34);
@@ -212,7 +211,8 @@ input[type="input"] {
   margin-bottom: 20px;
 }
 
-input[type="number"] { /* Product List amount */
+input[type="number"] {
+  /* Product List amount */
   min-width: 70px;
   width: 40%;
   padding: 10px;

@@ -16,7 +16,8 @@ const formatExpenseCost = (cost) => {
 };
 
 const Home_Dash = () => {
-  const [selectedView, setSelectedView] = useState("month");
+  // SET UP VARIABLES
+  const [selectedView, setSelectedView] = useState("Date");
   const [netIncomeData, setNetIncomeData] = useState("");
   const [dateInput, setDateInput] = useState("");
   const [expenses, setExpenses] = useState([]);
@@ -28,6 +29,7 @@ const Home_Dash = () => {
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
+  // GET DATA FROM API
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
@@ -117,10 +119,12 @@ const Home_Dash = () => {
     fetchData();
   }, [auth?.token]);
 
+  // SOLVES FOR NET INCOME
   useEffect(() => {
     setNetIncome(totalTransaction - totalExpense);
   }, [totalExpense, totalTransaction]);
 
+  // HANDLE FILTERING OF DATA SHOWN
   const handleFilter = () => {
     const currentYear = new Date().getFullYear();
     const inputDate = dateInput.split("/");
@@ -196,12 +200,12 @@ const Home_Dash = () => {
         <div className="container">
           <div className="w-100">
             <select
-              type="sort" 
+              type="sort"
               value={selectedView}
               onChange={(e) => setSelectedView(e.target.value)}
             >
-              <option value="Month">Month</option>
               <option value="Date">Date</option>
+              <option value="Month">Month</option>
               <option value="Year">Year</option>
             </select>
           </div>

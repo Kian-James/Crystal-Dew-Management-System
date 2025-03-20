@@ -69,6 +69,8 @@ const ProductList = () => {
   };
 
   const Delete = async (product_id) => {
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
     try {
       await axios.delete(
         `${import.meta.env.VITE_API_URL}/api/va/auth/product-delete`,
@@ -90,58 +92,58 @@ const ProductList = () => {
     <div className="container ms-3 mt-3">
       <h1>Product List</h1>
       <div className="table-responsive table-container">
-      <table className="table table-striped table-hover">
-        <thead className="table-dark">
-          <tr>
-            <th>Product ID</th>
-            <th>Description</th>
-            <th>Amount</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.length > 0 ? (
-            products.map((prod) => (
-              <tr key={prod._id}>
-                <td>{prod.product_id}</td>
-                <td>{prod.product_name}</td>
-                <td>
-                  <input
-                    type="number"
-                    value={prod.product_cost}
-                    onChange={(e) =>
-                      isEditing
-                        ? handleCostUpdate(prod.product_id, e.target.value)
-                        : null
-                    }
-                    readOnly={!isEditing}
-                  />
-                  <button
-                    onClick={() => setIsEditing(!isEditing)}
-                    className="btn btn-primary"
-                  >
-                    {isEditing ? "Save" : "Edit"}
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => Delete(prod.product_id)}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
+            <tr>
+              <th>Product ID</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.length > 0 ? (
+              products.map((prod) => (
+                <tr key={prod._id}>
+                  <td>{prod.product_id}</td>
+                  <td>{prod.product_name}</td>
+                  <td>
+                    <input
+                      type="number"
+                      value={prod.product_cost}
+                      onChange={(e) =>
+                        isEditing
+                          ? handleCostUpdate(prod.product_id, e.target.value)
+                          : null
+                      }
+                      readOnly={!isEditing}
+                    />
+                    <button
+                      onClick={() => setIsEditing(!isEditing)}
+                      className="btn btn-primary"
+                    >
+                      {isEditing ? "Save" : "Edit"}
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => Delete(prod.product_id)}
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" style={{ textAlign: "center" }}>
+                  No Products Found
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="4" style={{ textAlign: "center" }}>
-                No Products Found
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

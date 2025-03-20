@@ -6,33 +6,11 @@ import { useAuth } from "../../../context/auth";
 const AccountList = () => {
   const [editPassword, setEditPassword] = useState(null);
   const [newPassword, setNewPassword] = useState("");
-
-  const handlePasswordChange = async (accountId) => {
-    try {
-      await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/va/auth/update-password`,
-        {
-          accountId,
-          newPassword,
-        }
-      );
-      toast.success("Password updated successfully!");
-      setEditPassword(null);
-    } catch (error) {
-      toast.error("Failed to update password. Please try again.");
-    }
-  };
-
-  const toggleEditPassword = (accountId) => {
-    setEditPassword(editPassword === accountId ? null : accountId);
-  };
   const [accounts, setAccounts] = useState([]);
-  const sortedAccounts = [...accounts].sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
 
+  // GETTING ACCOUNT VALUES
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
@@ -60,9 +38,52 @@ const AccountList = () => {
     fetchData();
   }, [auth?.token]);
 
+  // CHANGE PASSWORD
+  const handlePasswordChange = async (accountId) => {
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/api/va/auth/update-password`,
+        {
+          accountId,
+          newPassword,
+        }
+      );
+      toast.success("Password updated successfully!");
+      setEditPassword(null);
+    } catch (error) {
+      toast.error("Failed to update password. Please try again.");
+    }
+  };
+
+  const toggleEditPassword = (accountId) => {
+    setEditPassword(editPassword === accountId ? null : accountId);
+  };
+
+  // SORTS ACCOUNT VALUES
+  const sortAccounts = (change) => {
+    const sortedAccounts = [...accounts].sort((a, b) => {
+      if (change === "name") {
+        return a.name.localeCompare(b.name);
+      } else if (change === "account-id") {
+        return a.account_id - b.account_id;
+      }
+      return 0;
+    });
+    setAccounts(sortedAccounts);
+  };
+
   return (
     <div className="container ms-3 mt-3">
-      <h1 >Account List</h1>
+      <h1>Account List</h1>
+      <div className="top-sort">
+        <select onChange={(e) => sortAccounts(e.target.value)}>
+          <option value="" disabled selected>
+            Sort by
+          </option>
+          <option value="name">Name</option>
+          <option value="account-id">Account ID</option>
+        </select>
+      </div>
       <div className="table-container">
         <table className="table table-striped table-hover">
           <thead className="table-dark">
@@ -77,7 +98,7 @@ const AccountList = () => {
           </thead>
           <tbody>
             {accounts.length > 0 ? (
-              sortedAccounts.map((emp) => (
+              accounts.map((emp) => (
                 <tr key={emp.name}>
                   <td>{emp.account_id}</td>
                   <td>{emp.name}</td>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../../context/auth";
 
+// FORMATTING
 const formatExpenseCost = (cost) => {
   return Number(cost).toLocaleString("en-US", {
     minimumFractionDigits: 2,
@@ -11,12 +12,14 @@ const formatExpenseCost = (cost) => {
 };
 
 const ExpenseList = () => {
+  // Sets up Variables
   const [expenses, setExpenses] = useState([]);
   const [verified, setVerified] = useState(false);
   const [auth] = useAuth();
   const [filterDate, setFilterDate] = useState("");
   const [totalExpense, setTotalExpense] = useState("");
 
+  // FETCHES EXPENSE DATA
   useEffect(() => {
     const fetchData = async () => {
       if (!auth?.token) return;
@@ -41,7 +44,10 @@ const ExpenseList = () => {
     fetchData();
   }, [auth?.token]);
 
+  // DELETE EXPENSE API CALL
   const Delete = async (expense_id) => {
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
     try {
       await axios.delete(
         `${import.meta.env.VITE_API_URL}/api/va/auth/expense-delete`,
@@ -59,6 +65,7 @@ const ExpenseList = () => {
     }
   };
 
+  // SORTS EXPENSE
   const sortExpense = (change) => {
     const sortedExpense = [...expenses].sort((a, b) => {
       if (change === "name") {
@@ -78,6 +85,7 @@ const ExpenseList = () => {
     setExpenses(sortedExpense);
   };
 
+  // FILTERING
   const filteredExpenses = filterDate
     ? expenses.filter((expense) => {
         const expenseDate = new Date(expense.expense_date);
@@ -86,6 +94,7 @@ const ExpenseList = () => {
       })
     : expenses;
 
+  // SOLVING FOR TOTAL EXPENSE
   useEffect(() => {
     const expense = filteredExpenses.reduce(
       (acc, expense) => acc + expense.expense_cost,

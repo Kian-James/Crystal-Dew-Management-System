@@ -248,7 +248,6 @@ export const transactionController = async (req, res) => {
     }
 
     const transaction = await new transactionModel({
-      transaction_id: order.order_id,
       customer_name: order.customer_name,
       customer_address: order.customer_address,
       customer_phone: order.customer_phone,
@@ -441,7 +440,9 @@ export const getProduct = async (req, res) => {
 // GET ACCOUNT LIST
 export const getAccounts = async (req, res) => {
   try {
-    const accounts = await accountModel.find({ role: { $in: [0, 1] } });
+    const accounts = await accountModel
+      .find({ role: { $in: [0, 1] } })
+      .sort({ account_id: 1 });
     res.status(200).send({
       success: true,
       message: "Accounts fetched successfully",

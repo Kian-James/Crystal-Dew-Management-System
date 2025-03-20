@@ -8,7 +8,10 @@ export default defineConfig({
   server: {
     host: true,
     open: true,
+    historyApiFallback: true,
   },
+
+  // Image Chunking for Uploading
   build: {
     rollupOptions: {
       output: {
