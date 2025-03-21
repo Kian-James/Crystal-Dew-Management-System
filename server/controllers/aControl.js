@@ -44,6 +44,7 @@ export const registerController = async (req, res) => {
       email,
       phone,
       address,
+      role,
     }).save();
     res.status(201).send({
       success: true,
