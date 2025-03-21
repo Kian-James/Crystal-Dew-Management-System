@@ -57,12 +57,12 @@ const CompletedTransaction = () => {
   return (
     <div className="container ms-3 mt-3">
       <h1>Transactions</h1>
-      <div style={{ textAlign: "right", marginTop: "20px" }}>
+      <div className="mb-3 total-revenue fs-5 text-black">
         <strong>Total Revenue: </strong>Php {totalRevenue.toFixed(2)}
       </div>
-      <div className="table-container">
-        <table className="table">
-          <thead>
+      <div className="table-responsive table-container">
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
             <tr>
               <th>Transaction id</th>
               <th>Customer Name</th>
@@ -90,7 +90,7 @@ const CompletedTransaction = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="7" style={{ textAlign: "center" }}>
+                <td colSpan="8" style={{ textAlign: "center" }}>
                   No Transactions Found
                 </td>
               </tr>
